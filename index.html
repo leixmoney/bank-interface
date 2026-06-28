@@ -22,6 +22,21 @@
   @keyframes tcCheck{to{stroke-dashoffset:0}}
   @keyframes tcFloat{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-150px) rotate(240deg);opacity:0}}
   @keyframes tcSpin{to{transform:rotate(360deg)}}
+  /* ---------- responsive (mobile web) ---------- */
+  html,body{overflow-x:hidden;max-width:100%;}
+  img,svg{max-width:100%;}
+  @media (max-width:860px){
+    [style*="grid-template-columns"]{grid-template-columns:1fr!important;}
+  }
+  @media (max-width:640px){
+    h1{font-size:30px!important;line-height:1.14!important;}
+    h2{font-size:25px!important;line-height:1.18!important;}
+    input,textarea,select{font-size:16px!important;}
+    svg{height:auto!important;}
+  }
+  @media (max-width:760px){
+    .tc-nav span{display:none!important;}
+  }
 </style>
 </helmet>
 
@@ -37,7 +52,7 @@
           <svg width="28" height="28" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="none" stroke="#0A6E4E" stroke-width="2"/><circle cx="15" cy="15" r="7" fill="none" stroke="#B0894E" stroke-width="2"/><circle cx="15" cy="15" r="2.4" fill="#0A6E4E"/></svg>
           <div style="font-family:'Sora';font-weight:700;letter-spacing:.02em;font-size:17px;color:#0F1A15;">TrustCircle<span style="font-size:10px;vertical-align:super;color:#B0894E;">™</span></div>
         </div>
-        <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500;color:#51615A;">
+        <div class="tc-nav" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500;color:#51615A;flex-wrap:wrap;justify-content:flex-end;">
           <span onClick="{{ navVision }}" style="cursor:pointer;">Vision</span>
           <span onClick="{{ navScore }}" style="cursor:pointer;">Trust Score</span>
           <span onClick="{{ navCircles }}" style="cursor:pointer;">Circles</span>
@@ -61,8 +76,8 @@
         </div>
       </div>
       <div style="display:flex;justify-content:center;align-items:center;animation:tcFade 1s ease both;">
-        <div style="position:relative;width:420px;height:420px;">
-          <svg width="420" height="420" viewBox="0 0 420 420" style="display:block;">
+        <div style="position:relative;width:min(420px,84vw);height:min(420px,84vw);">
+          <svg width="420" height="420" viewBox="0 0 420 420" style="display:block;width:100%;height:100%;">
             <sc-for list="{{ heroLines }}" as="l" hint-placeholder-count="60">
               <line x1="{{ l.x1 }}" y1="{{ l.y1 }}" x2="{{ l.x2 }}" y2="{{ l.y2 }}" stroke="#0A6E4E" stroke-width="0.7" opacity="{{ l.op }}"></line>
             </sc-for>
@@ -416,7 +431,7 @@
   <sc-if value="{{ isAppShell }}">
   <div style="min-height:100vh;background:#F6F8F7;">
     <div style="position:sticky;top:0;z-index:30;background:rgba(246,248,247,.86);backdrop-filter:blur(12px);border-bottom:1px solid #E4EAE6;">
-      <div style="max-width:1120px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+      <div style="max-width:1120px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:14px;">
           <button onClick="{{ back }}" style="width:36px;height:36px;border-radius:50%;border:1px solid #DCE3DE;background:#fff;cursor:pointer;color:#0F1A15;font-size:16px;display:flex;align-items:center;justify-content:center;">←</button>
           <div style="display:flex;align-items:center;gap:9px;">
@@ -425,7 +440,7 @@
           </div>
         </div>
         <sc-if value="{{ showNav }}">
-          <div style="display:flex;align-items:center;gap:4px;background:#fff;border:1px solid #E4EAE6;border-radius:13px;padding:4px;">
+          <div style="display:flex;align-items:center;gap:4px;background:#fff;border:1px solid #E4EAE6;border-radius:13px;padding:4px;max-width:100%;overflow-x:auto;order:3;">
             <sc-for list="{{ navTabs }}" as="t" hint-placeholder-count="3">
               <div onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</div>
             </sc-for>
@@ -481,6 +496,49 @@
         </div>
         <div style="display:flex;gap:10px;margin-top:18px;color:#8A968F;font-size:13px;"><span style="background:#fff;border:1px solid #E7ECE9;border-radius:10px;padding:9px 12px;">Email Verified ✓</span><span style="background:#fff;border:1px solid #E7ECE9;border-radius:10px;padding:9px 12px;">Phone Verified ✓</span></div>
         <button onClick="{{ continueVerify }}" style="margin-top:30px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Continue</button>
+      </div>
+      </sc-if>
+
+      <!-- EMPLOYER VERIFICATION -->
+      <sc-if value="{{ scEmployer }}">
+      <div data-screen-label="Employer" style="animation:tcFade .5s ease both;max-width:560px;margin:0 auto;">
+        <div style="font-family:'Sora';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#B0894E;">Onboarding · Employer</div>
+        <h1 style="font-family:'Sora';font-weight:700;font-size:34px;color:#0F1A15;margin:10px 0 0;letter-spacing:-0.025em;">Verify with your employer</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:10px 0 0;">Employer-backed circles are payroll-protected. Verify your employment to unlock your company's circles.</p>
+
+        <!-- stage 1: select + employee id -->
+        <sc-if value="{{ empSelect }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top:24px;">
+          <div style="font-family:'Sora';font-weight:600;font-size:13px;color:#0F1A15;margin-bottom:10px;">Select your employer</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ employerList }}" as="e" hint-placeholder-count="3">
+              <div onClick="{{ e.pick }}" style="{{ e.rowStyle }}"><span style="{{ e.badgeStyle }}">{{ e.short }}</span><span style="font-family:'Sora';font-weight:600;font-size:15px;color:#0F1A15;">{{ e.name }}</span><span style="{{ e.tickStyle }}">{{ e.tick }}</span></div>
+            </sc-for>
+          </div>
+          <div style="margin-top:18px;">
+            <div style="font-family:'Sora';font-weight:600;font-size:13px;color:#0F1A15;margin-bottom:9px;">Employee ID / Labour Card</div>
+            <input value="{{ empId }}" onInput="{{ setEmpId }}" placeholder="e.g. EK-482610 or 784-XXXX" style="width:100%;font-family:'Manrope';font-size:16px;padding:15px;border:1px solid #DCE3DE;border-radius:13px;outline:none;background:#fff;color:#0F1A15;" />
+            <div style="color:#8A968F;font-size:12px;margin-top:8px;">We match this against your employer's HR roster — your name and salary band are fetched automatically.</div>
+          </div>
+          <sc-if value="{{ empCanMatch }}"><button onClick="{{ matchEmployee }}" style="margin-top:20px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Match with HR records</button></sc-if>
+          <sc-if value="{{ empNotCanMatch }}"><button style="margin-top:20px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:not-allowed;color:#9AA69F;background:#EEF2EF;">Select your employer to continue</button></sc-if>
+        </div>
+        </sc-if>
+
+        <!-- stage 2: OTP -->
+        <sc-if value="{{ empOtpStage }}">
+        <div style="margin-top:24px;animation:tcFade .3s ease both;">
+          <div style="background:#EAF3EE;border:1px solid #CDE6D9;border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:12px;">
+            <span style="width:26px;height:26px;border-radius:50%;background:#0A6E4E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;">✓</span>
+            <div style="font-size:14px;color:#0F1A15;">Matched to <strong>{{ empSelectedName }}</strong> HR records. Name, role &amp; salary band fetched.</div>
+          </div>
+          <div style="margin-top:20px;font-family:'Sora';font-weight:600;font-size:13px;color:#0F1A15;margin-bottom:9px;">Enter the code sent to your work email</div>
+          <div style="color:#6B7A72;font-size:13px;margin-bottom:12px;">A 6-digit code was sent to {{ empMaskedContact }}</div>
+          <input value="{{ empOtp }}" onInput="{{ setEmpOtp }}" placeholder="• • • • • •" inputMode="numeric" style="width:100%;font-family:'Sora';font-weight:700;letter-spacing:.3em;font-size:20px;text-align:center;padding:16px;border:1px solid #DCE3DE;border-radius:13px;outline:none;background:#fff;color:#0F1A15;" />
+          <sc-if value="{{ empOtpValid }}"><button onClick="{{ verifyEmployer }}" style="margin-top:18px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Verify employment</button></sc-if>
+          <sc-if value="{{ empNotOtpValid }}"><button style="margin-top:18px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:not-allowed;color:#9AA69F;background:#EEF2EF;">Enter the 6-digit code</button></sc-if>
+        </div>
+        </sc-if>
       </div>
       </sc-if>
 
@@ -588,10 +646,10 @@
             </div>
           </div>
           <div style="background:linear-gradient(150deg,#0F1A15,#13241D);border-radius:22px;padding:28px;color:#EAF1ED;display:flex;flex-direction:column;">
-            <div style="font-family:'Sora';letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:#E9C77E;">This Month · Open Vote</div>
-            <div style="font-family:'Sora';font-weight:700;font-size:20px;margin-top:10px;">Allocate {{ circle.poolStr }}</div>
-            <p style="color:#9DB0A6;font-size:14px;margin:8px 0 0;line-height:1.55;">{{ govReqCount }} members have requested this month's pool. Review and cast your vote.</p>
-            <button onClick="{{ toGovernance }}" style="margin-top:auto;font-family:'Sora';font-weight:600;font-size:15px;padding:14px;border:none;border-radius:12px;cursor:pointer;color:#0F1A15;background:#E9C77E;">Review &amp; Vote →</button>
+            <div style="font-family:'Sora';letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:#E9C77E;">This Month · Live Bids</div>
+            <div style="font-family:'Sora';font-weight:700;font-size:20px;margin-top:10px;">Bid for {{ circle.poolStr }}</div>
+            <p style="color:#9DB0A6;font-size:14px;margin:8px 0 0;line-height:1.55;">{{ govReqCount }} members are bidding for this month's pool. Highest discount leads — place yours.</p>
+            <button onClick="{{ toGovernance }}" style="margin-top:auto;font-family:'Sora';font-weight:600;font-size:15px;padding:14px;border:none;border-radius:12px;cursor:pointer;color:#0F1A15;background:#E9C77E;">Open Payout Bids →</button>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
@@ -628,7 +686,7 @@
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px;">
           <sc-for list="{{ circles }}" as="c" hint-placeholder-count="6">
             <div style="background:#fff;border:1px solid #E7ECE9;border-radius:22px;overflow:hidden;box-shadow:0 18px 44px -34px rgba(15,26,21,.4);display:flex;flex-direction:column;">
-              <div style="padding:22px 24px 18px;display:flex;justify-content:space-between;align-items:flex-start;"><div><div style="font-family:'Sora';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#0A6E4E;">{{ c.purpose }}</div><h3 style="font-family:'Sora';font-weight:700;font-size:21px;color:#0F1A15;margin:7px 0 0;">{{ c.name }}</h3></div><div style="display:flex;align-items:center;gap:5px;background:#0A6E4E;color:#fff;padding:6px 11px;border-radius:999px;font-size:12px;font-weight:600;"><span style="color:#E9C77E;">★</span>{{ c.trust }}</div></div>
+              <div style="padding:22px 24px 18px;display:flex;justify-content:space-between;align-items:flex-start;"><div><div style="font-family:'Sora';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#0A6E4E;">{{ c.purpose }}</div><h3 style="font-family:'Sora';font-weight:700;font-size:21px;color:#0F1A15;margin:7px 0 0;">{{ c.name }}</h3><sc-if value="{{ c.isEmployer }}"><div style="display:inline-flex;align-items:center;gap:6px;background:#0F1A15;color:#E9C77E;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;margin-top:9px;">🛡 Payroll-Protected · {{ c.employerName }}</div></sc-if></div><div style="display:flex;align-items:center;gap:5px;background:#0A6E4E;color:#fff;padding:6px 11px;border-radius:999px;font-size:12px;font-weight:600;"><span style="color:#E9C77E;">★</span>{{ c.trust }}</div></div>
               <div style="padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;">
                 <div><div style="color:#8A968F;font-size:12px;">Monthly Contribution</div><div style="font-family:'Sora';font-weight:700;color:#0F1A15;font-size:16px;margin-top:2px;">{{ c.monthlyStr }}</div></div>
                 <div><div style="color:#8A968F;font-size:12px;">Monthly Pool</div><div style="font-family:'Sora';font-weight:700;color:#0F1A15;font-size:16px;margin-top:2px;">{{ c.poolStr }}</div></div>
@@ -657,6 +715,16 @@
           <div style="background:#fff;border:1px solid #E7ECE9;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Total Circle Value</div><div style="font-family:'Sora';font-weight:700;font-size:22px;color:#0F1A15;margin-top:6px;">{{ circle.totalStr }}</div></div>
           <div style="background:#fff;border:1px solid #E7ECE9;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Duration · Members</div><div style="font-family:'Sora';font-weight:700;font-size:22px;color:#0F1A15;margin-top:6px;">{{ circle.monthsStr }}</div></div>
         </div>
+        <sc-if value="{{ circle.isEmployer }}">
+        <div style="background:linear-gradient(150deg,#0F1A15,#13241D);color:#EAF1ED;border-radius:20px;padding:26px;margin-top:16px;">
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:18px;">🛡</span><div style="font-family:'Sora';font-weight:700;font-size:18px;">Payroll-Protected · {{ circle.employerName }}</div></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;">
+            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;"><div style="font-family:'Sora';font-weight:700;font-size:14px;color:#7FE0A8;">Employer Guarantee</div><div style="color:#9DB0A6;font-size:13px;line-height:1.5;margin-top:6px;">{{ circle.employerName }} backs the pool against member default.</div></div>
+            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;"><div style="font-family:'Sora';font-weight:700;font-size:14px;color:#7FE0A8;">Auto Payroll Deduction</div><div style="color:#9DB0A6;font-size:13px;line-height:1.5;margin-top:6px;">Contributions deducted from salary on the 1st — never missed.</div></div>
+            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;"><div style="font-family:'Sora';font-weight:700;font-size:14px;color:#7FE0A8;">Verified Colleagues</div><div style="color:#9DB0A6;font-size:13px;line-height:1.5;margin-top:6px;">Every member is a verified {{ circle.employerName }} employee.</div></div>
+          </div>
+        </div>
+        </sc-if>
         <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-top:20px;">
           <div style="background:#fff;border:1px solid #E7ECE9;border-radius:20px;padding:26px;">
             <div style="font-family:'Sora';font-weight:700;font-size:17px;color:#0F1A15;">Governance Rules</div>
@@ -689,77 +757,77 @@
             <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;"><div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:13px;">You receive</span><span style="font-family:'Sora';font-weight:700;color:#fff;">{{ discountReceiveStr }}</span></div><div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:13px;">Stays in circle</span><span style="font-family:'Sora';font-weight:700;color:#E9C77E;">{{ discountStr }}</span></div><div style="display:flex;justify-content:space-between;padding:9px 0;"><span style="color:#9DB0A6;font-size:13px;">Access priority</span><span style="font-family:'Sora';font-weight:700;color:#7FE0A8;">{{ discountPriority }}</span></div></div>
           </div>
         </div>
-        <button onClick="{{ toGovernance }}" style="margin-top:20px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#0F1A15;background:#E9C77E;">See This Month's Vote →</button>
+        <button onClick="{{ toGovernance }}" style="margin-top:20px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#0F1A15;background:#E9C77E;">See This Month's Bids →</button>
         <button onClick="{{ toTerms }}" style="margin-top:12px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:1px solid #DCE3DE;border-radius:14px;cursor:pointer;color:#0F1A15;background:#fff;">Review Participation Terms →</button>
       </div>
       </sc-if>
 
-      <!-- GOVERNANCE VOTING DASHBOARD -->
+      <!-- COMMUNITY GOVERNANCE — MONTHLY PAYOUT BID -->
       <sc-if value="{{ scGovernance }}">
-      <div data-screen-label="Voting" style="animation:tcFade .5s ease both;max-width:900px;margin:0 auto;">
+      <div data-screen-label="Governance" style="animation:tcFade .5s ease both;max-width:900px;margin:0 auto;">
         <div style="font-family:'Sora';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#B0894E;">Community Governance</div>
-        <h1 style="font-family:'Sora';font-weight:700;font-size:34px;color:#0F1A15;margin:8px 0 0;letter-spacing:-0.025em;">Voting Dashboard</h1>
+        <h1 style="font-family:'Sora';font-weight:700;font-size:34px;color:#0F1A15;margin:8px 0 0;letter-spacing:-0.025em;">Current Month Payout Bid</h1>
+        <p style="color:#6B7A72;font-size:15px;margin:10px 0 0;">{{ circle.name }} · {{ activeMonthStr }} of {{ circle.membersNum }}. Members bid a voluntary discount for this month's {{ circle.poolStr }} pool — the highest discount automatically leads.</p>
 
         <!-- demand banner -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;">
-          <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);color:#fff;border-radius:18px;padding:22px;"><div style="font-family:'Sora';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A7D8C2;">Highest Approved Discount</div><div style="font-family:'Sora';font-weight:800;font-size:32px;margin-top:8px;">{{ highestDiscount }}</div><div style="color:#A7D8C2;font-size:13px;margin-top:2px;">this month · signals demand for capital</div></div>
-          <div style="background:#fff;border:1px solid #E7ECE9;border-radius:18px;padding:22px;"><div style="font-family:'Sora';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#B0894E;">Largest Capital Released</div><div style="font-family:'Sora';font-weight:800;font-size:32px;color:#0F1A15;margin-top:8px;">{{ largestReleased }}</div><div style="color:#8A968F;font-size:13px;margin-top:2px;">single approved payout</div></div>
+          <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);color:#fff;border-radius:18px;padding:22px;"><div style="font-family:'Sora';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A7D8C2;">Highest Bid This Month</div><div style="font-family:'Sora';font-weight:800;font-size:32px;margin-top:8px;">{{ highestDiscount }}</div><div style="color:#A7D8C2;font-size:13px;margin-top:2px;">leading discount · {{ leaderName }}</div></div>
+          <div style="background:#fff;border:1px solid #E7ECE9;border-radius:18px;padding:22px;"><div style="font-family:'Sora';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#B0894E;">This Month's Pool</div><div style="font-family:'Sora';font-weight:800;font-size:32px;color:#0F1A15;margin-top:8px;">{{ largestReleased }}</div><div style="color:#8A968F;font-size:13px;margin-top:2px;">released to the winning bid</div></div>
         </div>
 
         <!-- tabs -->
-        <div style="display:flex;gap:6px;background:#fff;border:1px solid #E4EAE6;border-radius:13px;padding:5px;margin-top:24px;width:max-content;">
+        <div style="display:flex;gap:6px;background:#fff;border:1px solid #E4EAE6;border-radius:13px;padding:5px;margin-top:24px;width:max-content;max-width:100%;overflow-x:auto;">
           <sc-for list="{{ govTabs }}" as="t" hint-placeholder-count="3"><div onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</div></sc-for>
         </div>
 
-        <!-- LIVE VOTING -->
+        <!-- LIVE BIDS -->
         <sc-if value="{{ govTabLive }}">
-        <p style="color:#6B7A72;font-size:15px;margin:20px 0 0;">{{ govReqCount }} members have requested this month's pool of {{ circle.poolStr }}. Review each request and vote to approve or reject.</p>
+        <p style="color:#6B7A72;font-size:15px;margin:20px 0 0;">{{ govReqCount }} members are bidding for {{ activeMonthStr }}. The highest discount is the leading bid and receives this month's payout.</p>
         <div style="display:flex;flex-direction:column;gap:16px;margin-top:18px;">
           <sc-for list="{{ govReqs }}" as="r" hint-placeholder-count="3">
             <div style="{{ r.cardStyle }}">
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:18px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
                 <div style="display:flex;gap:14px;align-items:flex-start;">
-                  <div style="width:46px;height:46px;border-radius:50%;background:{{ r.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:16px;flex-shrink:0;">{{ r.initials }}</div>
+                  <div style="width:46px;height:46px;border-radius:50%;background:{{ r.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:15px;flex-shrink:0;">{{ r.initials }}</div>
                   <div>
                     <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;"><span style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">{{ r.name }}</span><span style="background:#EAF3EE;color:#0A6E4E;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;">{{ r.purpose }}</span><span style="color:#8A968F;font-size:12px;">Trust {{ r.trust }}</span></div>
-                    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;color:#6B7A72;font-size:13px;"><span>Requested <strong style="color:#0F1A15;">{{ r.reqMonth }}</strong></span><span>From {{ r.origMonth }}</span><span style="color:#9A742C;font-weight:600;">{{ r.discPctLabel }}</span><span>⏱ {{ r.time }}</span></div>
-                    <p style="color:#48564F;font-size:14px;line-height:1.5;margin:8px 0 0;max-width:480px;">{{ r.reason }}</p>
+                    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;color:#6B7A72;font-size:13px;"><span>{{ activeMonthStr }}</span><span style="color:#9A742C;font-weight:600;">Bid {{ r.bidStr }} off</span></div>
+                    <p style="color:#48564F;font-size:14px;line-height:1.5;margin:8px 0 0;max-width:460px;">{{ r.reason }}</p>
                   </div>
                 </div>
-                <div style="text-align:right;flex-shrink:0;"><div style="font-family:'Sora';font-weight:800;font-size:20px;color:#0F1A15;">{{ r.amountStr }}</div><div style="color:#8A968F;font-size:12px;">net requested</div></div>
+                <div style="text-align:right;flex-shrink:0;"><span style="{{ r.statusStyle }}">{{ r.status }}</span><div style="font-family:'Sora';font-weight:800;font-size:20px;color:#0F1A15;margin-top:10px;">{{ r.netStr }}</div><div style="color:#8A968F;font-size:12px;">net payout</div></div>
               </div>
-              <div style="display:flex;align-items:center;gap:16px;margin-top:18px;">
-                <div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#8A968F;margin-bottom:6px;"><span>{{ r.votesStr }}</span><span style="font-weight:600;color:#0A6E4E;">{{ r.pctStr }}</span></div><div style="height:8px;border-radius:999px;background:#EDF1EE;overflow:hidden;"><div style="width:{{ r.barW }};height:100%;border-radius:999px;background:{{ r.barColor }};transition:width .5s ease;"></div></div></div>
-                <div style="display:flex;gap:9px;flex-shrink:0;"><button onClick="{{ r.approve }}" style="{{ r.approveStyle }}">{{ r.approveLabel }}</button><button onClick="{{ r.reject }}" style="{{ r.rejectStyle }}">{{ r.rejectLabel }}</button></div>
-              </div>
+              <div style="margin-top:16px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#8A968F;margin-bottom:6px;"><span>Discount offered</span><span style="font-weight:600;color:#0A6E4E;">{{ r.bidStr }}</span></div><div style="height:8px;border-radius:999px;background:#EDF1EE;overflow:hidden;"><div style="width:{{ r.barW }};height:100%;border-radius:999px;background:{{ r.barColor }};transition:width .5s ease;"></div></div></div>
             </div>
           </sc-for>
         </div>
+        <button onClick="{{ toEarlyRequest }}" style="margin-top:18px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Place Monthly Bid</button>
         </sc-if>
 
-        <!-- MY REQUESTS -->
+        <!-- MY BID -->
         <sc-if value="{{ govTabMine }}">
         <sc-if value="{{ hasMyReqs }}">
         <div style="display:flex;flex-direction:column;gap:14px;margin-top:22px;">
           <sc-for list="{{ myReqsList }}" as="m" hint-placeholder-count="1">
             <div style="background:#fff;border:1px solid #E7ECE9;border-radius:18px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;">
-              <div><div style="font-family:'Sora';font-weight:700;font-size:17px;color:#0F1A15;">Early payout · {{ m.reqMonth }}</div><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;color:#6B7A72;font-size:13px;"><span>From {{ m.origMonth }}</span><span>Discount {{ m.disc }}</span><span>Net {{ m.net }}</span></div></div>
+              <div><div style="font-family:'Sora';font-weight:700;font-size:17px;color:#0F1A15;">Monthly bid · {{ m.month }}</div><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;color:#6B7A72;font-size:13px;"><span>Discount offered {{ m.bidStr }}</span><span>Net payout {{ m.net }}</span></div></div>
               <div style="display:flex;align-items:center;gap:14px;"><span style="{{ m.statusStyle }}">{{ m.statusLabel }}</span><button onClick="{{ m.track }}" style="font-family:'Sora';font-weight:600;font-size:13px;padding:10px 18px;border:1px solid #DCE3DE;border-radius:11px;cursor:pointer;color:#0F1A15;background:#fff;">Track →</button></div>
             </div>
           </sc-for>
         </div>
         </sc-if>
         <sc-if value="{{ noMyReqs }}">
-        <div style="text-align:center;padding:60px 20px;margin-top:12px;"><div style="font-family:'Sora';font-weight:700;font-size:20px;color:#0F1A15;">No payout requests yet</div><p style="color:#6B7A72;font-size:15px;margin:8px 0 0;">Request an early payout from one of your active circles.</p><button onClick="{{ toEarlyRequest }}" style="margin-top:18px;font-family:'Sora';font-weight:600;font-size:15px;padding:13px 24px;border:none;border-radius:12px;cursor:pointer;color:#fff;background:#0A6E4E;">Request Early Payout</button></div>
+        <div style="text-align:center;padding:60px 20px;margin-top:12px;"><div style="font-family:'Sora';font-weight:700;font-size:20px;color:#0F1A15;">You haven't placed a bid yet</div><p style="color:#6B7A72;font-size:15px;margin:8px 0 0;">Place a monthly bid to compete for {{ activeMonthStr }}'s payout.</p><button onClick="{{ toEarlyRequest }}" style="margin-top:18px;font-family:'Sora';font-weight:600;font-size:15px;padding:13px 24px;border:none;border-radius:12px;cursor:pointer;color:#fff;background:#0A6E4E;">Place Monthly Bid</button></div>
         </sc-if>
         </sc-if>
 
-        <!-- COMPLETED -->
+        <!-- COMPLETED BIDS -->
         <sc-if value="{{ govTabDone }}">
-        <div style="display:flex;flex-direction:column;gap:14px;margin-top:22px;">
-          <sc-for list="{{ completedVotes }}" as="c" hint-placeholder-count="3">
+        <p style="color:#6B7A72;font-size:15px;margin:20px 0 0;">Past months of this circle — winner, winning discount, and final payout.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
+          <sc-for list="{{ completedVotes }}" as="c" hint-placeholder-count="4">
             <div style="background:#fff;border:1px solid #E7ECE9;border-radius:18px;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;">
-              <div style="display:flex;gap:14px;align-items:center;"><div style="width:42px;height:42px;border-radius:50%;background:{{ c.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:15px;flex-shrink:0;">{{ c.initials }}</div><div><div style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">{{ c.name }}</div><div style="display:flex;gap:13px;flex-wrap:wrap;margin-top:5px;color:#6B7A72;font-size:13px;"><span>{{ c.reqMonth }} (from {{ c.origMonth }})</span><span>Discount {{ c.disc }}</span><span style="color:#0A6E4E;font-weight:600;">Approved {{ c.approvals }}</span></div></div></div>
+              <div style="display:flex;gap:14px;align-items:center;"><div style="width:42px;height:42px;border-radius:50%;background:{{ c.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:15px;flex-shrink:0;">{{ c.initials }}</div><div><div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;"><span style="font-family:'Sora';font-weight:700;font-size:13px;color:#B0894E;">{{ c.month }}</span><span style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">{{ c.name }}</span></div><div style="display:flex;gap:13px;flex-wrap:wrap;margin-top:5px;color:#6B7A72;font-size:13px;"><span>Winning discount {{ c.disc }}</span></div></div></div>
               <div style="text-align:right;"><div style="font-family:'Sora';font-weight:800;font-size:18px;color:#0F1A15;">{{ c.received }}</div><div style="display:inline-flex;align-items:center;gap:5px;background:#EAF3EE;color:#0A6E4E;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;margin-top:4px;">✓ Completed</div></div>
             </div>
           </sc-for>
@@ -794,7 +862,10 @@
             <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #EEF2EF;"><span style="color:#8A968F;font-size:14px;">Duration</span><span style="font-family:'Sora';font-weight:700;color:#0F1A15;">{{ circle.monthsStr }}</span></div>
             <div style="display:flex;justify-content:space-between;padding:14px 0;"><span style="color:#8A968F;font-size:14px;">Members</span><span style="font-family:'Sora';font-weight:700;color:#0F1A15;">{{ circle.membersNum }}</span></div>
           </div>
-          <button onClick="{{ joinCircle }}" style="margin-top:24px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Join Circle</button>
+          <sc-if value="{{ circle.isEmployer }}">
+          <div style="display:flex;align-items:center;gap:10px;background:#EAF3EE;border:1px solid #CDE6D9;border-radius:13px;padding:13px 15px;margin-top:14px;text-align:left;"><span style="font-size:15px;">🛡</span><span style="font-size:13px;color:#0F1A15;line-height:1.45;">Contributions are <strong>auto-deducted from your {{ circle.employerName }} payroll</strong> on the 1st — payroll-protected against default.</span></div>
+          </sc-if>
+          <button onClick="{{ joinCircle }}" style="margin-top:18px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Join Circle</button>
           <div onClick="{{ back }}" style="margin-top:14px;color:#8A968F;font-size:14px;cursor:pointer;">Not now</div>
         </div>
       </div>
@@ -816,47 +887,55 @@
       <div data-screen-label="Application" style="animation:tcFade .5s ease both;max-width:780px;margin:0 auto;">
         <div style="font-family:'Sora';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#B0894E;">Participation Application</div>
         <h1 style="font-family:'Sora';font-weight:700;font-size:34px;color:#0F1A15;margin:8px 0 0;letter-spacing:-0.025em;">Member assessment</h1>
-        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Bank-grade verification ensures every member joins circles appropriate to their income. Your information is encrypted and reviewed by TrustCircle.</p>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Your identity and employment are already verified by {{ empSelectedName }} HR — we've filled those in. We just need your financial profile and an emergency contact.</p>
 
         <div style="background:#fff;border:1px solid #E7ECE9;border-radius:20px;padding:28px;margin-top:24px;">
-          <div style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">Personal Information</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;">
-            <input placeholder="Full name" defaultValue="Ahmed Al Mansoori" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;background:#fff;color:#0F1A15;" />
-            <input placeholder="Nationality" defaultValue="United Arab Emirates" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;background:#fff;color:#0F1A15;" />
-            <input placeholder="Emirates ID (784-XXXX-XXXXXXX-X)" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-            <input placeholder="Passport number" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-            <input placeholder="Date of birth" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-            <input placeholder="Emirate of residence" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-          </div>
-        </div>
-
-        <div style="background:#fff;border:1px solid #E7ECE9;border-radius:20px;padding:28px;margin-top:16px;">
-          <div style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">Employment</div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
-            <sc-for list="{{ employmentOpts }}" as="e" hint-placeholder-count="4"><div style="font-family:'Sora';font-weight:600;font-size:13px;padding:11px 16px;border:1px solid #DCE3DE;border-radius:999px;color:#0F1A15;background:#F6F8F7;cursor:pointer;">{{ e.name }}</div></sc-for>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
-            <input placeholder="Company name" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-            <input placeholder="Industry" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-            <input placeholder="Years employed" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-            <input placeholder="Bank name" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;"><div style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">Personal &amp; Employment</div><span style="display:inline-flex;align-items:center;gap:6px;background:#EAF3EE;color:#0A6E4E;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;">✓ Verified by {{ empSelectedName }} HR</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;">
+            <input value="Ahmed Al Mansoori" readOnly="{{ true }}" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F8F7;color:#5A6B62;" />
+            <input value="United Arab Emirates" readOnly="{{ true }}" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F8F7;color:#5A6B62;" />
+            <input value="784-1989-2486601-3" readOnly="{{ true }}" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F8F7;color:#5A6B62;" />
+            <input value="{{ empSelectedName }}" readOnly="{{ true }}" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F8F7;color:#5A6B62;" />
+            <input value="Senior Analyst · 6 yrs" readOnly="{{ true }}" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F8F7;color:#5A6B62;" />
+            <input value="Salary band AED 28,000–32,000" readOnly="{{ true }}" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F8F7;color:#5A6B62;" />
           </div>
         </div>
 
         <div style="background:#fff;border:1px solid #E7ECE9;border-radius:20px;padding:28px;margin-top:16px;">
           <div style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">Financial Profile</div>
+          <div style="color:#8A968F;font-size:13px;margin-top:4px;">Helps us confirm the circle size is comfortable for you.</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;">
-            <input placeholder="Monthly income (AED)" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
+            <input placeholder="AECB credit score" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
             <input placeholder="Monthly savings (AED)" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
             <input placeholder="Existing loans (AED)" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
             <input placeholder="Monthly debt payments (AED)" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-            <input placeholder="Preferred contribution size" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
-            <input placeholder="Emergency contact" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
           </div>
-          <input placeholder="Guarantor details (name, relationship, contact)" style="width:100%;font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;margin-top:14px;" />
         </div>
 
-        <div style="display:flex;align-items:center;gap:12px;background:#F6F8F7;border:1px dashed #CBD6D0;border-radius:14px;padding:18px;margin-top:16px;color:#6B7A72;font-size:14px;">📎 Upload supporting documents — Emirates ID, salary certificate, bank statement (optional at this stage)</div>
+        <div style="background:#fff;border:1px solid #E7ECE9;border-radius:20px;padding:28px;margin-top:16px;">
+          <div style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">Emergency Contact</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;">
+            <input placeholder="Contact name" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
+            <input placeholder="Contact number (+971…)" style="font-family:'Manrope';font-size:15px;padding:13px 14px;border:1px solid #DCE3DE;border-radius:11px;outline:none;" />
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E7ECE9;border-radius:20px;padding:28px;margin-top:16px;">
+          <div style="font-family:'Sora';font-weight:700;font-size:16px;color:#0F1A15;">Required Documents</div>
+          <div style="color:#8A968F;font-size:13px;margin-top:4px;">We assess your inflow, outflow, savings and debt from these — securely and confidentially.</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:18px;">
+            <div style="display:flex;align-items:center;gap:14px;border:1px dashed #CBD6D0;border-radius:14px;padding:18px;background:#F6F8F7;cursor:pointer;">
+              <span style="width:40px;height:40px;border-radius:11px;background:#EAF3EE;color:#0A6E4E;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏦</span>
+              <div style="flex:1;"><div style="font-family:'Sora';font-weight:600;font-size:15px;color:#0F1A15;">Last 6 months' bank statement</div><div style="color:#6B7A72;font-size:13px;margin-top:2px;">PDF · used to assess inflow, outflow, savings &amp; spending</div></div>
+              <span style="font-family:'Sora';font-weight:600;font-size:13px;color:#0A6E4E;border:1px solid #0A6E4E;border-radius:10px;padding:9px 16px;white-space:nowrap;">Upload</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;border:1px dashed #CBD6D0;border-radius:14px;padding:18px;background:#F6F8F7;cursor:pointer;">
+              <span style="width:40px;height:40px;border-radius:11px;background:#EAF3EE;color:#0A6E4E;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">📄</span>
+              <div style="flex:1;"><div style="font-family:'Sora';font-weight:600;font-size:15px;color:#0F1A15;">AECB credit score certificate</div><div style="color:#6B7A72;font-size:13px;margin-top:2px;">Must be dated within the last 7 days</div></div>
+              <span style="font-family:'Sora';font-weight:600;font-size:13px;color:#0A6E4E;border:1px solid #0A6E4E;border-radius:10px;padding:9px 16px;white-space:nowrap;">Upload</span>
+            </div>
+          </div>
+        </div>
 
         <button onClick="{{ submitApplication }}" style="margin-top:22px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Submit Application</button>
       </div>
@@ -914,7 +993,7 @@
               </div>
               <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid #F1F4F2;">
                 <div style="color:#6B7A72;font-size:14px;">Payout status · <strong style="color:#0F1A15;">{{ c.payoutStatus }}</strong></div>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;"><button onClick="{{ toEarlyRequest }}" style="font-family:'Sora';font-weight:600;font-size:14px;padding:11px 18px;border:none;border-radius:11px;cursor:pointer;color:#fff;background:#0A6E4E;">Request Early Payout</button><button onClick="{{ toGovernance }}" style="font-family:'Sora';font-weight:600;font-size:14px;padding:11px 18px;border:1px solid #DCE3DE;border-radius:11px;cursor:pointer;color:#0F1A15;background:#fff;">Vote on Requests</button></div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;"><button onClick="{{ toEarlyRequest }}" style="font-family:'Sora';font-weight:600;font-size:14px;padding:11px 18px;border:none;border-radius:11px;cursor:pointer;color:#fff;background:#0A6E4E;">Request Early Payout</button><button onClick="{{ toGovernance }}" style="font-family:'Sora';font-weight:600;font-size:14px;padding:11px 18px;border:1px solid #DCE3DE;border-radius:11px;cursor:pointer;color:#0F1A15;background:#fff;">View Bids</button></div>
               </div>
             </div>
           </sc-for>
@@ -926,41 +1005,42 @@
       </div>
       </sc-if>
 
-      <!-- EARLY PAYOUT REQUEST -->
+      <!-- REQUEST EARLY PAYOUT — PLACE MONTHLY BID -->
       <sc-if value="{{ scEarlyRequest }}">
       <div data-screen-label="Request Early Payout" style="animation:tcFade .5s ease both;max-width:720px;margin:0 auto;">
-        <div style="font-family:'Sora';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#B0894E;">Capital Request</div>
+        <div style="font-family:'Sora';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#B0894E;">Monthly Payout Bid</div>
         <h1 style="font-family:'Sora';font-weight:700;font-size:34px;color:#0F1A15;margin:8px 0 0;letter-spacing:-0.025em;">Request early payout</h1>
-        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Create a voting proposal to access this month's pool ahead of your position. Offering a discount improves your standing — the surplus stays in the circle.</p>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Bid for this month's pool by offering a voluntary discount. You can only bid for the circle's current active month — the highest discount leads.</p>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;">
-          <div style="background:#fff;border:1px solid #E7ECE9;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Current Position</div><div style="font-family:'Sora';font-weight:700;font-size:22px;color:#0F1A15;margin-top:5px;">Month 9</div></div>
-          <div style="background:#fff;border:1px solid #E7ECE9;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Requested Position</div><div style="font-family:'Sora';font-weight:700;font-size:22px;color:#0A6E4E;margin-top:5px;">Month 3</div></div>
+          <div style="background:#fff;border:1px solid #E7ECE9;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Current Active Month</div><div style="font-family:'Sora';font-weight:700;font-size:22px;color:#0A6E4E;margin-top:5px;">{{ activeMonthStr }}</div><div style="color:#8A968F;font-size:12px;margin-top:4px;">Months 1–{{ monthsPaidStr }} completed · not selectable</div></div>
+          <div style="background:#fff;border:1px solid #E7ECE9;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Circle Value (this month)</div><div style="font-family:'Sora';font-weight:700;font-size:22px;color:#0F1A15;margin-top:5px;">{{ earlyPoolStr }}</div><div style="color:#8A968F;font-size:12px;margin-top:4px;">distributed to the winning bid</div></div>
         </div>
 
         <div style="background:#fff;border:1px solid #E7ECE9;border-radius:20px;padding:26px;margin-top:16px;">
           <div style="font-family:'Sora';font-weight:600;font-size:14px;color:#0F1A15;">Reason for request</div>
           <textarea value="{{ earlyReason }}" onInput="{{ setEarlyReason }}" placeholder="Explain why you need capital now — e.g. tuition, medical, business opportunity…" style="width:100%;min-height:90px;font-family:'Manrope';font-size:15px;padding:14px;border:1px solid #DCE3DE;border-radius:12px;outline:none;margin-top:10px;resize:vertical;"></textarea>
           <div style="display:flex;align-items:center;gap:12px;background:#F6F8F7;border:1px dashed #CBD6D0;border-radius:12px;padding:14px;margin-top:12px;color:#6B7A72;font-size:13px;">📎 Optional supporting documents</div>
-          <div style="margin-top:20px;"><div style="display:flex;justify-content:space-between;font-size:14px;color:#6B7A72;margin-bottom:10px;"><span>Proposed discount</span><span style="font-family:'Sora';font-weight:700;color:#0A6E4E;">{{ earlyDiscountStr }}</span></div><input type="range" min="0" max="15" step="1" value="{{ earlyDiscount }}" onInput="{{ setEarlyDiscount }}" style="width:100%;accent-color:#0A6E4E;cursor:pointer;" /></div>
+          <div style="margin-top:20px;"><div style="display:flex;justify-content:space-between;font-size:14px;color:#6B7A72;margin-bottom:10px;"><span>Bid / discount offered</span><span style="font-family:'Sora';font-weight:700;color:#0A6E4E;">{{ earlyBidStr }}</span></div><input type="range" min="0" max="36000" step="1000" value="{{ earlyBid }}" onInput="{{ setEarlyDiscount }}" style="width:100%;accent-color:#0A6E4E;cursor:pointer;" /></div>
         </div>
 
         <div style="background:linear-gradient(150deg,#0F1A15,#13241D);color:#EAF1ED;border-radius:20px;padding:24px;margin-top:16px;">
-          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Monthly pool</span><span style="font-family:'Sora';font-weight:700;">{{ earlyPoolStr }}</span></div>
-          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Discount offered</span><span style="font-family:'Sora';font-weight:700;color:#E9C77E;">{{ earlyDiscountStr }}</span></div>
-          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Expected net received</span><span style="font-family:'Sora';font-weight:700;color:#7FE0A8;font-size:18px;">{{ earlyNetStr }}</span></div>
-          <div style="display:flex;justify-content:space-between;padding:10px 0;"><span style="color:#9DB0A6;font-size:14px;">Voting window</span><span style="font-family:'Sora';font-weight:700;">48 hours</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Active month</span><span style="font-family:'Sora';font-weight:700;">{{ activeMonthStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Circle value</span><span style="font-family:'Sora';font-weight:700;">{{ earlyPoolStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Bid / discount offered</span><span style="font-family:'Sora';font-weight:700;color:#E9C77E;">{{ earlyBidStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Expected net payout</span><span style="font-family:'Sora';font-weight:700;color:#7FE0A8;font-size:18px;">{{ earlyNetStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;"><span style="color:#9DB0A6;font-size:14px;">Bidding window</span><span style="font-family:'Sora';font-weight:700;">48 hours</span></div>
         </div>
 
-        <button onClick="{{ submitEarly }}" style="margin-top:20px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Submit Request</button>
+        <button onClick="{{ submitEarly }}" style="margin-top:20px;width:100%;font-family:'Sora';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0A6E4E;">Submit Bid</button>
       </div>
       </sc-if>
 
       <!-- EARLY PAYOUT TRACK -->
       <sc-if value="{{ scEarlyTrack }}">
       <div data-screen-label="Payout Tracking" style="animation:tcFade .5s ease both;max-width:680px;margin:0 auto;">
-        <div style="font-family:'Sora';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#B0894E;">Early Payout · Month 3</div>
-        <h1 style="font-family:'Sora';font-weight:700;font-size:32px;color:#0F1A15;margin:8px 0 0;letter-spacing:-0.025em;">Request progress</h1>
+        <div style="font-family:'Sora';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#B0894E;">Monthly Bid · {{ activeMonthStr }}</div>
+        <h1 style="font-family:'Sora';font-weight:700;font-size:32px;color:#0F1A15;margin:8px 0 0;letter-spacing:-0.025em;">Bid progress</h1>
         <div style="display:inline-flex;align-items:center;gap:8px;background:#FBF4E6;color:#9A742C;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;margin-top:14px;">{{ earlyStatusLabel }}</div>
 
         <div style="background:#fff;border:1px solid #E7ECE9;border-radius:20px;padding:30px;margin-top:22px;">
@@ -999,8 +1079,9 @@ class Component extends DCLogic {
     authMode:'choices', email:'',
     filter:'all', votedId:null, discount:0, invT:0,
     approvalStatus:'none', govTab:'live',
-    earlyStatus:null, earlyDiscount:7, earlyReason:'',
-    notifOpen:false, voteActions:{}
+    earlyStatus:null, earlyBid:12000, earlyReason:'',
+    notifOpen:false, voteActions:{},
+    employer:null, empId:'', empOtp:'', empStage:'select', empVerified:false
   };
 
   // ---------- timers / animation ----------
@@ -1043,7 +1124,14 @@ class Component extends DCLogic {
   openEmail(){ this.setState({authMode:'email'}); }
   closeEmail(){ this.setState({authMode:'choices',email:''}); }
   setEmail(v){ this.setState({email:v}); }
-  continueVerify(){ this.setScreen('purpose'); }
+  continueVerify(){ this.setScreen('employer'); }
+  // employer verification
+  setEmployer(id){ const m={emirates:'EK-482610',maf:'MAF-30715',adnoc:'AD-118204'}; this.setState({employer:id, empId:m[id]||'EK-482610'}); }
+  setEmpId(v){ this.setState({empId:v}); }
+  matchEmployee(){ this.setState({empStage:'otp'}); }
+  setEmpOtp(v){ this.setState({empOtp:v}); }
+  verifyEmployer(){ this.setState({empVerified:true,empStage:'done'}); this.setScreen('purpose'); }
+  skipEmployer(){ this.setState({employer:null,empVerified:false}); this.setScreen('purpose'); }
   continuePurpose(){ this.setScreen('profile'); this.ensureScore(); }
   continueProfile(){ this.setScreen('dashboard'); this.ensureScore(); }
   toExplore(){ this.setScreen('explore'); }
@@ -1071,7 +1159,7 @@ class Component extends DCLogic {
   closeNotif(){ this.setState({notifOpen:false}); }
   // early payout
   toEarlyRequest(){ this.setScreen('earlyRequest'); }
-  setEarlyDiscount(v){ this.setState({earlyDiscount:Number(v)}); }
+  setEarlyDiscount(v){ this.setState({earlyBid:Number(v)}); }
   setEarlyReason(v){ this.setState({earlyReason:v}); }
   submitEarly(){ this.setState({earlyStatus:'voting',screen:'earlyTrack'}); this.scrollTop(); }
   advanceEarly(){
@@ -1082,7 +1170,7 @@ class Component extends DCLogic {
   }
   back(){
     const s=this.state.screen;
-    const map={verify:'auth',purpose:'verify',profile:'purpose',dashboard:'profile',explore:'dashboard',detail:'explore',distribution:'detail',governance:'dashboard',terms:'distribution',confirm:'terms',success:'dashboard',auth:'auth',apply:'dashboard',reviewing:'apply',approved:'reviewing',myCircles:'dashboard',earlyRequest:'myCircles',earlyTrack:'myCircles'};
+    const map={verify:'auth',employer:'verify',purpose:'employer',profile:'purpose',dashboard:'profile',explore:'dashboard',detail:'explore',distribution:'detail',governance:'dashboard',terms:'distribution',confirm:'terms',success:'dashboard',auth:'auth',apply:'dashboard',reviewing:'apply',approved:'reviewing',myCircles:'dashboard',earlyRequest:'myCircles',earlyTrack:'myCircles'};
     if(s==='auth'){ this.toLanding(); return; }
     this.setState({screen: map[s]||'dashboard'}); this.scrollTop();
   }
@@ -1096,9 +1184,20 @@ class Component extends DCLogic {
       { id:'biz',     name:'Business Growth Circle',  purpose:'Business Growth',         monthly:20000, members:12, filled:5,  trust:'4.7', verified:92  },
       { id:'family',  name:'Family Goals Circle',     purpose:'Family Goals',            monthly:8000,  members:10, filled:8,  trust:'4.9', verified:100 },
       { id:'vehicle', name:'Vehicle Purchase Circle', purpose:'Vehicle Purchase',        monthly:6000,  members:8,  filled:6,  trust:'4.6', verified:88  },
-      { id:'wealth',  name:'Wealth Planning Circle',  purpose:'General Wealth Planning', monthly:15000, members:24, filled:14, trust:'4.8', verified:96  }
+      { id:'wealth',  name:'Wealth Planning Circle',  purpose:'General Wealth Planning', monthly:15000, members:24, filled:14, trust:'4.8', verified:96  },
+      // employer-backed (payroll-protected) circles — one marketplace per employer
+      { id:'emk1', name:'Emirates Group · Home Circle',      purpose:'Home Ownership', monthly:10000, members:10, filled:8,  trust:'5.0', verified:100, employer:'emirates' },
+      { id:'emk2', name:'Emirates Group · Education Circle', purpose:'Education',       monthly:5000,  members:10, filled:9,  trust:'5.0', verified:100, employer:'emirates' },
+      { id:'maf1', name:'Majid Al Futtaim · Family Circle',  purpose:'Family Goals',    monthly:8000,  members:12, filled:10, trust:'4.9', verified:100, employer:'maf' },
+      { id:'adn1', name:'ADNOC · Wealth Circle',             purpose:'General Wealth Planning', monthly:15000, members:12, filled:7, trust:'4.9', verified:100, employer:'adnoc' }
     ];
   }
+  employers(){ return [
+    { id:'emirates', name:'Emirates Group', short:'EK' },
+    { id:'maf',      name:'Majid Al Futtaim', short:'MAF' },
+    { id:'adnoc',    name:'ADNOC', short:'AD' }
+  ]; }
+  employerName(id){ const e=this.employers().find(x=>x.id===id); return e?e.name:''; }
   palette(){ return ['#0A6E4E','#B0894E','#1B5C45','#7A6320','#2E5C4A','#5E7D6E','#0F3D2C','#9C7B2E']; }
   pool(){ return ['Fatima A.','Omar S.','Layla H.','Khalid M.','Sara N.','Yusuf R.','Noura A.','Hassan T.','Mariam K.','Tariq B.','Aisha Z.','Saeed F.','Hind R.','Rashid M.','Mona S.','Faisal D.']; }
 
@@ -1116,7 +1215,9 @@ class Component extends DCLogic {
       membersNum:members, membersStr:members+' Members', monthsStr:members+' Months',
       filledStr:b.filled+' Filled', progressStr:pct+'% Complete', progressW:pct+'%',
       trust:b.trust, verifiedStr:b.verified+'% Verified',
-      avatars, hasExtra:extra>0, extraStr:'+'+extra, monthlyPoolNum:monthlyPool
+      avatars, hasExtra:extra>0, extraStr:'+'+extra, monthlyPoolNum:monthlyPool,
+      employerId:b.employer||null, isEmployer:!!b.employer, employerName:b.employer?this.employerName(b.employer):'',
+      catKey:({'Home Ownership':'home','Education':'edu','Business Growth':'biz','Family Goals':'family','Vehicle Purchase':'vehicle','General Wealth Planning':'wealth'})[b.purpose]||'home'
     };
   }
 
@@ -1125,8 +1226,19 @@ class Component extends DCLogic {
     const isApp = view==='app';
 
     // selected + list circles
-    const allCircles=this.baseCircles().map(b=>{ const o=this.buildCircle(b); o.open=()=>this.selectCircle(b.id); o.purposeId=b.id; return o; });
-    const circles = st.filter==='all'? allCircles : allCircles.filter(c=>c.purposeId===st.filter);
+    const allCircles=this.baseCircles().map(b=>{ const o=this.buildCircle(b); o.open=()=>this.selectCircle(b.id); o.purposeId=o.catKey; return o; });
+    const visibleCircles=allCircles.filter(c=> !c.employerId || c.employerId===st.employer);
+    const circles = st.filter==='all'? visibleCircles : visibleCircles.filter(c=>c.purposeId===st.filter);
+
+    // ----- employer verification -----
+    const employerList=this.employers().map(e=>({ id:e.id, name:e.name, short:e.short, selected:st.employer===e.id, pick:()=>this.setEmployer(e.id),
+      rowStyle:'display:flex;align-items:center;gap:13px;cursor:pointer;padding:14px 16px;border-radius:14px;background:'+(st.employer===e.id?'#EAF3EE':'#fff')+';border:1px solid '+(st.employer===e.id?'#0A6E4E':'#E7ECE9')+';',
+      badgeStyle:'width:40px;height:40px;border-radius:10px;background:'+(st.employer===e.id?'#0A6E4E':'#F1F4F2')+';color:'+(st.employer===e.id?'#fff':'#5A6B62')+';display:flex;align-items:center;justify-content:center;font-family:\'Sora\';font-weight:800;font-size:13px;flex-shrink:0;',
+      tickStyle:'margin-left:auto;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;background:'+(st.employer===e.id?'#0A6E4E':'transparent')+';color:#fff;', tick:(st.employer===e.id?'✓':'') }));
+    const empSelectedName=st.employer?this.employerName(st.employer):'';
+    const empCanMatch=!!st.employer && st.empId.trim().length>=4;
+    const empOtpValid=/^[0-9]{4,6}$/.test(st.empOtp);
+    const empMaskedContact = st.employer? ('a.almansoori@'+({emirates:'emirates.com',maf:'maf.ae',adnoc:'adnoc.ae'})[st.employer]) : '';
     const circle=this.buildCircle(this.baseCircles().find(x=>x.id===st.circleId));
 
     // landing data
@@ -1237,66 +1349,70 @@ class Component extends DCLogic {
       ['Sara N.','contributed for June','2d ago']
     ].map(a=>({who:a[0],what:a[1],when:a[2],initials:a[0].charAt(0)}));
 
-    // governance requests for active circle
-    const poolNum=circle.monthlyPoolNum;
-    const reqDefs=[
-      {id:'r1',name:'Layla Hassan',initials:'LH',trust:872,purpose:'Education',reason:'Final-year university tuition for my daughter, due before the next term begins.',discount:0,base:14,bg:pal[2],reqMonth:'Month 3',origMonth:'Month 9',time:'31h left'},
-      {id:'r2',name:'Omar Saeed',initials:'OS',trust:915,purpose:'Business',reason:'Inventory to expand my catering business ahead of the festival season.',discount:10080,base:11,bg:pal[0],reqMonth:'Month 4',origMonth:'Month 10',time:'12h left'},
-      {id:'r3',name:'Sara Nasser',initials:'SN',trust:848,purpose:'Medical',reason:'An urgent family medical procedure not fully covered by insurance.',discount:0,base:9,bg:pal[1],reqMonth:'Month 5',origMonth:'Month 11',time:'44h left'}
+    // ===== MONTHLY PAYOUT BID model =====
+    const poolNum=circle.monthlyPoolNum;          // current month's pool (e.g. AED 144,000)
+    const totalMonths=circle.membersNum;          // members == months
+    const activeMonth=9;                           // circle is currently in Month 9
+    const activeMonthStr='Month '+activeMonth;
+    const monthsPaid=activeMonth-1;                // months 1–8 completed
+    const myBidAmt = st.earlyBid;                  // member's own bid (discount, AED)
+    const myBidNet = poolNum - myBidAmt;
+    const haveMyBid = !!st.earlyStatus;            // a live bid exists once submitted
+
+    // other members' live bids on the CURRENT month (discount offered, AED)
+    const bidDefs=[
+      {id:'b1',name:'Omar Saeed',initials:'OS',trust:915,purpose:'Business',reason:'Inventory to expand my catering business ahead of the festival season.',bid:18000,bg:pal[0]},
+      {id:'b2',name:'Layla Hassan',initials:'LH',trust:872,purpose:'Education',reason:'Final-year university tuition for my daughter, due before the next term.',bid:12000,bg:pal[2]},
+      {id:'b3',name:'Sara Nasser',initials:'SN',trust:848,purpose:'Medical',reason:'An urgent family medical procedure not fully covered by insurance.',bid:6000,bg:pal[1]}
     ];
-    const votedId=st.votedId;
-    const counts=reqDefs.map(r=> r.base + (votedId===r.id?1:0));
-    const maxVotes=Math.max.apply(null,counts);
-    const totalVotes=counts.reduce((a,b)=>a+b,0);
-    const leaderIdx=counts.indexOf(maxVotes);
-    const govReqs=reqDefs.map((r,i)=>{
-      const votes=counts[i];
-      const amount=poolNum-r.discount;
-      const pct= totalVotes? Math.round(votes/totalVotes*100):0;
-      const barW= maxVotes? Math.round(votes/maxVotes*100)+'%':'0%';
-      const isLeader= votedId && i===leaderIdx;
-      const youVoted= votedId===r.id;
+    const liveBidsRaw = bidDefs.slice();
+    if(haveMyBid) liveBidsRaw.push({id:'me',name:'You (Ahmed Al Mansoori)',initials:'You',trust:850,purpose:'Capital',reason:(st.earlyReason||'Early access to capital this month.'),bid:myBidAmt,bg:'#0A6E4E',mine:true});
+    const topBid = Math.max.apply(null, liveBidsRaw.map(b=>b.bid));
+    const leaderBid = liveBidsRaw.reduce((a,b)=>b.bid>a.bid?b:a, liveBidsRaw[0]);
+    const govReqs = liveBidsRaw.slice().sort((a,b)=>b.bid-a.bid).map(b=>{
+      const net=poolNum-b.bid;
+      const isLeader=b.bid===topBid;
+      const status= isLeader? 'Leading Bid' : (b.mine? 'Outbid' : 'Live');
+      const statusBg= isLeader?'#EAF3EE':(b.mine?'#FBF4E6':'#F1F4F2');
+      const statusColor= isLeader?'#0A6E4E':(b.mine?'#9A742C':'#5A6B62');
       return {
-        id:r.id,name:r.name,initials:r.initials,trust:r.trust,purpose:r.purpose,reason:r.reason,bg:r.bg,
-        amountStr:this.fmt(amount), discounted:r.discount>0, surplusStr:this.fmt(r.discount),
-        votesStr:votes+' votes', pctStr:pct+'%', barW,
-        barColor: isLeader? 'linear-gradient(90deg,#0A6E4E,#7FE0A8)' : '#0A6E4E',
-        cardStyle:'background:#fff;border:1px solid '+(isLeader?'#0A6E4E':'#E7ECE9')+';border-radius:20px;padding:24px;box-shadow:'+(isLeader?'0 20px 44px -30px rgba(10,110,78,.5)':'0 18px 44px -36px rgba(15,26,21,.4)')+';',
-        vote:()=>this.castVote(r.id),
-        btnLabel: youVoted? '✓ Voted' : (votedId? 'Vote cast' : 'Vote'),
-        btnStyle:'font-family:\'Sora\';font-weight:600;font-size:14px;padding:11px 22px;border-radius:11px;white-space:nowrap;border:none;cursor:'+(votedId?'default':'pointer')+';background:'+(youVoted?'#0A6E4E':(votedId?'#EEF2EF':'#0F1A15'))+';color:'+(youVoted?'#fff':(votedId?'#9AA69F':'#fff'))+';',
-        btnWrapStyle:'flex-shrink:0;',
-        reqMonth:r.reqMonth, origMonth:r.origMonth, time:r.time,
-        discPctLabel:(r.discount>0? Math.round(r.discount/poolNum*100)+'% discount':'No discount'),
-        act:(st.voteActions[r.id]||null),
-        approve:()=>this.voteAction(r.id,'approve'), reject:()=>this.voteAction(r.id,'reject'),
-        approveStyle:'font-family:\'Sora\';font-weight:600;font-size:13px;padding:10px 18px;border-radius:10px;white-space:nowrap;border:none;cursor:'+(st.voteActions[r.id]?'default':'pointer')+';background:'+(st.voteActions[r.id]==='approve'?'#0A6E4E':(st.voteActions[r.id]?'#EEF2EF':'#0A6E4E'))+';color:'+(st.voteActions[r.id]==='approve'?'#fff':(st.voteActions[r.id]?'#9AA69F':'#fff'))+';',
-        rejectStyle:'font-family:\'Sora\';font-weight:600;font-size:13px;padding:10px 18px;border-radius:10px;white-space:nowrap;cursor:'+(st.voteActions[r.id]?'default':'pointer')+';background:'+(st.voteActions[r.id]==='reject'?'#0F1A15':'#fff')+';color:'+(st.voteActions[r.id]==='reject'?'#fff':'#5A6B62')+';border:1px solid '+(st.voteActions[r.id]==='reject'?'#0F1A15':'#DCE3DE')+';',
-        approveLabel:(st.voteActions[r.id]==='approve'?'✓ Approved':'Vote Approve'),
-        rejectLabel:(st.voteActions[r.id]==='reject'?'✓ Rejected':'Vote Reject')
+        id:b.id, name:b.name, initials:b.initials, trust:b.trust, purpose:b.purpose, reason:b.reason, bg:b.bg, mine:!!b.mine,
+        bidStr:this.fmt(b.bid), netStr:this.fmt(net),
+        status, statusStyle:'background:'+statusBg+';color:'+statusColor+';padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;',
+        barW: topBid? Math.round(b.bid/topBid*100)+'%':'0%',
+        barColor: isLeader? 'linear-gradient(90deg,#0A6E4E,#7FE0A8)' : '#C5D2CB',
+        cardStyle:'background:#fff;border:1px solid '+(isLeader?'#0A6E4E':'#E7ECE9')+';border-radius:20px;padding:24px;box-shadow:'+(isLeader?'0 20px 44px -30px rgba(10,110,78,.4)':'0 18px 44px -36px rgba(15,26,21,.35)')+';'
       };
     });
-    // govTab data
+    const govReqCount=liveBidsRaw.length;
+    const leaderName=leaderBid.name;
+    const leaderBidStr=this.fmt(leaderBid.bid);
+    const highestDiscount=this.fmt(topBid);
+    const largestReleased=this.fmt(poolNum);
+
+    // completed bids — previous months of THIS circle
     const completedVotes=[
-      {name:'Ahmed Al Mansoori',initials:'AM',reqMonth:'Month 3',origMonth:'Month 8',disc:'9%',approvals:'11/12 Members',received:this.fmt(131040),bg:pal[0]},
-      {name:'Mariam Khalifa',initials:'MK',reqMonth:'Month 2',origMonth:'Month 6',disc:'6%',approvals:'12/12 Members',received:this.fmt(135360),bg:pal[2]},
-      {name:'Yusuf Rahman',initials:'YR',reqMonth:'Month 1',origMonth:'Month 5',disc:'11%',approvals:'10/12 Members',received:this.fmt(128160),bg:pal[1]}
+      {month:'Month 8',name:'Ahmed Al Mansoori',initials:'AM',disc:this.fmt(21600),received:this.fmt(122400),bg:pal[0]},
+      {month:'Month 7',name:'Mariam Khalifa',initials:'MK',disc:this.fmt(8640),received:this.fmt(135360),bg:pal[2]},
+      {month:'Month 6',name:'Yusuf Rahman',initials:'YR',disc:this.fmt(17280),received:this.fmt(126720),bg:pal[1]},
+      {month:'Month 5',name:'Hassan Tariq',initials:'HT',disc:this.fmt(12000),received:this.fmt(132000),bg:pal[3]}
     ];
-    const myReqsList = st.earlyStatus ? [{
-      reqMonth:'Month 3', origMonth:'Month 9', disc:eDisc+'%', net:this.fmt(eNet),
-      statusLabel: earlyStatusLabel,
-      statusStyle:'background:'+(st.earlyStatus==='released'?'#EAF3EE':'#FBF4E6')+';color:'+(st.earlyStatus==='released'?'#0A6E4E':'#9A742C')+';padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;',
+
+    // my bid (My Bid tab)
+    const myBidLeading = haveMyBid && myBidAmt>=topBid;
+    const myReqsList = haveMyBid ? [{
+      month:activeMonthStr, bidStr:this.fmt(myBidAmt), net:this.fmt(myBidNet),
+      statusLabel: (st.earlyStatus==='released'?'Capital Released':(myBidLeading?'Leading Bid':'Outbid')),
+      statusStyle:'background:'+(st.earlyStatus==='released'?'#EAF3EE':(myBidLeading?'#EAF3EE':'#FBF4E6'))+';color:'+(st.earlyStatus==='released'||myBidLeading?'#0A6E4E':'#9A742C')+';padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;',
       track:()=>this.setScreen('earlyTrack')
     }] : [];
-    const highestDiscount='11%';
-    const largestReleased=this.fmt(144000);
 
     // My Circles
     const myCirclesList = st.joined ? [{
       name:circle.name, monthlyStr:circle.monthlyStr, poolStr:circle.poolStr,
-      currentMonth:'Month 3 of '+circle.membersNum, paid:'3 of '+circle.membersNum,
-      remaining:(circle.membersNum-3)+' Months', nextDate:'1 July 2026',
-      payoutStatus:(st.earlyStatus?'Early payout '+(st.earlyStatus==='released'?'received':'in progress'):'Awaiting community vote')
+      currentMonth:activeMonthStr+' of '+totalMonths, paid:monthsPaid+' of '+totalMonths,
+      remaining:(totalMonths-monthsPaid)+' Months', nextDate:'1 July 2026',
+      payoutStatus:(haveMyBid?(st.earlyStatus==='released'?'Bid won · capital received':'Bid placed for '+activeMonthStr):'No active bid')
     }] : [];
 
     // Notifications
@@ -1306,14 +1422,13 @@ class Component extends DCLogic {
       ? [['Application received','Your profile is under review (24–72h).','2m','true']]
       : [
           ['You\u2019ve been approved','You can now participate in eligible circles.','1h',true],
-          ['A request needs your vote','Omar Saeed requested early payout — voting closes in 12h.','3h',true],
+          ['New leading bid','Omar Saeed is leading '+activeMonthStr+' with a '+this.fmt(18000)+' discount.','3h',true],
           ['Contribution due','Your July contribution of '+circle.monthlyStr+' is due 1 Jul.','1d',false]
         ];
     const notifications=notifDefs.map(n=>({title:n[0],body:n[1],when:n[2],unread:!!n[3], dotColor:n[3]?'#0A6E4E':'#C9CFCB'}));
     const unreadCount=notifications.filter(n=>n.unread).length;
-    const leaderName= votedId? reqDefs[leaderIdx].name : '';
 
-    // discount interactive
+    // landing discounted-access interactive (unchanged)
     const disc=st.discount;
     const discPriority = disc>=8000?'Highest':disc>=4000?'Higher':disc>0?'Slightly earlier':'Standard';
     const discPct = Math.round(disc/10000*100);
@@ -1329,7 +1444,7 @@ class Component extends DCLogic {
     // nav tabs (app)
     const showNav = isApp && ['dashboard','explore','detail','distribution','governance','terms','confirm','myCircles','earlyRequest','earlyTrack'].includes(screen);
     const navDefs = st.joined
-      ? [['Dashboard','dashboard',['dashboard']],['Explore','explore',['explore','detail','distribution','terms','confirm']],['My Circles','myCircles',['myCircles','earlyRequest','earlyTrack']],['Voting','governance',['governance']]]
+      ? [['Dashboard','dashboard',['dashboard']],['Explore','explore',['explore','detail','distribution','terms','confirm']],['My Circles','myCircles',['myCircles','earlyRequest','earlyTrack']],['Governance','governance',['governance']]]
       : [['Dashboard','dashboard',['dashboard']],['Explore','explore',['explore','detail','distribution','terms','confirm']]];
     const navTabs=navDefs.map(([label,target,on])=>{
       const active=on.includes(screen);
@@ -1342,13 +1457,13 @@ class Component extends DCLogic {
     const employmentOpts=['Government Employee','Private Employee','Self Employed','Business Owner'];
     const eligibleCircles=[{amt:'AED 3,000',ok:true},{amt:'AED 5,000',ok:true},{amt:'AED 10,000',ok:true},{amt:'AED 25,000+',ok:false}];
 
-    // ----- early payout calc -----
+    // ----- early payout / bid calc -----
     const eMonthly=12000, eMembers=12, ePool=eMonthly*eMembers; // active circle (home)
-    const eDisc=st.earlyDiscount;
-    const eNet=Math.round(ePool*(1-eDisc/100));
+    const eBid=st.earlyBid;                       // bid = discount offered (AED)
+    const eNet=ePool-eBid;                         // expected net payout
     const earlyStages=[
-      {key:'voting',title:'Community Voting',desc:'48-hour voting window open to all members.'},
-      {key:'community',title:'Community Approved',desc:'Pending TrustCircle verification.'},
+      {key:'voting',title:'Live Bidding',desc:'Members place bids for this month\u2019s payout — highest discount leads.'},
+      {key:'community',title:'Bid Won',desc:'Your bid leads. Pending TrustCircle verification.'},
       {key:'office',title:'TrustCircle Verification',desc:'Document & risk review at a TrustCircle office.'},
       {key:'released',title:'Capital Released',desc:'Funds disbursed to your account.'}
     ];
@@ -1360,8 +1475,8 @@ class Component extends DCLogic {
       mark:(i<eIdx?'✓':(i+1)+''),
       titleColor:(i<=eIdx?'#0F1A15':'#9AA69F')
     }));
-    const earlyStatusLabel={voting:'Live Voting · 48h remaining',community:'Community Approved · Pending Verification',office:'Verification Appointment Required',released:'Capital Released'}[st.earlyStatus]||'';
-    const earlyAdvanceLabel={voting:'View Community Result →',community:'Schedule Verification Appointment →',office:'Confirm Appointment & Release →',released:''}[st.earlyStatus]||'';
+    const earlyStatusLabel={voting:'Live Bidding · 48h remaining',community:'Bid Won · Pending Verification',office:'Verification Appointment Required',released:'Capital Released'}[st.earlyStatus]||'';
+    const earlyAdvanceLabel={voting:'View Bid Result →',community:'Schedule Verification Appointment →',office:'Confirm Appointment & Release →',released:''}[st.earlyStatus]||'';
 
     // ----- voting dashboard tabs -----
     const gt=st.govTab;
@@ -1388,20 +1503,26 @@ class Component extends DCLogic {
       isLanding: view==='landing', isInvestor: view==='investor',
       isAppShell: isApp && screen!=='auth',
       scAuth: isApp && screen==='auth',
-      scVerify:screen==='verify', scPurpose:screen==='purpose', scProfile:screen==='profile',
+      scVerify:screen==='verify', scEmployer:screen==='employer', scPurpose:screen==='purpose', scProfile:screen==='profile',
       scDashboard:screen==='dashboard', scExplore:screen==='explore', scDetail:screen==='detail',
       scDistribution:screen==='distribution', scGovernance:screen==='governance', scTerms:screen==='terms',
       scConfirm:screen==='confirm', scSuccess:screen==='success',
       scApply:screen==='apply', scReviewing:screen==='reviewing', scApproved:screen==='approved',
       scMyCircles:screen==='myCircles', scEarlyRequest:screen==='earlyRequest', scEarlyTrack:screen==='earlyTrack',
+      // employer verification
+      employerList, employer:st.employer, empSelectedName, empId:st.empId, empOtp:st.empOtp,
+      empSelect: st.empStage==='select', empOtpStage: st.empStage==='otp',
+      empCanMatch, empNotCanMatch:!empCanMatch, empOtpValid, empNotOtpValid:!empOtpValid,
+      empMaskedContact, empVerified:st.empVerified, hasEmployer:!!st.employer && st.empVerified,
       approved, notApproved:!approved, isReviewing: st.approvalStatus==='reviewing', isPending:st.approvalStatus==='none',
       employmentOpts:employmentOpts.map(o=>({name:o})), eligibleCircles:eligibleCircles.map(c=>({amt:c.amt, ok:c.ok, style:'display:flex;align-items:center;gap:9px;padding:13px 16px;border-radius:12px;background:'+(c.ok?'#EAF3EE':'#F6F8F7')+';border:1px solid '+(c.ok?'#CDE6D9':'#ECEFEC')+';', mark:c.ok?'✓':'—', markColor:c.ok?'#0A6E4E':'#9AA69F', textColor:c.ok?'#0F1A15':'#9AA69F'})),
-      // early payout
-      earlyDiscount:eDisc, earlyDiscountStr:eDisc+'%', earlyNetStr:this.fmt(eNet), earlyPoolStr:this.fmt(ePool), earlyReason:st.earlyReason,
+      // early payout / bid
+      earlyBid:eBid, earlyBidStr:this.fmt(eBid), earlyDiscountStr:this.fmt(eBid), earlyNetStr:this.fmt(eNet), earlyPoolStr:this.fmt(ePool), earlyReason:st.earlyReason,
+      activeMonthStr, activeMonth, monthsPaidStr:monthsPaid+'',
       earlyTimeline, earlyStatusLabel, earlyAdvanceLabel, earlyReleased: st.earlyStatus==='released', earlyNotReleased: st.earlyStatus!=='released' && !!st.earlyStatus,
-      // voting tabs
+      // bidding tabs
       govTabLive: gt==='live', govTabMine: gt==='mine', govTabDone: gt==='completed',
-      govTabs:[['live','Live Voting'],['mine','My Requests'],['completed','Completed']].map(([id,label])=>({label, active:gt===id, go:()=>this.setGovTab(id), style:'cursor:pointer;font-family:\'Sora\';font-weight:600;font-size:14px;padding:10px 18px;border-radius:10px;background:'+(gt===id?'#0A6E4E':'transparent')+';color:'+(gt===id?'#fff':'#5A6B62')+';'})),
+      govTabs:[['live','Live Bids'],['mine','My Bid'],['completed','Completed Bids']].map(([id,label])=>({label, active:gt===id, go:()=>this.setGovTab(id), style:'cursor:pointer;font-family:\'Sora\';font-weight:600;font-size:14px;padding:10px 18px;border-radius:10px;white-space:nowrap;background:'+(gt===id?'#0A6E4E':'transparent')+';color:'+(gt===id?'#fff':'#5A6B62')+';'})),
       completedVotes, myReqsList, hasMyReqs:myReqsList.length>0, noMyReqs:myReqsList.length===0,
       highestDiscount, largestReleased,
       // my circles
@@ -1433,7 +1554,7 @@ class Component extends DCLogic {
       dashSubtitle: st.joined?'You\u2019re an active member. Here\u2019s your circle at a glance.':'Your network is ready. Here\u2019s where you stand today.',
       joined: st.joined, notJoined: !st.joined, approvedNotJoined: approved && !st.joined,
       activeStr: st.joined?'1':'0', activeSub: st.joined?'in good standing':'none yet',
-      govReqCount: govReqs.length, voteCountStr: votedId?'1':'0',
+      govReqCount: govReqCount, voteCountStr: haveMyBid?'1':'0',
 
       // circles
       circles, circle, filterChips, circleCountStr: circles.length+(circles.length===1?' circle':' circles'),
@@ -1447,10 +1568,8 @@ class Component extends DCLogic {
       discount: disc, discountStr:this.fmt(disc), discountReceiveStr:this.fmt(poolNum-disc),
       discountPriority: discPriority, discountPctStr: discPct+'%',
 
-      // governance vote
-      govReqs, hasVoted: !!votedId, leaderName,
-      anyVoteAction: Object.keys(st.voteActions).length>0,
-      votesCastStr: totalVotes+'', 
+      // governance bidding
+      govReqs, leaderName, leaderBidStr, hasMyBid:haveMyBid, myBidLeading,
 
       // success
       confetti: [['#0A6E4E','30%','10%','1.6s','.1s'],['#E9C77E','62%','14%','1.8s','.2s'],['#7FE0A8','48%','8%','2s','0s'],['#1B5C45','38%','16%','1.7s','.3s'],['#B0894E','70%','12%','1.9s','.15s'],['#0A6E4E','55%','18%','1.75s','.25s']].map(c=>({
@@ -1465,6 +1584,8 @@ class Component extends DCLogic {
       pickProvider:()=>this.pickProvider(), openEmail:()=>this.openEmail(), closeEmail:()=>this.closeEmail(),
       setEmail:(e)=>this.setEmail(e&&e.target?e.target.value:e),
       continueVerify:()=>this.continueVerify(), continuePurpose:()=>this.continuePurpose(), continueProfile:()=>this.continueProfile(),
+      setEmpId:(e)=>this.setEmpId(e&&e.target?e.target.value:e), matchEmployee:()=>this.matchEmployee(),
+      setEmpOtp:(e)=>this.setEmpOtp(e&&e.target?e.target.value:e), verifyEmployer:()=>this.verifyEmployer(), skipEmployer:()=>this.skipEmployer(),
       toExplore:()=>this.toExplore(), toDashboard:()=>this.toDashboard(), toGovernance:()=>this.toGovernance(),
       toDistribution:()=>this.toDistribution(), toTerms:()=>this.toTerms(), toConfirm:()=>this.toConfirm(),
       setFilter:(id)=>this.setFilter(id), setDiscount:(e)=>this.setDiscount(e&&e.target?e.target.value:e),
