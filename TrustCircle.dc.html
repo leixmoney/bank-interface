@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Instrument+Sans:wght@400;500;600;700&family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  ::selection{background:#0F3D2F;color:#fff;}
+  @keyframes tcGrow{from{width:0}to{width:var(--w)}}
+  @keyframes tcFade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes tcPop{0%{transform:scale(.5);opacity:0}65%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  @keyframes tcRing{0%{transform:scale(.7);opacity:.5}100%{transform:scale(1.7);opacity:0}}
+  @keyframes tcCheck{to{stroke-dashoffset:0}}
+  @keyframes tcFloat{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-150px) rotate(240deg);opacity:0}}
+  @keyframes tcSpin{to{transform:rotate(360deg)}}
+  /* ---------- responsive (mobile web) ---------- */
+  html,body{overflow-x:hidden;max-width:100%;}
+  img,svg{max-width:100%;}
+  @media (max-width:860px){
+    [style*="grid-template-columns"]{grid-template-columns:1fr!important;}
+  }
+  @media (max-width:640px){
+    h1{font-size:30px!important;line-height:1.14!important;}
+    h2{font-size:25px!important;line-height:1.18!important;}
+    input,textarea,select{font-size:16px!important;}
+    svg{height:auto!important;}
+  }
+  @media (max-width:760px){
+    .tc-nav span{display:none!important;}
+  }
+</style>
+</helmet>
+
+<div style="font-family:'Instrument Sans',sans-serif;min-height:100vh;background:#FFFFFF;color:#13251D;-webkit-font-smoothing:antialiased;">
+
+  <!-- ================= LANDING ================= -->
+  <sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+  <div data-screen-label="Landing">
+    <!-- NAV -->
+    <div style="position:sticky;top:0;z-index:40;background:rgba(11,44,34,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(244,239,228,.12);">
+      <div style="max-width:1180px;margin:0 auto;padding:16px 30px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:11px;">
+          <img src="brand/lockup-dark.png" alt="trust Circle" style="height:38px;display:block;" />
+        </div>
+        <div class="tc-nav" style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500;color:#BFD2C6;flex-wrap:wrap;justify-content:flex-end;">
+          <span onClick="{{ navVision }}" style="cursor:pointer;">Vision</span>
+          <span onClick="{{ navScore }}" style="cursor:pointer;">Trust Score</span>
+          <span onClick="{{ navCircles }}" style="cursor:pointer;">Circles</span>
+          <span onClick="{{ navGov }}" style="cursor:pointer;">Governance</span>
+          <span onClick="{{ toInvestor }}" style="cursor:pointer;">Investors</span>
+          <button onClick="{{ joinNow }}" style="font-family:'Gantari';font-weight:700;font-size:14px;padding:10px 20px;border:none;border-radius:999px;cursor:pointer;color:#1C2A1F;background:linear-gradient(180deg,#E9C77E,#C9A24B);">Join TrustCircle</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div style="background:radial-gradient(120% 110% at 80% -20%,#175640 0%,#0F3D2F 52%,#0B2C22 100%);">
+    <div style="max-width:1180px;margin:0 auto;padding:96px 30px 64px;display:grid;grid-template-columns:1.18fr .82fr;gap:60px;align-items:center;">
+      <div style="animation:tcFade .8s ease both;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(244,239,228,.08);border:1px solid rgba(201,162,75,.45);color:#E9C77E;padding:7px 14px;border-radius:999px;font-family:'Gantari';font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;">The Ethical Capital Network</div>
+        <h1 style="font-family:'Gantari';font-weight:800;font-size:60px;line-height:1.03;letter-spacing:-0.035em;color:#F8F5EC;margin:22px 0 0;text-wrap:balance;">Transforming the world's oldest financial system into digital trust infrastructure.</h1>
+        <p style="font-size:18px;color:#B9CCC0;margin:24px 0 0;line-height:1.6;max-width:480px;">For centuries, communities have pooled resources to access capital. TrustCircle™ makes it secure, transparent, and scalable.</p>
+        <p style="font-family:'Gantari';font-size:18px;color:#E9C77E;margin:22px 0 0;font-weight:700;">Capital, Powered by Community.</p>
+        <div style="display:flex;gap:13px;margin-top:34px;">
+          <button onClick="{{ joinNow }}" style="font-family:'Gantari';font-weight:700;font-size:16px;padding:16px 28px;border:none;border-radius:999px;cursor:pointer;color:#1C2A1F;background:linear-gradient(180deg,#E9C77E,#C9A24B);box-shadow:0 18px 36px -14px rgba(201,162,75,.55);">Join TrustCircle</button>
+          <button onClick="{{ navHow }}" style="font-family:'Gantari';font-weight:600;font-size:16px;padding:16px 28px;border:1px solid rgba(244,239,228,.3);border-radius:999px;cursor:pointer;color:#F4EFE4;background:rgba(244,239,228,.05);">Explore How It Works</button>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;align-items:center;animation:tcFade 1s ease both;">
+        <div style="position:relative;width:min(420px,84vw);height:min(420px,84vw);">
+          <svg width="420" height="420" viewBox="0 0 420 420" style="display:block;width:100%;height:100%;">
+            <sc-for list="{{ heroLines }}" as="l" hint-placeholder-count="60">
+              <line x1="{{ l.x1 }}" y1="{{ l.y1 }}" x2="{{ l.x2 }}" y2="{{ l.y2 }}" stroke="#F4EFE4" stroke-width="0.7" opacity="{{ l.op }}"></line>
+            </sc-for>
+            <circle cx="{{ heroHaloX }}" cy="{{ heroHaloY }}" r="28" fill="#E9C77E" opacity="0.2"></circle>
+            <sc-for list="{{ heroInner }}" as="d" hint-placeholder-count="8">
+              <circle cx="{{ d.cx }}" cy="{{ d.cy }}" r="{{ d.r }}" fill="#7FB79C" opacity="{{ d.op }}"></circle>
+            </sc-for>
+            <sc-for list="{{ heroNodes }}" as="n" hint-placeholder-count="12">
+              <circle cx="{{ n.cx }}" cy="{{ n.cy }}" r="{{ n.r }}" fill="{{ n.fill }}" stroke="{{ n.stroke }}" stroke-width="{{ n.sw }}"></circle>
+            </sc-for>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;">
+            <div style="font-family:'Gantari';letter-spacing:.18em;text-transform:uppercase;font-size:11px;font-weight:600;color:#C9A24B;">Capital Circle</div>
+            <div style="font-family:'Gantari';font-weight:800;font-size:34px;color:#F4EFE4;margin-top:8px;letter-spacing:-0.01em;">AED 144,000</div>
+            <div style="font-size:13px;color:#9FBFAE;margin-top:6px;">distributed monthly · 12 members</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUST BAR -->
+    <div style="max-width:1180px;margin:0 auto;padding:8px 30px 72px;display:flex;gap:36px;flex-wrap:wrap;color:#9FBFAE;font-size:14px;font-weight:500;">
+      <span>Identity-verified via UAE PASS</span><span style="color:rgba(244,239,228,.25);">•</span><span>Segregated, independently audited capital</span><span style="color:rgba(244,239,228,.25);">•</span><span>Riba-free &amp; transparently governed</span>
+    </div>
+    </div>
+
+    <!-- INSIGHT -->
+    <div id="vision" style="background:#13251D;color:#F4EFE4;">
+      <div style="max-width:1180px;margin:0 auto;padding:104px 30px;">
+        <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">The Insight</div>
+        <h2 style="font-family:'Gantari';font-weight:700;font-size:42px;line-height:1.12;letter-spacing:-0.03em;margin:18px 0 0;max-width:840px;text-wrap:balance;">Banks monetize debt. Fintechs monetize transactions. TrustCircle monetizes trust.</h2>
+        <p style="font-size:18px;color:#9DB0A6;margin:22px 0 0;max-width:680px;line-height:1.6;">Before banking existed, trust was humanity's original financial infrastructure. We digitize it — and turn it into a scalable network for ethical capital coordination.</p>
+        <div style="margin-top:54px;">
+          <div style="font-size:14px;color:#7E9389;margin-bottom:18px;">One behavior, every culture — moving billions every year, still offline:</div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <sc-for list="{{ ancientSystems }}" as="a" hint-placeholder-count="7">
+              <div style="border:1px solid #2A3A33;border-radius:999px;padding:11px 20px;font-family:'Gantari';font-weight:600;font-size:15px;color:#CFE0D8;">{{ a.name }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div id="how" style="background:#fff;">
+      <div style="max-width:1180px;margin:0 auto;padding:104px 30px;">
+        <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#0F3D2F;">How It Works</div>
+        <h2 style="font-family:'Gantari';font-weight:700;font-size:40px;letter-spacing:-0.03em;margin:16px 0 0;color:#13251D;">Professionally administered circles.</h2>
+        <p style="font-size:18px;color:#6B7A72;margin:16px 0 0;max-width:680px;line-height:1.6;">TrustCircle creates, verifies, governs and administers every circle. You don't build a circle — you join one, with institutional-grade trust built in.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;">
+          <sc-for list="{{ howSteps }}" as="h" hint-placeholder-count="3">
+            <div style="background:#F6F2E9;border:1px solid #ECEFEC;border-radius:22px;padding:32px;">
+              <div style="font-family:'Gantari';font-weight:800;font-size:15px;color:#0F3D2F;letter-spacing:.05em;">{{ h.num }}</div>
+              <div style="font-family:'Gantari';font-weight:700;font-size:21px;color:#13251D;margin-top:16px;">{{ h.title }}</div>
+              <p style="color:#6B7A72;font-size:15px;line-height:1.6;margin:10px 0 0;">{{ h.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUST SCORE HERO -->
+    <div id="trustscore" style="background:linear-gradient(180deg,#F2F8F4,#fff);">
+      <div style="max-width:1180px;margin:0 auto;padding:104px 30px;display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center;">
+        <div>
+          <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Trust Score™ · The Moat</div>
+          <h2 style="font-family:'Gantari';font-weight:700;font-size:42px;line-height:1.1;letter-spacing:-0.03em;margin:16px 0 0;color:#13251D;">Trust is the most valuable asset in the network.</h2>
+          <p style="font-size:18px;color:#6B7A72;margin:18px 0 0;line-height:1.6;max-width:560px;">Not a credit score — a living measure of identity, participation, reliability, governance, and community trust. Measurable, visible, portable, and yours.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px;max-width:560px;">
+            <sc-for list="{{ trustDims }}" as="t" hint-placeholder-count="8">
+              <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #E6E1D3;border-radius:12px;padding:13px 15px;">
+                <span style="width:7px;height:7px;border-radius:50%;background:#0F3D2F;flex-shrink:0;"></span>
+                <span style="font-family:'Gantari';font-weight:600;font-size:14px;color:#13251D;">{{ t.name }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:linear-gradient(155deg,#0F3D2F,#0A2A1F);border-radius:28px;padding:42px;display:flex;flex-direction:column;align-items:center;box-shadow:0 40px 80px -36px rgba(15,61,47,.7);">
+          <div style="position:relative;width:220px;height:220px;">
+            <svg width="220" height="220" viewBox="0 0 220 220" style="transform:rotate(-90deg);">
+              <circle cx="110" cy="110" r="92" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="15"/>
+              <circle cx="110" cy="110" r="92" fill="none" stroke="#E9C77E" stroke-width="15" stroke-linecap="round" stroke-dasharray="{{ heroRingCirc }}" stroke-dashoffset="{{ heroRingOffset }}"/>
+            </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <div style="font-family:'Gantari';font-weight:800;font-size:54px;color:#fff;line-height:1;">850</div>
+              <div style="color:#A7D8C2;font-size:14px;margin-top:4px;">/ 1000</div>
+            </div>
+          </div>
+          <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#E9C77E;margin-top:22px;">Trust Score™</div>
+          <div style="display:flex;align-items:center;gap:7px;color:#A7D8C2;font-size:13px;margin-top:8px;">Verified via UAE PASS ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAPITAL DISTRIBUTION + EARLY ACCESS -->
+    <div id="governance" style="background:#fff;">
+      <div style="max-width:1180px;margin:0 auto;padding:104px 30px;">
+        <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#0F3D2F;">Community Governance</div>
+        <h2 style="font-family:'Gantari';font-weight:700;font-size:40px;letter-spacing:-0.03em;margin:16px 0 0;color:#13251D;max-width:760px;">Capital is allocated by the community — not a rotation, not a lender.</h2>
+        <p style="font-size:18px;color:#6B7A72;margin:16px 0 0;max-width:720px;line-height:1.6;">Each month every member contributes and the pool forms. Members submit requests with a reason, the community reviews and votes, and the chosen member receives that month's capital.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;">
+          <sc-for list="{{ govFlow }}" as="g" hint-placeholder-count="4">
+            <div style="background:#F6F2E9;border:1px solid #ECEFEC;border-radius:20px;padding:26px;">
+              <div style="width:38px;height:38px;border-radius:11px;background:#E9EFE3;color:#0F3D2F;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:800;font-size:16px;">{{ g.num }}</div>
+              <div style="font-family:'Gantari';font-weight:700;font-size:17px;color:#13251D;margin-top:16px;">{{ g.title }}</div>
+              <p style="color:#6B7A72;font-size:14px;line-height:1.55;margin:8px 0 0;">{{ g.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- Discounted early access interactive -->
+        <div style="margin-top:32px;background:linear-gradient(150deg,#13251D,#1C362B);border-radius:24px;padding:40px;color:#F4EFE4;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+          <div>
+            <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#E9C77E;">Discounted Early Access</div>
+            <h3 style="font-family:'Gantari';font-weight:700;font-size:26px;letter-spacing:-0.02em;margin:12px 0 0;">Need capital sooner? Offer a little back to the circle.</h3>
+            <p style="color:#9DB0A6;font-size:15px;line-height:1.6;margin:12px 0 0;">Voluntarily request slightly less than the full pool in exchange for earlier access. The surplus stays in the circle and increases value for every member.</p>
+            <div style="margin-top:26px;">
+              <div style="display:flex;justify-content:space-between;font-size:13px;color:#9DB0A6;margin-bottom:10px;"><span>Your discount</span><span style="font-family:'Gantari';font-weight:700;color:#E9C77E;">{{ discountStr }}</span></div>
+              <input type="range" min="0" max="10000" step="500" value="{{ discount }}" onInput="{{ setDiscount }}" style="width:100%;accent-color:#E9C77E;cursor:pointer;" />
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:28px;">
+            <div style="display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Monthly pool</span><span style="font-family:'Gantari';font-weight:700;">AED 144,000</span></div>
+            <div style="display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">You receive</span><span style="font-family:'Gantari';font-weight:700;color:#fff;">{{ discountReceiveStr }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Stays in circle</span><span style="font-family:'Gantari';font-weight:700;color:#E9C77E;">{{ discountStr }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:13px 0;align-items:center;"><span style="color:#9DB0A6;font-size:14px;">Access priority</span><span style="font-family:'Gantari';font-weight:700;color:#7FE0A8;">{{ discountPriority }}</span></div>
+            <div style="height:8px;border-radius:999px;background:rgba(255,255,255,.1);margin-top:10px;overflow:hidden;"><div style="width:{{ discountPctStr }};height:100%;border-radius:999px;background:linear-gradient(90deg,#E9C77E,#7FE0A8);transition:width .25s;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKETPLACE PREVIEW -->
+    <div id="circles" style="background:#F6F2E9;border-top:1px solid #ECEFEC;">
+      <div style="max-width:1180px;margin:0 auto;padding:104px 30px;">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+          <div>
+            <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#0F3D2F;">Circle Marketplace</div>
+            <h2 style="font-family:'Gantari';font-weight:700;font-size:40px;letter-spacing:-0.03em;margin:16px 0 0;color:#13251D;">Capital pools forming now.</h2>
+          </div>
+          <button onClick="{{ joinNow }}" style="font-family:'Gantari';font-weight:600;font-size:15px;padding:13px 22px;border:1px solid #D8E0DB;border-radius:999px;cursor:pointer;color:#13251D;background:#fff;">View all circles →</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;">
+          <sc-for list="{{ landingCircles }}" as="c" hint-placeholder-count="3">
+            <div onClick="{{ joinNow }}" style="cursor:pointer;background:#fff;border:1px solid #E6E1D3;border-radius:22px;padding:26px;box-shadow:0 18px 40px -32px rgba(15,26,21,.4);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+                <div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#0F3D2F;">{{ c.purpose }}</div>
+                <div style="display:flex;align-items:center;gap:4px;background:#F1F5F2;color:#13251D;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:600;"><span style="color:#A8853F;">★</span>{{ c.trust }}</div>
+              </div>
+              <h3 style="font-family:'Gantari';font-weight:700;font-size:20px;color:#13251D;margin:12px 0 0;">{{ c.name }}</h3>
+              <div style="display:flex;gap:22px;margin-top:18px;">
+                <div><div style="color:#8A968F;font-size:11px;">Monthly</div><div style="font-family:'Gantari';font-weight:700;color:#13251D;font-size:15px;margin-top:2px;">{{ c.monthlyStr }}</div></div>
+                <div><div style="color:#8A968F;font-size:11px;">Pool</div><div style="font-family:'Gantari';font-weight:700;color:#0F3D2F;font-size:15px;margin-top:2px;">{{ c.poolStr }}</div></div>
+              </div>
+              <div style="height:6px;border-radius:999px;background:#ECE7D9;overflow:hidden;margin-top:18px;"><div style="--w:{{ c.progressW }};width:var(--w);height:100%;border-radius:999px;background:#0F3D2F;"></div></div>
+              <div style="color:#8A968F;font-size:12px;margin-top:8px;">{{ c.filledStr }} of {{ c.membersStr }} · {{ c.progressStr }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHARIA -->
+    <div style="background:#fff;">
+      <div style="max-width:1180px;margin:0 auto;padding:104px 30px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+        <div>
+          <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Ethical by Design</div>
+          <h2 style="font-family:'Gantari';font-weight:700;font-size:40px;letter-spacing:-0.03em;margin:16px 0 0;color:#13251D;">Riba-free. Cooperative. Transparent.</h2>
+          <p style="font-size:18px;color:#6B7A72;margin:18px 0 0;line-height:1.6;">No interest-based lending. No predatory finance. No debt-trap structures. TrustCircle is built on mutual cooperation and responsible capital access — rooted in Islamic finance principles, globally accessible to everyone.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <sc-for list="{{ principles }}" as="p" hint-placeholder-count="6">
+            <div style="background:#F6F2E9;border:1px solid #ECEFEC;border-radius:14px;padding:18px;">
+              <span style="display:inline-flex;width:22px;height:22px;border-radius:50%;background:#E9EFE3;color:#0F3D2F;align-items:center;justify-content:center;font-size:12px;font-weight:800;">✓</span>
+              <div style="font-family:'Gantari';font-weight:600;font-size:15px;color:#13251D;margin-top:12px;">{{ p.name }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUSINESS MODEL -->
+    <div style="background:#13251D;color:#F4EFE4;">
+      <div style="max-width:1180px;margin:0 auto;padding:104px 30px;">
+        <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Business Model</div>
+        <h2 style="font-family:'Gantari';font-weight:700;font-size:40px;letter-spacing:-0.03em;margin:16px 0 0;max-width:760px;">We don't earn from interest. We monetize trust infrastructure.</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;">
+          <sc-for list="{{ revenueStreams }}" as="r" hint-placeholder-count="9">
+            <div style="border:1px solid #2A3A33;border-radius:14px;padding:20px 22px;display:flex;align-items:center;gap:13px;">
+              <span style="width:8px;height:8px;border-radius:50%;background:#E9C77E;flex-shrink:0;"></span>
+              <span style="font-family:'Gantari';font-weight:600;font-size:15px;color:#CFE0D8;">{{ r.name }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- GCC EXPANSION -->
+    <div style="background:#fff;">
+      <div style="max-width:1180px;margin:0 auto;padding:104px 30px;">
+        <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#0F3D2F;">Network Expansion</div>
+        <h2 style="font-family:'Gantari';font-weight:700;font-size:40px;letter-spacing:-0.03em;margin:16px 0 0;color:#13251D;">From the UAE to a global ethical capital network.</h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px;">
+          <sc-for list="{{ phases }}" as="p" hint-placeholder-count="4">
+            <div onClick="{{ p.select }}" style="{{ p.cardStyle }}">
+              <div style="{{ p.tagStyle }}">{{ p.phase }}</div>
+              <div style="font-family:'Gantari';font-weight:700;font-size:18px;margin-top:14px;color:{{ p.titleColor }};">{{ p.title }}</div>
+              <div style="margin-top:12px;display:flex;flex-direction:column;gap:7px;">
+                <sc-for list="{{ p.markets }}" as="m" hint-placeholder-count="3">
+                  <div style="font-size:14px;color:{{ p.bodyColor }};">{{ m.name }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLOSING CTA + FOOTER -->
+    <div style="background:#F6F2E9;border-top:1px solid #ECEFEC;">
+      <div style="max-width:1180px;margin:0 auto;padding:96px 30px;">
+        <div style="background:linear-gradient(150deg,#0F3D2F,#0A2A1F);border-radius:28px;padding:64px;text-align:center;">
+          <h2 style="font-family:'Gantari';font-weight:800;font-size:40px;color:#fff;margin:0;letter-spacing:-0.03em;">Capital, Powered by Community.</h2>
+          <p style="color:#A7D8C2;font-size:18px;margin:16px 0 0;">Join a verified circle and put the world's oldest financial system to work.</p>
+          <div style="display:flex;gap:13px;justify-content:center;margin-top:30px;">
+            <button onClick="{{ joinNow }}" style="font-family:'Gantari';font-weight:600;font-size:16px;padding:16px 30px;border:none;border-radius:999px;cursor:pointer;color:#0F3D2F;background:#fff;">Join TrustCircle</button>
+            <button onClick="{{ toInvestor }}" style="font-family:'Gantari';font-weight:600;font-size:16px;padding:16px 30px;border:1px solid rgba(255,255,255,.4);border-radius:999px;cursor:pointer;color:#fff;background:transparent;">Investor View</button>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #E6E1D3;">
+        <div style="max-width:1180px;margin:0 auto;padding:26px 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;color:#8A968F;font-size:13px;">
+          <div style="display:flex;align-items:center;gap:10px;color:#13251D;font-family:'Gantari';font-weight:700;font-size:14px;">
+            <img src="brand/lockup-light.png" alt="trust Circle" style="height:26px;display:block;" />
+          </div>
+          <span>The Ethical Capital Network · © 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= INVESTOR MODE ================= -->
+  <sc-if value="{{ isInvestor }}">
+  <div data-screen-label="Investor" style="min-height:100vh;background:#13251D;color:#F4EFE4;">
+    <div style="position:sticky;top:0;z-index:30;background:rgba(15,26,21,.85);backdrop-filter:blur(12px);border-bottom:1px solid #243029;">
+      <div style="max-width:1180px;margin:0 auto;padding:16px 30px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:11px;">
+          <img src="brand/lockup-dark.png" alt="trust Circle" style="height:30px;display:block;" />
+          <div style="font-family:'Baloo 2';font-weight:700;font-size:15px;"><span style="color:#7E9389;font-weight:500;">Investor View</span></div>
+        </div>
+        <button onClick="{{ toLanding }}" style="font-family:'Gantari';font-weight:600;font-size:13px;padding:9px 18px;border:1px solid #2F3D35;border-radius:999px;cursor:pointer;color:#F4EFE4;background:transparent;">← Back to site</button>
+      </div>
+    </div>
+    <div style="max-width:1180px;margin:0 auto;padding:56px 30px 90px;">
+      <div style="font-family:'Gantari';letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-weight:600;color:#E9C77E;">The Trust Infrastructure Layer</div>
+      <h1 style="font-family:'Gantari';font-weight:800;font-size:44px;letter-spacing:-0.03em;margin:14px 0 0;">Network at a glance.</h1>
+      <p style="color:#9DB0A6;font-size:17px;margin:12px 0 0;max-width:680px;">Scale, defensibility, network effects and monetization — the foundations of a global ethical capital network.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;">
+        <sc-for list="{{ invMetrics }}" as="m" hint-placeholder-count="8">
+          <div style="background:#16241D;border:1px solid #243029;border-radius:18px;padding:24px;">
+            <div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#7E9389;">{{ m.label }}</div>
+            <div style="font-family:'Gantari';font-weight:800;font-size:30px;color:#fff;margin-top:12px;">{{ m.value }}</div>
+            <div style="font-size:12px;color:{{ m.deltaColor }};margin-top:6px;">{{ m.delta }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:20px;margin-top:20px;">
+        <div style="background:#16241D;border:1px solid #243029;border-radius:20px;padding:30px;">
+          <div style="font-family:'Gantari';font-weight:700;font-size:18px;">Network capital growth</div>
+          <div style="color:#7E9389;font-size:13px;margin-top:4px;">Cumulative capital coordinated, by quarter</div>
+          <div style="display:flex;align-items:flex-end;gap:14px;height:200px;margin-top:28px;">
+            <sc-for list="{{ growthBars }}" as="b" hint-placeholder-count="6">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;height:100%;justify-content:flex-end;">
+                <div style="width:100%;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#7FE0A8,#0F3D2F);height:{{ b.h }};transition:height .6s ease;"></div>
+                <div style="font-size:11px;color:#7E9389;">{{ b.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#16241D;border:1px solid #243029;border-radius:20px;padding:30px;">
+          <div style="font-family:'Gantari';font-weight:700;font-size:18px;">GCC expansion</div>
+          <div style="color:#7E9389;font-size:13px;margin-top:4px;">Phased rollout across the region</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:22px;">
+            <sc-for list="{{ phases }}" as="p" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:13px;">
+                <div style="width:34px;height:34px;border-radius:10px;background:{{ p.dotBg }};color:{{ p.dotColor }};display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:800;font-size:13px;flex-shrink:0;">{{ p.short }}</div>
+                <div><div style="font-family:'Gantari';font-weight:600;font-size:14px;color:#F4EFE4;">{{ p.title }}</div><div style="font-size:12px;color:#7E9389;">{{ p.marketsStr }}</div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#16241D;border:1px solid #243029;border-radius:20px;padding:30px;margin-top:20px;">
+        <div style="font-family:'Gantari';font-weight:700;font-size:18px;">Revenue streams</div>
+        <div style="color:#7E9389;font-size:13px;margin-top:4px;">Trust infrastructure, not interest</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;">
+          <sc-for list="{{ revenueStreams }}" as="r" hint-placeholder-count="9">
+            <div style="border:1px solid #243029;border-radius:12px;padding:16px;display:flex;align-items:center;gap:11px;"><span style="width:7px;height:7px;border-radius:50%;background:#E9C77E;flex-shrink:0;"></span><span style="font-size:14px;color:#CFE0D8;font-weight:500;">{{ r.name }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= AUTH ================= -->
+  <sc-if value="{{ scAuth }}">
+  <div data-screen-label="Auth" style="min-height:100vh;background:radial-gradient(120% 110% at 50% -20%,#175640 0%,#0F3D2F 52%,#0B2C22 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;">
+    <div onClick="{{ toLanding }}" style="position:absolute;top:26px;left:30px;cursor:pointer;color:#9FBFAE;font-size:14px;">← Back</div>
+    <div style="width:100%;max-width:430px;animation:tcFade .55s ease both;">
+      <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:30px;">
+        <img src="brand/mark-dark.png" alt="trust Circle mark" style="width:72px;height:72px;display:block;" />
+        <div style="font-family:'Gantari';font-weight:700;font-size:12px;letter-spacing:.14em;color:#E9C77E;margin-top:16px;text-transform:uppercase;">Welcome to TrustCircle™</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:26px;color:#F8F5EC;margin:10px 0 0;">The Ethical Capital Network</h1>
+      </div>
+      <sc-if value="{{ authChoices }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <button onClick="{{ pickProvider }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:12px;font-family:'Gantari';font-weight:700;font-size:16px;padding:17px;border:none;border-radius:14px;cursor:pointer;color:#1C2A1F;background:linear-gradient(180deg,#E9C77E,#C9A24B);box-shadow:0 18px 36px -16px rgba(201,162,75,.55);position:relative;">
+          <span style="width:22px;height:22px;border-radius:6px;background:#0F3D2F;color:#E9C77E;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;">U</span>
+          Continue with UAE PASS
+          <span style="position:absolute;right:14px;top:-10px;background:#0B2C22;color:#E9C77E;font-size:10px;font-weight:700;letter-spacing:.08em;padding:4px 9px;border-radius:999px;text-transform:uppercase;border:1px solid rgba(233,199,126,.5);">Preferred</span>
+        </button>
+        <div style="display:flex;align-items:center;gap:14px;margin:22px 0;color:#9FBFAE;font-size:12px;"><div style="flex:1;height:1px;background:rgba(244,239,228,.18);"></div>or continue with<div style="flex:1;height:1px;background:rgba(244,239,228,.18);"></div></div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <button onClick="{{ pickProvider }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Gantari';font-weight:600;font-size:15px;padding:15px;border:1px solid rgba(244,239,228,.25);border-radius:14px;cursor:pointer;color:#F4EFE4;background:rgba(244,239,228,.06);"> Continue with Apple</button>
+          <button onClick="{{ pickProvider }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Gantari';font-weight:600;font-size:15px;padding:15px;border:1px solid rgba(244,239,228,.25);border-radius:14px;cursor:pointer;color:#F4EFE4;background:rgba(244,239,228,.06);">G&nbsp; Continue with Google</button>
+          <button onClick="{{ openEmail }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Gantari';font-weight:600;font-size:15px;padding:15px;border:1px solid rgba(244,239,228,.25);border-radius:14px;cursor:pointer;color:#F4EFE4;background:rgba(244,239,228,.06);">✉&nbsp; Continue with Email</button>
+        </div>
+        <p style="text-align:center;color:#9FBFAE;font-size:12px;margin-top:24px;line-height:1.6;">By continuing you agree to TrustCircle's governance framework and member code of conduct.</p>
+      </div>
+      </sc-if>
+      <sc-if value="{{ authEmail }}">
+      <div style="animation:tcFade .3s ease both;">
+        <label style="display:block;font-family:'Gantari';font-weight:600;font-size:13px;color:#E9C77E;letter-spacing:.03em;margin-bottom:9px;">Email address</label>
+        <input type="email" value="{{ email }}" onInput="{{ setEmail }}" placeholder="you@example.com" style="width:100%;font-family:'Instrument Sans';font-size:16px;padding:16px;border:1px solid rgba(244,239,228,.3);border-radius:14px;background:rgba(244,239,228,.07);color:#F4EFE4;outline:none;" />
+        <sc-if value="{{ emailValid }}"><button onClick="{{ pickProvider }}" style="margin-top:16px;width:100%;font-family:'Gantari';font-weight:700;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#1C2A1F;background:linear-gradient(180deg,#E9C77E,#C9A24B);">Continue with Email</button></sc-if>
+        <sc-if value="{{ notEmailValid }}"><button style="margin-top:16px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:not-allowed;color:#9FBFAE;background:rgba(244,239,228,.08);">Enter a valid email to continue</button></sc-if>
+        <div onClick="{{ closeEmail }}" style="text-align:center;color:#9FBFAE;font-size:14px;margin-top:16px;cursor:pointer;">← Use another method</div>
+      </div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ================= APP SHELL ================= -->
+  <sc-if value="{{ isAppShell }}">
+  <div style="min-height:100vh;background:#F6F2E9;">
+    <div style="position:sticky;top:0;z-index:30;background:rgba(11,44,34,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(244,239,228,.12);">
+      <div style="max-width:1120px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <button onClick="{{ back }}" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(244,239,228,.25);background:rgba(244,239,228,.07);cursor:pointer;color:#F4EFE4;font-size:16px;display:flex;align-items:center;justify-content:center;">←</button>
+          <div style="display:flex;align-items:center;gap:9px;">
+            <img src="brand/lockup-dark.png" alt="trust Circle" style="height:30px;display:block;" />
+          </div>
+        </div>
+        <sc-if value="{{ showNav }}">
+          <div style="display:flex;align-items:center;gap:4px;background:rgba(244,239,228,.07);border:1px solid rgba(244,239,228,.15);border-radius:13px;padding:4px;max-width:100%;overflow-x:auto;order:3;">
+            <sc-for list="{{ navTabs }}" as="t" hint-placeholder-count="3">
+              <div onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <div style="display:flex;align-items:center;gap:14px;">
+          <sc-if value="{{ showScore }}">
+            <div style="display:flex;align-items:center;gap:9px;background:rgba(244,239,228,.09);border:1px solid rgba(233,199,126,.45);color:#fff;padding:8px 14px;border-radius:999px;">
+              <span style="width:8px;height:8px;border-radius:50%;background:#E9C77E;"></span>
+              <span style="font-family:'Gantari';font-size:12px;color:#A7D8C2;">Trust Score™</span>
+              <span style="font-family:'Gantari';font-weight:700;font-size:14px;">{{ displayScore }}</span>
+            </div>
+          </sc-if>
+          <div style="position:relative;">
+            <div onClick="{{ toggleNotif }}" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(244,239,228,.25);background:rgba(244,239,228,.07);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;position:relative;">
+              🔔
+              <sc-if value="{{ hasUnread }}"><span style="position:absolute;top:-3px;right:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#E9C77E;color:#1C2A1F;font-family:'Gantari';font-weight:700;font-size:10px;display:flex;align-items:center;justify-content:center;border:2px solid #0B2C22;">{{ unreadStr }}</span></sc-if>
+            </div>
+            <sc-if value="{{ notifOpen }}">
+              <div style="position:absolute;top:46px;right:0;width:340px;background:#fff;border:1px solid #E6E1D3;border-radius:18px;box-shadow:0 30px 70px -30px rgba(15,26,21,.4);z-index:60;overflow:hidden;">
+                <div style="padding:16px 18px;border-bottom:1px solid #F0ECE0;display:flex;align-items:center;justify-content:between;justify-content:space-between;"><span style="font-family:'Gantari';font-weight:700;font-size:15px;color:#13251D;">Notifications</span><span onClick="{{ closeNotif }}" style="cursor:pointer;color:#8A968F;font-size:13px;">Close</span></div>
+                <div style="max-height:340px;overflow-y:auto;">
+                  <sc-for list="{{ notifications }}" as="n" hint-placeholder-count="3">
+                    <div style="display:flex;gap:11px;padding:14px 18px;border-bottom:1px solid #F4F6F4;"><span style="width:8px;height:8px;border-radius:50%;background:{{ n.dotColor }};margin-top:6px;flex-shrink:0;"></span><div><div style="font-family:'Gantari';font-weight:600;font-size:14px;color:#13251D;">{{ n.title }}</div><div style="color:#6B7A72;font-size:13px;line-height:1.45;margin-top:2px;">{{ n.body }}</div><div style="color:#A0ABA4;font-size:11px;margin-top:4px;">{{ n.when }}</div></div></div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+          <div style="width:34px;height:34px;border-radius:50%;background:#0F3D2F;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:14px;">A</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1120px;margin:0 auto;padding:42px 28px 100px;">
+
+      <!-- VERIFY -->
+      <sc-if value="{{ scVerify }}">
+      <div data-screen-label="Verify" style="animation:tcFade .5s ease both;max-width:680px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Onboarding · 01</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:10px 0 0;letter-spacing:-0.025em;">Identity Verification</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:10px 0 0;">We confirmed your identity instantly through UAE PASS.</p>
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:8px;margin-top:26px;box-shadow:0 20px 44px -30px rgba(15,26,21,.35);">
+          <div style="background:linear-gradient(110deg,#0F3D2F,#0A2A1F);border-radius:14px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:13px;"><div style="width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:800;font-size:18px;">U</div><div><div style="font-family:'Gantari';font-weight:700;color:#fff;font-size:15px;">UAE PASS</div><div style="color:#A7D8C2;font-size:12px;">National digital identity</div></div></div>
+            <div style="background:rgba(255,255,255,.16);color:#fff;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600;">✓ Verified</div>
+          </div>
+          <div style="padding:8px 6px 4px;">
+            <sc-for list="{{ identity }}" as="i" hint-placeholder-count="4">
+              <div style="display:flex;justify-content:space-between;padding:15px 16px;border-bottom:1px solid #F0ECE0;"><span style="color:#8A968F;font-size:14px;">{{ i.label }}</span><span style="font-family:'Gantari';font-weight:600;color:#13251D;font-size:14px;">{{ i.value }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:18px;color:#8A968F;font-size:13px;"><span style="background:#fff;border:1px solid #E6E1D3;border-radius:10px;padding:9px 12px;">Email Verified ✓</span><span style="background:#fff;border:1px solid #E6E1D3;border-radius:10px;padding:9px 12px;">Phone Verified ✓</span></div>
+        <button onClick="{{ continueVerify }}" style="margin-top:30px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Continue</button>
+      </div>
+      </sc-if>
+
+      <!-- EMPLOYER VERIFICATION -->
+      <sc-if value="{{ scEmployer }}">
+      <div data-screen-label="Employer" style="animation:tcFade .5s ease both;max-width:560px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Onboarding · Employer</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:10px 0 0;letter-spacing:-0.025em;">Verify with your employer</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:10px 0 0;">Employer-backed circles are payroll-protected. Verify your employment to unlock your company's circles.</p>
+
+        <!-- stage 1: select + employee id -->
+        <sc-if value="{{ empSelect }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top:24px;">
+          <div style="font-family:'Gantari';font-weight:600;font-size:13px;color:#13251D;margin-bottom:10px;">Select your employer</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ employerList }}" as="e" hint-placeholder-count="3">
+              <div onClick="{{ e.pick }}" style="{{ e.rowStyle }}"><span style="{{ e.badgeStyle }}">{{ e.short }}</span><span style="font-family:'Gantari';font-weight:600;font-size:15px;color:#13251D;">{{ e.name }}</span><span style="{{ e.tickStyle }}">{{ e.tick }}</span></div>
+            </sc-for>
+          </div>
+          <div style="margin-top:18px;">
+            <div style="font-family:'Gantari';font-weight:600;font-size:13px;color:#13251D;margin-bottom:9px;">Employee ID / Labour Card</div>
+            <input value="{{ empId }}" onInput="{{ setEmpId }}" placeholder="e.g. EK-482610 or 784-XXXX" style="width:100%;font-family:'Instrument Sans';font-size:16px;padding:15px;border:1px solid #DBD5C5;border-radius:13px;outline:none;background:#fff;color:#13251D;" />
+            <div style="color:#8A968F;font-size:12px;margin-top:8px;">We match this against your employer's HR roster — your name and salary band are fetched automatically.</div>
+          </div>
+          <sc-if value="{{ empCanMatch }}"><button onClick="{{ matchEmployee }}" style="margin-top:20px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Match with HR records</button></sc-if>
+          <sc-if value="{{ empNotCanMatch }}"><button style="margin-top:20px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:not-allowed;color:#9AA69F;background:#EFEBDF;">Select your employer to continue</button></sc-if>
+        </div>
+        </sc-if>
+
+        <!-- stage 2: OTP -->
+        <sc-if value="{{ empOtpStage }}">
+        <div style="margin-top:24px;animation:tcFade .3s ease both;">
+          <div style="background:#E9EFE3;border:1px solid #CDE6D9;border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:12px;">
+            <span style="width:26px;height:26px;border-radius:50%;background:#0F3D2F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;">✓</span>
+            <div style="font-size:14px;color:#13251D;">Matched to <strong>{{ empSelectedName }}</strong> HR records. Name, role &amp; salary band fetched.</div>
+          </div>
+          <div style="margin-top:20px;font-family:'Gantari';font-weight:600;font-size:13px;color:#13251D;margin-bottom:9px;">Enter the code sent to your work email</div>
+          <div style="color:#6B7A72;font-size:13px;margin-bottom:12px;">A 6-digit code was sent to {{ empMaskedContact }}</div>
+          <input value="{{ empOtp }}" onInput="{{ setEmpOtp }}" placeholder="• • • • • •" inputMode="numeric" style="width:100%;font-family:'Gantari';font-weight:700;letter-spacing:.3em;font-size:20px;text-align:center;padding:16px;border:1px solid #DBD5C5;border-radius:13px;outline:none;background:#fff;color:#13251D;" />
+          <sc-if value="{{ empOtpValid }}"><button onClick="{{ verifyEmployer }}" style="margin-top:18px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Verify employment</button></sc-if>
+          <sc-if value="{{ empNotOtpValid }}"><button style="margin-top:18px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:not-allowed;color:#9AA69F;background:#EFEBDF;">Enter the 6-digit code</button></sc-if>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <!-- PURPOSE -->
+      <sc-if value="{{ scPurpose }}">
+      <div data-screen-label="Purpose" style="animation:tcFade .5s ease both;max-width:760px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Onboarding · 02</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:10px 0 0;letter-spacing:-0.025em;">What brings you to TrustCircle™?</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:10px 0 0;">Select one or more goals. We'll match you to the right circles.</p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px;">
+          <sc-for list="{{ purposes }}" as="p" hint-placeholder-count="7">
+            <div onClick="{{ p.toggle }}" style="{{ p.cardStyle }}"><span style="font-family:'Gantari';font-weight:600;font-size:16px;">{{ p.label }}</span><span style="{{ p.dotStyle }}">{{ p.check }}</span></div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ canContinuePurpose }}"><button onClick="{{ continuePurpose }}" style="margin-top:28px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Continue</button></sc-if>
+        <sc-if value="{{ notCanContinuePurpose }}"><button style="margin-top:28px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:not-allowed;color:#9AA69F;background:#EFEBDF;">Select at least one goal</button></sc-if>
+      </div>
+      </sc-if>
+
+      <!-- PROFILE -->
+      <sc-if value="{{ scProfile }}">
+      <div data-screen-label="Trust Profile" style="animation:tcFade .5s ease both;">
+        <div style="text-align:center;max-width:620px;margin:0 auto;">
+          <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Onboarding · 03</div>
+          <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:10px 0 0;letter-spacing:-0.025em;">Your Trust Profile is ready</h1>
+          <p style="color:#6B7A72;font-size:16px;margin:10px 0 0;">Generated from your verified identity and community signals.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:380px 1fr;gap:28px;margin-top:34px;align-items:center;max-width:900px;margin-left:auto;margin-right:auto;">
+          <div style="background:linear-gradient(150deg,#0F3D2F,#0A2A1F);border-radius:24px;padding:34px;display:flex;flex-direction:column;align-items:center;box-shadow:0 36px 70px -34px rgba(15,61,47,.7);">
+            <div style="position:relative;width:200px;height:200px;">
+              <svg width="200" height="200" viewBox="0 0 200 200" style="transform:rotate(-90deg);"><circle cx="100" cy="100" r="84" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="14"/><circle cx="100" cy="100" r="84" fill="none" stroke="#E9C77E" stroke-width="14" stroke-linecap="round" stroke-dasharray="{{ ringCirc }}" stroke-dashoffset="{{ ringOffset }}"/></svg>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;"><div style="font-family:'Gantari';font-weight:800;font-size:48px;color:#fff;line-height:1;">{{ displayScore }}</div><div style="color:#A7D8C2;font-size:13px;margin-top:4px;">/ 1000</div></div>
+            </div>
+            <div style="font-family:'Gantari';letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:#E9C77E;margin-top:18px;">Trust Score™</div>
+            <div style="color:#A7D8C2;font-size:13px;margin-top:4px;">Verified via UAE PASS ✓</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <sc-for list="{{ profile }}" as="m" hint-placeholder-count="4">
+              <div style="background:#fff;border:1px solid #E6E1D3;border-radius:16px;padding:18px 20px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-family:'Gantari';font-weight:600;font-size:15px;color:#13251D;">{{ m.label }}</span><span style="font-family:'Gantari';font-weight:600;font-size:13px;color:#0F3D2F;">{{ m.value }}</span></div>
+                <div style="height:7px;border-radius:999px;background:#ECE7D9;margin-top:12px;overflow:hidden;"><div style="--w:{{ m.w }};width:var(--w);height:100%;border-radius:999px;background:linear-gradient(90deg,#0F3D2F,#7FE0A8);animation:tcGrow 1.1s cubic-bezier(.2,.8,.2,1) both;"></div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="max-width:900px;margin:30px auto 0;"><button onClick="{{ continueProfile }}" style="width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Continue to Dashboard</button></div>
+      </div>
+      </sc-if>
+
+      <!-- DASHBOARD (welcome / active) -->
+      <sc-if value="{{ scDashboard }}">
+      <div data-screen-label="Dashboard" style="animation:tcFade .5s ease both;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">{{ dashKicker }}</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:36px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">{{ dashTitle }}</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">{{ dashSubtitle }}</p>
+
+        <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:16px;margin-top:28px;">
+          <div style="background:linear-gradient(150deg,#0F3D2F,#0A2A1F);border-radius:20px;padding:24px;color:#fff;">
+            <div style="font-family:'Gantari';letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:#A7D8C2;">Trust Score™</div>
+            <div style="font-family:'Gantari';font-weight:800;font-size:42px;margin-top:10px;">{{ displayScore }}<span style="font-size:18px;color:#A7D8C2;font-weight:600;"> / 1000</span></div>
+            <div style="height:6px;border-radius:999px;background:rgba(255,255,255,.16);margin-top:14px;overflow:hidden;"><div style="width:85%;height:100%;background:#E9C77E;border-radius:999px;"></div></div>
+          </div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:24px;"><div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A8853F;">Active Circles</div><div style="font-family:'Gantari';font-weight:800;font-size:42px;color:#13251D;margin-top:10px;">{{ activeStr }}</div><div style="color:#8A968F;font-size:13px;margin-top:4px;">{{ activeSub }}</div></div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:24px;"><div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A8853F;">Available Circles</div><div style="font-family:'Gantari';font-weight:800;font-size:42px;color:#13251D;margin-top:10px;">12</div><div style="color:#8A968F;font-size:13px;margin-top:4px;">matched to you</div></div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:24px;"><div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A8853F;">Community Health</div><div style="font-family:'Gantari';font-weight:800;font-size:26px;color:#0F3D2F;margin-top:16px;">Excellent</div><div style="color:#8A968F;font-size:13px;margin-top:4px;">verified network</div></div>
+        </div>
+
+        <!-- participation application gate -->
+        <sc-if value="{{ isPending }}">
+        <div style="background:linear-gradient(150deg,#13251D,#1C362B);color:#F4EFE4;border-radius:22px;padding:34px;margin-top:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+          <div style="max-width:580px;"><div style="font-family:'Gantari';letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:#E9C77E;">Step 1 · Participation Application</div><h2 style="font-family:'Gantari';font-weight:700;font-size:24px;margin:10px 0 0;letter-spacing:-0.01em;">Apply to participate in circles.</h2><p style="color:#9DB0A6;font-size:15px;margin:10px 0 0;line-height:1.6;">Explore freely — but to join a circle we complete a bank-grade assessment of your eligibility. It takes a few minutes.</p></div>
+          <button onClick="{{ toApply }}" style="font-family:'Gantari';font-weight:600;font-size:16px;padding:16px 30px;border:none;border-radius:14px;cursor:pointer;color:#13251D;background:#E9C77E;">Start Application →</button>
+        </div>
+        </sc-if>
+        <sc-if value="{{ isReviewing }}">
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:22px;padding:30px;margin-top:18px;display:flex;align-items:center;gap:18px;">
+          <span style="width:44px;height:44px;border-radius:50%;border:3px solid #ECE7D9;border-top-color:#0F3D2F;animation:tcSpin 1s linear infinite;flex-shrink:0;"></span>
+          <div style="flex:1;"><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#13251D;">Application under review</div><p style="color:#6B7A72;font-size:14px;margin:4px 0 0;">Estimated 24–72 hours. We'll notify you once approved.</p></div>
+          <button onClick="{{ approveApplication }}" style="font-family:'Gantari';font-weight:600;font-size:14px;padding:12px 20px;border:1px solid #DBD5C5;border-radius:12px;cursor:pointer;color:#13251D;background:#fff;">Simulate approval →</button>
+        </div>
+        </sc-if>
+        <!-- approved, not joined -->
+        <sc-if value="{{ approvedNotJoined }}">
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:22px;padding:34px;margin-top:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+          <div style="max-width:560px;"><div style="display:inline-flex;align-items:center;gap:7px;background:#E9EFE3;color:#0F3D2F;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;">✓ Approved to participate</div><h2 style="font-family:'Gantari';font-weight:700;font-size:24px;color:#13251D;margin:12px 0 0;letter-spacing:-0.01em;">Ready to join your first circle?</h2><p style="color:#6B7A72;font-size:15px;margin:10px 0 0;line-height:1.6;">Browse verified circles matched to your goals — each one a community coordinating capital, transparently and audited.</p></div>
+          <button onClick="{{ toExplore }}" style="font-family:'Gantari';font-weight:600;font-size:16px;padding:16px 30px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Explore Circles →</button>
+        </div>
+        </sc-if>
+
+        <!-- joined: active member -->
+        <sc-if value="{{ joined }}">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-top:18px;">
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:22px;padding:30px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;"><div><div style="font-family:'Gantari';letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:#A8853F;">My Circle</div><div style="font-family:'Gantari';font-weight:700;font-size:24px;color:#13251D;margin-top:8px;">{{ circle.name }}</div></div><div style="background:#E9EFE3;color:#0F3D2F;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;">● Active</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:24px;">
+              <div><div style="color:#8A968F;font-size:12px;">Monthly Contribution</div><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#13251D;margin-top:4px;">{{ circle.monthlyStr }}</div></div>
+              <div><div style="color:#8A968F;font-size:12px;">Monthly Pool</div><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#0F3D2F;margin-top:4px;">{{ circle.poolStr }}</div></div>
+              <div><div style="color:#8A968F;font-size:12px;">Circle Value</div><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#13251D;margin-top:4px;">{{ circle.totalStr }}</div></div>
+            </div>
+            <div style="height:1px;background:#F0ECE0;margin:24px 0;"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-family:'Gantari';font-weight:600;color:#13251D;font-size:15px;">Contribution Status</div><div style="color:#8A968F;font-size:13px;margin-top:2px;">Next due 1 July 2026</div></div><span style="background:#E9EFE3;color:#0F3D2F;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;">✓ Up to date</span></div>
+            <div style="display:flex;gap:10px;margin-top:20px;">
+              <button onClick="{{ toEarlyRequest }}" style="flex:1;font-family:'Gantari';font-weight:600;font-size:14px;padding:13px;border:none;border-radius:12px;cursor:pointer;color:#fff;background:#0F3D2F;">Request Early Payout</button>
+              <button onClick="{{ toMyCircles }}" style="flex:1;font-family:'Gantari';font-weight:600;font-size:14px;padding:13px;border:1px solid #DBD5C5;border-radius:12px;cursor:pointer;color:#13251D;background:#fff;">View My Circles</button>
+            </div>
+          </div>
+          <div style="background:linear-gradient(150deg,#13251D,#1C362B);border-radius:22px;padding:28px;color:#F4EFE4;display:flex;flex-direction:column;">
+            <div style="font-family:'Gantari';letter-spacing:.1em;text-transform:uppercase;font-size:11px;color:#E9C77E;">This Month · Live Bids</div>
+            <div style="font-family:'Gantari';font-weight:700;font-size:20px;margin-top:10px;">Bid for {{ circle.poolStr }}</div>
+            <p style="color:#9DB0A6;font-size:14px;margin:8px 0 0;line-height:1.55;">{{ govReqCount }} members are bidding for this month's pool. Highest discount leads — place yours.</p>
+            <button onClick="{{ toGovernance }}" style="margin-top:auto;font-family:'Gantari';font-weight:600;font-size:15px;padding:14px;border:none;border-radius:12px;cursor:pointer;color:#13251D;background:#E9C77E;">Open Payout Bids →</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:24px;">
+            <div style="font-family:'Gantari';font-weight:700;font-size:17px;color:#13251D;">Circle Activity</div>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
+              <sc-for list="{{ activity }}" as="ev" hint-placeholder-count="4"><div style="display:flex;gap:11px;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#0F3D2F;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:12px;flex-shrink:0;">{{ ev.initials }}</div><div style="font-size:13px;color:#48564F;line-height:1.4;"><span style="font-weight:600;color:#13251D;">{{ ev.who }}</span> {{ ev.what }} <span style="color:#A0ABA4;">· {{ ev.when }}</span></div></div></sc-for>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:24px;">
+            <div style="font-family:'Gantari';font-weight:700;font-size:17px;color:#13251D;">Portfolio &amp; Trust Network</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px;">
+              <div><div style="color:#8A968F;font-size:12px;">Total contributed</div><div style="font-family:'Gantari';font-weight:700;font-size:20px;color:#13251D;margin-top:4px;">{{ circle.monthlyStr }}</div></div>
+              <div><div style="color:#8A968F;font-size:12px;">Trust connections</div><div style="font-family:'Gantari';font-weight:700;font-size:20px;color:#13251D;margin-top:4px;">{{ circle.membersNum }}</div></div>
+              <div><div style="color:#8A968F;font-size:12px;">Governance votes</div><div style="font-family:'Gantari';font-weight:700;font-size:20px;color:#13251D;margin-top:4px;">{{ voteCountStr }}</div></div>
+              <div><div style="color:#8A968F;font-size:12px;">Endorsements</div><div style="font-family:'Gantari';font-weight:700;font-size:20px;color:#13251D;margin-top:4px;">9</div></div>
+            </div>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <!-- EXPLORE -->
+      <sc-if value="{{ scExplore }}">
+      <div data-screen-label="Explore" style="animation:tcFade .5s ease both;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Marketplace</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">Explore Circles</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Verified communities coordinating capital. Members equal months; capital is allocated each month by community vote.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px;flex-wrap:wrap;">
+          <div style="display:flex;gap:9px;flex-wrap:wrap;"><sc-for list="{{ filterChips }}" as="f" hint-placeholder-count="7"><div onClick="{{ f.go }}" style="{{ f.style }}">{{ f.label }}</div></sc-for></div>
+          <span style="font-size:13px;color:#8A968F;">{{ circleCountStr }}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px;">
+          <sc-for list="{{ circles }}" as="c" hint-placeholder-count="6">
+            <div style="background:#fff;border:1px solid #E6E1D3;border-radius:22px;overflow:hidden;box-shadow:0 18px 44px -34px rgba(15,26,21,.4);display:flex;flex-direction:column;">
+              <div style="padding:22px 24px 18px;display:flex;justify-content:space-between;align-items:flex-start;"><div><div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#0F3D2F;">{{ c.purpose }}</div><h3 style="font-family:'Gantari';font-weight:700;font-size:21px;color:#13251D;margin:7px 0 0;">{{ c.name }}</h3><sc-if value="{{ c.isEmployer }}"><div style="display:inline-flex;align-items:center;gap:6px;background:#13251D;color:#E9C77E;font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;margin-top:9px;">🛡 Payroll-Protected · {{ c.employerName }}</div></sc-if></div><div style="display:flex;align-items:center;gap:5px;background:#0F3D2F;color:#fff;padding:6px 11px;border-radius:999px;font-size:12px;font-weight:600;"><span style="color:#E9C77E;">★</span>{{ c.trust }}</div></div>
+              <div style="padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;">
+                <div><div style="color:#8A968F;font-size:12px;">Monthly Contribution</div><div style="font-family:'Gantari';font-weight:700;color:#13251D;font-size:16px;margin-top:2px;">{{ c.monthlyStr }}</div></div>
+                <div><div style="color:#8A968F;font-size:12px;">Monthly Pool</div><div style="font-family:'Gantari';font-weight:700;color:#13251D;font-size:16px;margin-top:2px;">{{ c.poolStr }}</div></div>
+                <div><div style="color:#8A968F;font-size:12px;">Total Circle Value</div><div style="font-family:'Gantari';font-weight:700;color:#13251D;font-size:16px;margin-top:2px;">{{ c.totalStr }}</div></div>
+                <div><div style="color:#8A968F;font-size:12px;">Duration</div><div style="font-family:'Gantari';font-weight:700;color:#13251D;font-size:16px;margin-top:2px;">{{ c.monthsStr }}</div></div>
+              </div>
+              <div style="padding:18px 24px 0;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#8A968F;margin-bottom:8px;"><span>{{ c.filledStr }} of {{ c.membersStr }}</span><span style="color:#A8853F;font-weight:600;">{{ c.progressStr }}</span></div><div style="height:8px;border-radius:999px;background:#ECE7D9;overflow:hidden;"><div style="--w:{{ c.progressW }};width:var(--w);height:100%;border-radius:999px;background:#0F3D2F;animation:tcGrow 1s ease both;"></div></div></div>
+              <div style="padding:18px 24px 22px;margin-top:8px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #F0ECE0;">
+                <div style="display:flex;align-items:center;"><sc-for list="{{ c.avatars }}" as="a" hint-placeholder-count="5"><div style="width:30px;height:30px;border-radius:50%;background:{{ a.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:12px;border:2px solid #fff;margin-left:-8px;">{{ a.initials }}</div></sc-for><sc-if value="{{ c.hasExtra }}"><div style="width:30px;height:30px;border-radius:50%;background:#ECE7D9;color:#8A968F;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:11px;border:2px solid #fff;margin-left:-8px;">{{ c.extraStr }}</div></sc-if><span style="font-size:12px;color:#8A968F;margin-left:12px;">{{ c.verifiedStr }}</span></div>
+                <button onClick="{{ c.open }}" style="font-family:'Gantari';font-weight:600;font-size:14px;padding:11px 20px;border:none;border-radius:11px;cursor:pointer;color:#fff;background:#0F3D2F;">View Circle</button>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- DETAIL -->
+      <sc-if value="{{ scDetail }}">
+      <div data-screen-label="Circle Detail" style="animation:tcFade .5s ease both;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">{{ circle.purpose }}</div>
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:8px;"><h1 style="font-family:'Gantari';font-weight:700;font-size:36px;color:#13251D;margin:0;letter-spacing:-0.025em;">{{ circle.name }}</h1><div style="display:flex;gap:10px;"><div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E6E1D3;padding:8px 13px;border-radius:999px;font-size:13px;font-weight:600;color:#13251D;"><span style="color:#A8853F;">★</span>{{ circle.trust }} Trust Rating</div><div style="background:#fff;border:1px solid #E6E1D3;padding:8px 13px;border-radius:999px;font-size:13px;font-weight:600;color:#0F3D2F;">{{ circle.verifiedStr }}</div></div></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px;">
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Monthly Contribution</div><div style="font-family:'Gantari';font-weight:700;font-size:22px;color:#13251D;margin-top:6px;">{{ circle.monthlyStr }}</div></div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Monthly Pool</div><div style="font-family:'Gantari';font-weight:700;font-size:22px;color:#0F3D2F;margin-top:6px;">{{ circle.poolStr }}</div></div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Total Circle Value</div><div style="font-family:'Gantari';font-weight:700;font-size:22px;color:#13251D;margin-top:6px;">{{ circle.totalStr }}</div></div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Duration · Members</div><div style="font-family:'Gantari';font-weight:700;font-size:22px;color:#13251D;margin-top:6px;">{{ circle.monthsStr }}</div></div>
+        </div>
+        <sc-if value="{{ circle.isEmployer }}">
+        <div style="background:linear-gradient(150deg,#13251D,#1C362B);color:#F4EFE4;border-radius:20px;padding:26px;margin-top:16px;">
+          <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:18px;">🛡</span><div style="font-family:'Gantari';font-weight:700;font-size:18px;">Payroll-Protected · {{ circle.employerName }}</div></div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;">
+            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;"><div style="font-family:'Gantari';font-weight:700;font-size:14px;color:#7FE0A8;">Employer Guarantee</div><div style="color:#9DB0A6;font-size:13px;line-height:1.5;margin-top:6px;">{{ circle.employerName }} backs the pool against member default.</div></div>
+            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;"><div style="font-family:'Gantari';font-weight:700;font-size:14px;color:#7FE0A8;">Auto Payroll Deduction</div><div style="color:#9DB0A6;font-size:13px;line-height:1.5;margin-top:6px;">Contributions deducted from salary on the 1st — never missed.</div></div>
+            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;"><div style="font-family:'Gantari';font-weight:700;font-size:14px;color:#7FE0A8;">Verified Colleagues</div><div style="color:#9DB0A6;font-size:13px;line-height:1.5;margin-top:6px;">Every member is a verified {{ circle.employerName }} employee.</div></div>
+          </div>
+        </div>
+        </sc-if>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-top:20px;">
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:26px;">
+            <div style="font-family:'Gantari';font-weight:700;font-size:17px;color:#13251D;">Governance Rules</div>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-top:18px;"><sc-for list="{{ governance }}" as="g" hint-placeholder-count="5"><div style="display:flex;gap:12px;align-items:flex-start;"><span style="width:20px;height:20px;border-radius:50%;background:#E9EFE3;color:#0F3D2F;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px;">✓</span><span style="color:#48564F;font-size:14px;line-height:1.55;">{{ g.text }}</span></div></sc-for></div>
+            <div style="height:1px;background:#F0ECE0;margin:24px 0;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;"><div><div style="font-family:'Gantari';font-weight:700;font-size:17px;color:#13251D;">Community Health</div><div style="color:#8A968F;font-size:13px;margin-top:2px;">Member standing &amp; on-time contributions</div></div><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#0F3D2F;">Excellent</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:24px;"><div style="font-family:'Gantari';font-weight:700;font-size:17px;color:#13251D;">Who Joined</div><div style="display:flex;align-items:center;margin-top:16px;"><sc-for list="{{ circle.avatars }}" as="a" hint-placeholder-count="5"><div style="width:38px;height:38px;border-radius:50%;background:{{ a.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:14px;border:2px solid #fff;margin-left:-9px;">{{ a.initials }}</div></sc-for><sc-if value="{{ circle.hasExtra }}"><div style="width:38px;height:38px;border-radius:50%;background:#ECE7D9;color:#8A968F;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:12px;border:2px solid #fff;margin-left:-9px;">{{ circle.extraStr }}</div></sc-if></div><div style="color:#8A968F;font-size:13px;margin-top:14px;">{{ circle.filledStr }} · all identity-verified</div></div>
+            <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:24px;flex:1;"><div style="font-family:'Gantari';font-weight:700;font-size:17px;color:#13251D;">Circle Activity</div><div style="display:flex;flex-direction:column;gap:14px;margin-top:16px;"><sc-for list="{{ activity }}" as="ev" hint-placeholder-count="4"><div style="display:flex;gap:11px;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#0F3D2F;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:12px;flex-shrink:0;">{{ ev.initials }}</div><div style="font-size:13px;color:#48564F;line-height:1.4;"><span style="font-weight:600;color:#13251D;">{{ ev.who }}</span> {{ ev.what }} <span style="color:#A0ABA4;">· {{ ev.when }}</span></div></div></sc-for></div></div>
+          </div>
+        </div>
+        <button onClick="{{ toDistribution }}" style="margin-top:22px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">See How Capital Is Allocated →</button>
+      </div>
+      </sc-if>
+
+      <!-- DISTRIBUTION -->
+      <sc-if value="{{ scDistribution }}">
+      <div data-screen-label="Capital Allocation" style="animation:tcFade .5s ease both;max-width:840px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">How Capital Flows</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">Requested, voted, allocated.</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Every month the full pool of <strong style="color:#13251D;">{{ circle.poolStr }}</strong> goes to one member — chosen by the community, never by a fixed rotation.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px;"><sc-for list="{{ govFlow }}" as="g" hint-placeholder-count="4"><div style="background:#fff;border:1px solid #E6E1D3;border-radius:18px;padding:22px;"><div style="width:34px;height:34px;border-radius:10px;background:#E9EFE3;color:#0F3D2F;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:800;font-size:15px;">{{ g.num }}</div><div style="font-family:'Gantari';font-weight:700;font-size:16px;color:#13251D;margin-top:14px;">{{ g.title }}</div><p style="color:#6B7A72;font-size:13px;line-height:1.5;margin:6px 0 0;">{{ g.body }}</p></div></sc-for></div>
+        <div style="background:linear-gradient(150deg,#13251D,#1C362B);border-radius:22px;padding:32px;margin-top:20px;color:#F4EFE4;">
+          <div style="font-family:'Gantari';letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:#E9C77E;">Discounted Early Access</div>
+          <h3 style="font-family:'Gantari';font-weight:700;font-size:22px;margin:10px 0 0;">Need it sooner? Offer a little back to the circle.</h3>
+          <p style="color:#9DB0A6;font-size:14px;line-height:1.55;margin:8px 0 0;max-width:560px;">Voluntarily request slightly less in exchange for earlier access — the surplus stays in the circle and benefits every member.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:24px;align-items:center;">
+            <div><div style="display:flex;justify-content:space-between;font-size:13px;color:#9DB0A6;margin-bottom:10px;"><span>Your discount</span><span style="font-family:'Gantari';font-weight:700;color:#E9C77E;">{{ discountStr }}</span></div><input type="range" min="0" max="10000" step="500" value="{{ discount }}" onInput="{{ setDiscount }}" style="width:100%;accent-color:#E9C77E;cursor:pointer;" /></div>
+            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;"><div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:13px;">You receive</span><span style="font-family:'Gantari';font-weight:700;color:#fff;">{{ discountReceiveStr }}</span></div><div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:13px;">Stays in circle</span><span style="font-family:'Gantari';font-weight:700;color:#E9C77E;">{{ discountStr }}</span></div><div style="display:flex;justify-content:space-between;padding:9px 0;"><span style="color:#9DB0A6;font-size:13px;">Access priority</span><span style="font-family:'Gantari';font-weight:700;color:#7FE0A8;">{{ discountPriority }}</span></div></div>
+          </div>
+        </div>
+        <button onClick="{{ toGovernance }}" style="margin-top:20px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#13251D;background:#E9C77E;">See This Month's Bids →</button>
+        <button onClick="{{ toTerms }}" style="margin-top:12px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:1px solid #DBD5C5;border-radius:14px;cursor:pointer;color:#13251D;background:#fff;">Review Participation Terms →</button>
+      </div>
+      </sc-if>
+
+      <!-- COMMUNITY GOVERNANCE — MONTHLY PAYOUT BID -->
+      <sc-if value="{{ scGovernance }}">
+      <div data-screen-label="Governance" style="animation:tcFade .5s ease both;max-width:900px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Community Governance</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">Current Month Payout Bid</h1>
+        <p style="color:#6B7A72;font-size:15px;margin:10px 0 0;">{{ circle.name }} · {{ activeMonthStr }} of {{ circle.membersNum }}. Members bid a voluntary discount for this month's {{ circle.poolStr }} pool — the highest discount automatically leads.</p>
+
+        <!-- demand banner -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;">
+          <div style="background:linear-gradient(150deg,#0F3D2F,#0A2A1F);color:#fff;border-radius:18px;padding:22px;"><div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A7D8C2;">Highest Bid This Month</div><div style="font-family:'Gantari';font-weight:800;font-size:32px;margin-top:8px;">{{ highestDiscount }}</div><div style="color:#A7D8C2;font-size:13px;margin-top:2px;">leading discount · {{ leaderName }}</div></div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:18px;padding:22px;"><div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A8853F;">This Month's Pool</div><div style="font-family:'Gantari';font-weight:800;font-size:32px;color:#13251D;margin-top:8px;">{{ largestReleased }}</div><div style="color:#8A968F;font-size:13px;margin-top:2px;">released to the winning bid</div></div>
+        </div>
+
+        <!-- tabs -->
+        <div style="display:flex;gap:6px;background:#fff;border:1px solid #E6E1D3;border-radius:13px;padding:5px;margin-top:24px;width:max-content;max-width:100%;overflow-x:auto;">
+          <sc-for list="{{ govTabs }}" as="t" hint-placeholder-count="3"><div onClick="{{ t.go }}" style="{{ t.style }}">{{ t.label }}</div></sc-for>
+        </div>
+
+        <!-- LIVE BIDS -->
+        <sc-if value="{{ govTabLive }}">
+        <p style="color:#6B7A72;font-size:15px;margin:20px 0 0;">{{ govReqCount }} members are bidding for {{ activeMonthStr }}. The highest discount is the leading bid and receives this month's payout.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;margin-top:18px;">
+          <sc-for list="{{ govReqs }}" as="r" hint-placeholder-count="3">
+            <div style="{{ r.cardStyle }}">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+                <div style="display:flex;gap:14px;align-items:flex-start;">
+                  <div style="width:46px;height:46px;border-radius:50%;background:{{ r.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:15px;flex-shrink:0;">{{ r.initials }}</div>
+                  <div>
+                    <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;"><span style="font-family:'Gantari';font-weight:700;font-size:16px;color:#13251D;">{{ r.name }}</span><span style="background:#E9EFE3;color:#0F3D2F;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;">{{ r.purpose }}</span><span style="color:#8A968F;font-size:12px;">Trust {{ r.trust }}</span></div>
+                    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;color:#6B7A72;font-size:13px;"><span>{{ activeMonthStr }}</span><span style="color:#9A742C;font-weight:600;">Bid {{ r.bidStr }} off</span></div>
+                    <p style="color:#48564F;font-size:14px;line-height:1.5;margin:8px 0 0;max-width:460px;">{{ r.reason }}</p>
+                  </div>
+                </div>
+                <div style="text-align:right;flex-shrink:0;"><span style="{{ r.statusStyle }}">{{ r.status }}</span><div style="font-family:'Gantari';font-weight:800;font-size:20px;color:#13251D;margin-top:10px;">{{ r.netStr }}</div><div style="color:#8A968F;font-size:12px;">net payout</div></div>
+              </div>
+              <div style="margin-top:16px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#8A968F;margin-bottom:6px;"><span>Discount offered</span><span style="font-weight:600;color:#0F3D2F;">{{ r.bidStr }}</span></div><div style="height:8px;border-radius:999px;background:#ECE7D9;overflow:hidden;"><div style="width:{{ r.barW }};height:100%;border-radius:999px;background:{{ r.barColor }};transition:width .5s ease;"></div></div></div>
+            </div>
+          </sc-for>
+        </div>
+        <button onClick="{{ toEarlyRequest }}" style="margin-top:18px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Place Monthly Bid</button>
+        </sc-if>
+
+        <!-- MY BID -->
+        <sc-if value="{{ govTabMine }}">
+        <sc-if value="{{ hasMyReqs }}">
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:22px;">
+          <sc-for list="{{ myReqsList }}" as="m" hint-placeholder-count="1">
+            <div style="background:#fff;border:1px solid #E6E1D3;border-radius:18px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;">
+              <div><div style="font-family:'Gantari';font-weight:700;font-size:17px;color:#13251D;">Monthly bid · {{ m.month }}</div><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;color:#6B7A72;font-size:13px;"><span>Discount offered {{ m.bidStr }}</span><span>Net payout {{ m.net }}</span></div></div>
+              <div style="display:flex;align-items:center;gap:14px;"><span style="{{ m.statusStyle }}">{{ m.statusLabel }}</span><button onClick="{{ m.track }}" style="font-family:'Gantari';font-weight:600;font-size:13px;padding:10px 18px;border:1px solid #DBD5C5;border-radius:11px;cursor:pointer;color:#13251D;background:#fff;">Track →</button></div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+        <sc-if value="{{ noMyReqs }}">
+        <div style="text-align:center;padding:60px 20px;margin-top:12px;"><div style="font-family:'Gantari';font-weight:700;font-size:20px;color:#13251D;">You haven't placed a bid yet</div><p style="color:#6B7A72;font-size:15px;margin:8px 0 0;">Place a monthly bid to compete for {{ activeMonthStr }}'s payout.</p><button onClick="{{ toEarlyRequest }}" style="margin-top:18px;font-family:'Gantari';font-weight:600;font-size:15px;padding:13px 24px;border:none;border-radius:12px;cursor:pointer;color:#fff;background:#0F3D2F;">Place Monthly Bid</button></div>
+        </sc-if>
+        </sc-if>
+
+        <!-- COMPLETED BIDS -->
+        <sc-if value="{{ govTabDone }}">
+        <p style="color:#6B7A72;font-size:15px;margin:20px 0 0;">Past months of this circle — winner, winning discount, and final payout.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:16px;">
+          <sc-for list="{{ completedVotes }}" as="c" hint-placeholder-count="4">
+            <div style="background:#fff;border:1px solid #E6E1D3;border-radius:18px;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;">
+              <div style="display:flex;gap:14px;align-items:center;"><div style="width:42px;height:42px;border-radius:50%;background:{{ c.bg }};color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Gantari';font-weight:700;font-size:15px;flex-shrink:0;">{{ c.initials }}</div><div><div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap;"><span style="font-family:'Gantari';font-weight:700;font-size:13px;color:#A8853F;">{{ c.month }}</span><span style="font-family:'Gantari';font-weight:700;font-size:16px;color:#13251D;">{{ c.name }}</span></div><div style="display:flex;gap:13px;flex-wrap:wrap;margin-top:5px;color:#6B7A72;font-size:13px;"><span>Winning discount {{ c.disc }}</span></div></div></div>
+              <div style="text-align:right;"><div style="font-family:'Gantari';font-weight:800;font-size:18px;color:#13251D;">{{ c.received }}</div><div style="display:inline-flex;align-items:center;gap:5px;background:#E9EFE3;color:#0F3D2F;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;margin-top:4px;">✓ Completed</div></div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <!-- TERMS -->
+      <sc-if value="{{ scTerms }}">
+      <div data-screen-label="Terms" style="animation:tcFade .5s ease both;max-width:720px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Before you join</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">Participation Terms</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Please review the commitments of joining {{ circle.name }}.</p>
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:10px 24px;margin-top:24px;"><sc-for list="{{ terms }}" as="t" hint-placeholder-count="7"><div style="display:flex;gap:16px;padding:17px 0;border-bottom:1px solid #F0ECE0;"><span style="width:22px;height:22px;border-radius:50%;background:#E9EFE3;color:#0F3D2F;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px;">{{ t.num }}</span><div><div style="font-family:'Gantari';font-weight:600;font-size:15px;color:#13251D;">{{ t.title }}</div><div style="color:#6B7A72;font-size:14px;margin-top:3px;line-height:1.5;">{{ t.desc }}</div></div></div></sc-for></div>
+        <div onClick="{{ toggleAgree }}" style="display:flex;align-items:center;gap:13px;margin-top:22px;cursor:pointer;background:#fff;border:1px solid #E6E1D3;border-radius:14px;padding:16px 18px;"><span style="{{ checkboxStyle }}">{{ agreeCheck }}</span><span style="font-size:15px;color:#13251D;font-weight:500;">I understand and agree to the participation terms.</span></div>
+        <sc-if value="{{ agreed }}"><button onClick="{{ toConfirm }}" style="margin-top:20px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Continue</button></sc-if>
+        <sc-if value="{{ notAgreed }}"><button style="margin-top:20px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:not-allowed;color:#9AA69F;background:#EFEBDF;">Continue</button></sc-if>
+      </div>
+      </sc-if>
+
+      <!-- CONFIRM -->
+      <sc-if value="{{ scConfirm }}">
+      <div data-screen-label="Confirm" style="animation:tcFade .5s ease both;max-width:520px;margin:30px auto 0;">
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:24px;padding:36px;box-shadow:0 36px 80px -40px rgba(15,26,21,.5);text-align:center;">
+          <img src="brand/mark-light.png" alt="trust Circle mark" style="width:56px;height:56px;display:block;margin:0 auto;" />
+          <h1 style="font-family:'Gantari';font-weight:700;font-size:26px;color:#13251D;margin:18px 0 0;letter-spacing:-0.01em;">Join {{ circle.name }}?</h1>
+          <p style="color:#6B7A72;font-size:15px;margin:8px 0 0;">You're about to become a verified member of this circle.</p>
+          <div style="background:#F6F2E9;border:1px solid #EFEBDF;border-radius:16px;padding:6px 20px;margin-top:24px;text-align:left;">
+            <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #EFEBDF;"><span style="color:#8A968F;font-size:14px;">Monthly Contribution</span><span style="font-family:'Gantari';font-weight:700;color:#13251D;">{{ circle.monthlyStr }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #EFEBDF;"><span style="color:#8A968F;font-size:14px;">Monthly Pool</span><span style="font-family:'Gantari';font-weight:700;color:#13251D;">{{ circle.poolStr }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #EFEBDF;"><span style="color:#8A968F;font-size:14px;">Duration</span><span style="font-family:'Gantari';font-weight:700;color:#13251D;">{{ circle.monthsStr }}</span></div>
+            <div style="display:flex;justify-content:space-between;padding:14px 0;"><span style="color:#8A968F;font-size:14px;">Members</span><span style="font-family:'Gantari';font-weight:700;color:#13251D;">{{ circle.membersNum }}</span></div>
+          </div>
+          <sc-if value="{{ circle.isEmployer }}">
+          <div style="display:flex;align-items:center;gap:10px;background:#E9EFE3;border:1px solid #CDE6D9;border-radius:13px;padding:13px 15px;margin-top:14px;text-align:left;"><span style="font-size:15px;">🛡</span><span style="font-size:13px;color:#13251D;line-height:1.45;">Contributions are <strong>auto-deducted from your {{ circle.employerName }} payroll</strong> on the 1st — payroll-protected against default.</span></div>
+          </sc-if>
+          <button onClick="{{ joinCircle }}" style="margin-top:18px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Join Circle</button>
+          <div onClick="{{ back }}" style="margin-top:14px;color:#8A968F;font-size:14px;cursor:pointer;">Not now</div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- SUCCESS -->
+      <sc-if value="{{ scSuccess }}">
+      <div data-screen-label="Success" style="animation:tcFade .45s ease both;min-height:58vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;">
+        <sc-for list="{{ confetti }}" as="c" hint-placeholder-count="6"><div style="{{ c.style }}"></div></sc-for>
+        <div style="position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;"><div style="position:absolute;inset:0;border-radius:50%;border:3px solid #0F3D2F;animation:tcRing 1.4s ease-out infinite;"></div><div style="width:120px;height:120px;border-radius:50%;background:linear-gradient(150deg,#0F3D2F,#0A2A1F);display:flex;align-items:center;justify-content:center;animation:tcPop .6s cubic-bezier(.2,.9,.3,1.2) both;"><svg width="60" height="60" viewBox="0 0 60 60"><path d="M16 31 L26 41 L45 20" fill="none" stroke="#E9C77E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60" style="animation:tcCheck .5s ease .4s forwards;"/></svg></div></div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:28px 0 0;letter-spacing:-0.025em;">Circle membership confirmed.</h1>
+        <p style="color:#5A6B62;font-size:18px;margin:12px 0 0;max-width:480px;">You've joined the <strong style="color:#13251D;">{{ circle.name }}</strong>. The circle activates once all {{ circle.membersNum }} verified members are in — then monthly capital is allocated by community vote.</p>
+        <button onClick="{{ toDashboard }}" style="margin-top:30px;font-family:'Gantari';font-weight:600;font-size:16px;padding:15px 34px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Go to My Dashboard →</button>
+      </div>
+      </sc-if>
+
+      <!-- APPLY (member assessment) -->
+      <sc-if value="{{ scApply }}">
+      <div data-screen-label="Application" style="animation:tcFade .5s ease both;max-width:780px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Participation Application</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">Member assessment</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Your identity and employment are already verified by {{ empSelectedName }} HR — we've filled those in. We just need your financial profile and an emergency contact.</p>
+
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:28px;margin-top:24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;"><div style="font-family:'Gantari';font-weight:700;font-size:16px;color:#13251D;">Personal &amp; Employment</div><span style="display:inline-flex;align-items:center;gap:6px;background:#E9EFE3;color:#0F3D2F;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;">✓ Verified by {{ empSelectedName }} HR</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;">
+            <input value="Ahmed Al Mansoori" readOnly="{{ true }}" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F2E9;color:#5A6B62;" />
+            <input value="United Arab Emirates" readOnly="{{ true }}" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F2E9;color:#5A6B62;" />
+            <input value="784-1989-2486601-3" readOnly="{{ true }}" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F2E9;color:#5A6B62;" />
+            <input value="{{ empSelectedName }}" readOnly="{{ true }}" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F2E9;color:#5A6B62;" />
+            <input value="Senior Analyst · 6 yrs" readOnly="{{ true }}" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F2E9;color:#5A6B62;" />
+            <input value="Salary band AED 28,000–32,000" readOnly="{{ true }}" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #ECEFEC;border-radius:11px;outline:none;background:#F6F2E9;color:#5A6B62;" />
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:28px;margin-top:16px;">
+          <div style="font-family:'Gantari';font-weight:700;font-size:16px;color:#13251D;">Financial Profile</div>
+          <div style="color:#8A968F;font-size:13px;margin-top:4px;">Helps us confirm the circle size is comfortable for you.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;">
+            <input placeholder="AECB credit score" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #DBD5C5;border-radius:11px;outline:none;" />
+            <input placeholder="Monthly savings (AED)" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #DBD5C5;border-radius:11px;outline:none;" />
+            <input placeholder="Existing loans (AED)" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #DBD5C5;border-radius:11px;outline:none;" />
+            <input placeholder="Monthly debt payments (AED)" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #DBD5C5;border-radius:11px;outline:none;" />
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:28px;margin-top:16px;">
+          <div style="font-family:'Gantari';font-weight:700;font-size:16px;color:#13251D;">Emergency Contact</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;">
+            <input placeholder="Contact name" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #DBD5C5;border-radius:11px;outline:none;" />
+            <input placeholder="Contact number (+971…)" style="font-family:'Instrument Sans';font-size:15px;padding:13px 14px;border:1px solid #DBD5C5;border-radius:11px;outline:none;" />
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:28px;margin-top:16px;">
+          <div style="font-family:'Gantari';font-weight:700;font-size:16px;color:#13251D;">Required Documents</div>
+          <div style="color:#8A968F;font-size:13px;margin-top:4px;">We assess your inflow, outflow, savings and debt from these — securely and confidentially.</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:18px;">
+            <div style="display:flex;align-items:center;gap:14px;border:1px dashed #CBD6D0;border-radius:14px;padding:18px;background:#F6F2E9;cursor:pointer;">
+              <span style="width:40px;height:40px;border-radius:11px;background:#E9EFE3;color:#0F3D2F;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏦</span>
+              <div style="flex:1;"><div style="font-family:'Gantari';font-weight:600;font-size:15px;color:#13251D;">Last 6 months' bank statement</div><div style="color:#6B7A72;font-size:13px;margin-top:2px;">PDF · used to assess inflow, outflow, savings &amp; spending</div></div>
+              <span style="font-family:'Gantari';font-weight:600;font-size:13px;color:#0F3D2F;border:1px solid #0F3D2F;border-radius:10px;padding:9px 16px;white-space:nowrap;">Upload</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;border:1px dashed #CBD6D0;border-radius:14px;padding:18px;background:#F6F2E9;cursor:pointer;">
+              <span style="width:40px;height:40px;border-radius:11px;background:#E9EFE3;color:#0F3D2F;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">📄</span>
+              <div style="flex:1;"><div style="font-family:'Gantari';font-weight:600;font-size:15px;color:#13251D;">AECB credit score certificate</div><div style="color:#6B7A72;font-size:13px;margin-top:2px;">Must be dated within the last 7 days</div></div>
+              <span style="font-family:'Gantari';font-weight:600;font-size:13px;color:#0F3D2F;border:1px solid #0F3D2F;border-radius:10px;padding:9px 16px;white-space:nowrap;">Upload</span>
+            </div>
+          </div>
+        </div>
+
+        <button onClick="{{ submitApplication }}" style="margin-top:22px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Submit Application</button>
+      </div>
+      </sc-if>
+
+      <!-- REVIEWING -->
+      <sc-if value="{{ scReviewing }}">
+      <div data-screen-label="Under Review" style="animation:tcFade .5s ease both;max-width:560px;margin:30px auto 0;text-align:center;">
+        <span style="display:inline-block;width:60px;height:60px;border-radius:50%;border:4px solid #ECE7D9;border-top-color:#0F3D2F;animation:tcSpin 1s linear infinite;"></span>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:30px;color:#13251D;margin:24px 0 0;letter-spacing:-0.02em;">Application submitted</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:10px 0 0;">Your profile is under review. We'll notify you once approved.</p>
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:18px;padding:8px 22px;margin-top:24px;text-align:left;">
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #F0ECE0;"><span style="color:#8A968F;font-size:14px;">Estimated review time</span><span style="font-family:'Gantari';font-weight:600;color:#13251D;">24–72 hours</span></div>
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #F0ECE0;"><span style="color:#8A968F;font-size:14px;">Status</span><span style="font-family:'Gantari';font-weight:600;color:#9A742C;">Pending Verification</span></div>
+          <div style="display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #F0ECE0;"><span style="color:#8A968F;font-size:14px;">Documents</span><span style="font-family:'Gantari';font-weight:600;color:#0F3D2F;">Received ✓</span></div>
+          <div style="display:flex;justify-content:space-between;padding:14px 0;"><span style="color:#8A968F;font-size:14px;">Circle eligibility</span><span style="font-family:'Gantari';font-weight:600;color:#13251D;">Under assessment</span></div>
+        </div>
+        <button onClick="{{ approveApplication }}" style="margin-top:22px;width:100%;font-family:'Gantari';font-weight:600;font-size:15px;padding:15px;border:1px solid #DBD5C5;border-radius:14px;cursor:pointer;color:#13251D;background:#fff;">Simulate approval (demo) →</button>
+      </div>
+      </sc-if>
+
+      <!-- APPROVED -->
+      <sc-if value="{{ scApproved }}">
+      <div data-screen-label="Approved" style="animation:tcFade .5s ease both;max-width:620px;margin:20px auto 0;text-align:center;">
+        <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(150deg,#0F3D2F,#0A2A1F);display:flex;align-items:center;justify-content:center;margin:0 auto;animation:tcPop .6s cubic-bezier(.2,.9,.3,1.2) both;"><svg width="46" height="46" viewBox="0 0 60 60"><path d="M16 31 L26 41 L45 20" fill="none" stroke="#E9C77E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60" style="animation:tcCheck .5s ease .4s forwards;"/></svg></div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:32px;color:#13251D;margin:22px 0 0;letter-spacing:-0.02em;">Congratulations — you're approved.</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:10px 0 0;">Your TrustCircle profile has been verified. You're now eligible to participate in circles matched to your assessment.</p>
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:26px;margin-top:24px;text-align:left;">
+          <div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-family:'Gantari';font-weight:700;font-size:16px;color:#13251D;">Risk Rating</span><span style="display:inline-flex;align-items:center;gap:6px;background:#E9EFE3;color:#0F3D2F;padding:6px 13px;border-radius:999px;font-size:13px;font-weight:600;">● Low Risk</span></div>
+          <div style="font-family:'Gantari';font-weight:600;font-size:13px;color:#8A968F;margin-top:22px;letter-spacing:.04em;text-transform:uppercase;">Eligible Circle Sizes</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+            <sc-for list="{{ eligibleCircles }}" as="c" hint-placeholder-count="4"><div style="{{ c.style }}"><span style="font-family:'Gantari';font-weight:800;color:{{ c.markColor }};">{{ c.mark }}</span><span style="font-family:'Gantari';font-weight:600;font-size:15px;color:{{ c.textColor }};">{{ c.amt }}</span></div></sc-for>
+          </div>
+        </div>
+        <button onClick="{{ toExplore }}" style="margin-top:24px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Start Joining Circles →</button>
+      </div>
+      </sc-if>
+
+      <!-- MY CIRCLES -->
+      <sc-if value="{{ scMyCircles }}">
+      <div data-screen-label="My Circles" style="animation:tcFade .5s ease both;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Participation</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">My Circles</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Circles you belong to and your live position in each.</p>
+        <sc-if value="{{ hasMyCircles }}">
+        <div style="display:flex;flex-direction:column;gap:18px;margin-top:24px;">
+          <sc-for list="{{ myCirclesList }}" as="c" hint-placeholder-count="1">
+            <div style="background:#fff;border:1px solid #E6E1D3;border-radius:22px;padding:28px;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;"><div><div style="font-family:'Gantari';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#0F3D2F;">{{ c.currentMonth }}</div><h3 style="font-family:'Gantari';font-weight:700;font-size:22px;color:#13251D;margin:7px 0 0;">{{ c.name }}</h3></div><span style="background:#E9EFE3;color:#0F3D2F;padding:6px 13px;border-radius:999px;font-size:12px;font-weight:600;">● Active</span></div>
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px;">
+                <div><div style="color:#8A968F;font-size:12px;">Contribution</div><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#13251D;margin-top:4px;">{{ c.monthlyStr }}</div></div>
+                <div><div style="color:#8A968F;font-size:12px;">Paid</div><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#13251D;margin-top:4px;">{{ c.paid }}</div></div>
+                <div><div style="color:#8A968F;font-size:12px;">Remaining</div><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#13251D;margin-top:4px;">{{ c.remaining }}</div></div>
+                <div><div style="color:#8A968F;font-size:12px;">Next contribution</div><div style="font-family:'Gantari';font-weight:700;font-size:18px;color:#13251D;margin-top:4px;">{{ c.nextDate }}</div></div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid #F0ECE0;">
+                <div style="color:#6B7A72;font-size:14px;">Payout status · <strong style="color:#13251D;">{{ c.payoutStatus }}</strong></div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;"><button onClick="{{ toEarlyRequest }}" style="font-family:'Gantari';font-weight:600;font-size:14px;padding:11px 18px;border:none;border-radius:11px;cursor:pointer;color:#fff;background:#0F3D2F;">Request Early Payout</button><button onClick="{{ toGovernance }}" style="font-family:'Gantari';font-weight:600;font-size:14px;padding:11px 18px;border:1px solid #DBD5C5;border-radius:11px;cursor:pointer;color:#13251D;background:#fff;">View Bids</button></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+        <sc-if value="{{ noMyCircles }}">
+        <div style="text-align:center;padding:70px 20px;margin-top:12px;"><div style="font-family:'Gantari';font-weight:700;font-size:20px;color:#13251D;">You haven't joined a circle yet</div><p style="color:#6B7A72;font-size:15px;margin:8px 0 0;">Explore verified circles and join one matched to your goals.</p><button onClick="{{ toExplore }}" style="margin-top:18px;font-family:'Gantari';font-weight:600;font-size:15px;padding:13px 24px;border:none;border-radius:12px;cursor:pointer;color:#fff;background:#0F3D2F;">Explore Circles →</button></div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+      <!-- REQUEST EARLY PAYOUT — PLACE MONTHLY BID -->
+      <sc-if value="{{ scEarlyRequest }}">
+      <div data-screen-label="Request Early Payout" style="animation:tcFade .5s ease both;max-width:720px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Monthly Payout Bid</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:34px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">Request early payout</h1>
+        <p style="color:#6B7A72;font-size:16px;margin:8px 0 0;">Bid for this month's pool by offering a voluntary discount. You can only bid for the circle's current active month — the highest discount leads.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;">
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Current Active Month</div><div style="font-family:'Gantari';font-weight:700;font-size:22px;color:#0F3D2F;margin-top:5px;">{{ activeMonthStr }}</div><div style="color:#8A968F;font-size:12px;margin-top:4px;">Months 1–{{ monthsPaidStr }} completed · not selectable</div></div>
+          <div style="background:#fff;border:1px solid #E6E1D3;border-radius:16px;padding:20px;"><div style="color:#8A968F;font-size:12px;">Circle Value (this month)</div><div style="font-family:'Gantari';font-weight:700;font-size:22px;color:#13251D;margin-top:5px;">{{ earlyPoolStr }}</div><div style="color:#8A968F;font-size:12px;margin-top:4px;">distributed to the winning bid</div></div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:26px;margin-top:16px;">
+          <div style="font-family:'Gantari';font-weight:600;font-size:14px;color:#13251D;">Reason for request</div>
+          <textarea value="{{ earlyReason }}" onInput="{{ setEarlyReason }}" placeholder="Explain why you need capital now — e.g. tuition, medical, business opportunity…" style="width:100%;min-height:90px;font-family:'Instrument Sans';font-size:15px;padding:14px;border:1px solid #DBD5C5;border-radius:12px;outline:none;margin-top:10px;resize:vertical;"></textarea>
+          <div style="display:flex;align-items:center;gap:12px;background:#F6F2E9;border:1px dashed #CBD6D0;border-radius:12px;padding:14px;margin-top:12px;color:#6B7A72;font-size:13px;">📎 Optional supporting documents</div>
+          <div style="margin-top:20px;"><div style="display:flex;justify-content:space-between;font-size:14px;color:#6B7A72;margin-bottom:10px;"><span>Bid / discount offered</span><span style="font-family:'Gantari';font-weight:700;color:#0F3D2F;">{{ earlyBidStr }}</span></div><input type="range" min="0" max="36000" step="1000" value="{{ earlyBid }}" onInput="{{ setEarlyDiscount }}" style="width:100%;accent-color:#0F3D2F;cursor:pointer;" /></div>
+        </div>
+
+        <div style="background:linear-gradient(150deg,#13251D,#1C362B);color:#F4EFE4;border-radius:20px;padding:24px;margin-top:16px;">
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Active month</span><span style="font-family:'Gantari';font-weight:700;">{{ activeMonthStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Circle value</span><span style="font-family:'Gantari';font-weight:700;">{{ earlyPoolStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Bid / discount offered</span><span style="font-family:'Gantari';font-weight:700;color:#E9C77E;">{{ earlyBidStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);"><span style="color:#9DB0A6;font-size:14px;">Expected net payout</span><span style="font-family:'Gantari';font-weight:700;color:#7FE0A8;font-size:18px;">{{ earlyNetStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;"><span style="color:#9DB0A6;font-size:14px;">Bidding window</span><span style="font-family:'Gantari';font-weight:700;">48 hours</span></div>
+        </div>
+
+        <button onClick="{{ submitEarly }}" style="margin-top:20px;width:100%;font-family:'Gantari';font-weight:600;font-size:16px;padding:16px;border:none;border-radius:14px;cursor:pointer;color:#fff;background:#0F3D2F;">Submit Bid</button>
+      </div>
+      </sc-if>
+
+      <!-- EARLY PAYOUT TRACK -->
+      <sc-if value="{{ scEarlyTrack }}">
+      <div data-screen-label="Payout Tracking" style="animation:tcFade .5s ease both;max-width:680px;margin:0 auto;">
+        <div style="font-family:'Gantari';letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:600;color:#A8853F;">Monthly Bid · {{ activeMonthStr }}</div>
+        <h1 style="font-family:'Gantari';font-weight:700;font-size:32px;color:#13251D;margin:8px 0 0;letter-spacing:-0.025em;">Bid progress</h1>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:#FBF4E6;color:#9A742C;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:600;margin-top:14px;">{{ earlyStatusLabel }}</div>
+
+        <div style="background:#fff;border:1px solid #E6E1D3;border-radius:20px;padding:30px;margin-top:22px;">
+          <sc-for list="{{ earlyTimeline }}" as="s" hint-placeholder-count="4">
+            <div style="display:flex;gap:16px;padding-bottom:22px;">
+              <div style="display:flex;flex-direction:column;align-items:center;"><div style="{{ s.dotStyle }}">{{ s.mark }}</div></div>
+              <div><div style="font-family:'Gantari';font-weight:700;font-size:16px;color:{{ s.titleColor }};">{{ s.title }}</div><div style="color:#6B7A72;font-size:14px;margin-top:3px;">{{ s.desc }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ earlyReleased }}">
+        <div style="background:linear-gradient(150deg,#0F3D2F,#0A2A1F);color:#fff;border-radius:20px;padding:28px;margin-top:18px;text-align:center;"><div style="font-family:'Gantari';font-weight:700;font-size:22px;">Capital released ✓</div><p style="color:#A7D8C2;font-size:15px;margin:8px 0 0;">{{ earlyNetStr }} has been disbursed to your account.</p><button onClick="{{ toMyCircles }}" style="margin-top:18px;font-family:'Gantari';font-weight:600;font-size:15px;padding:13px 26px;border:none;border-radius:12px;cursor:pointer;color:#0F3D2F;background:#fff;">Back to My Circles</button></div>
+        </sc-if>
+        <sc-if value="{{ earlyNotReleased }}">
+        <div style="background:#13251D;color:#F4EFE4;border-radius:20px;padding:24px;margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+          <div style="max-width:380px;"><div style="font-family:'Gantari';font-weight:700;font-size:16px;">Next step</div><p style="color:#9DB0A6;font-size:14px;margin:5px 0 0;line-height:1.5;">For larger payouts, TrustCircle verifies documents at an office appointment — protecting every member in the circle.</p></div>
+          <button onClick="{{ advanceEarly }}" style="font-family:'Gantari';font-weight:600;font-size:14px;padding:13px 22px;border:none;border-radius:12px;cursor:pointer;color:#13251D;background:#E9C77E;white-space:nowrap;">{{ earlyAdvanceLabel }}</button>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>
+
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    view:'landing', screen:'auth',
+    purposes:[], agreed:false, joined:false,
+    circleId:'home', displayScore:0,
+    authMode:'choices', email:'',
+    filter:'all', votedId:null, discount:0, invT:0,
+    approvalStatus:'none', govTab:'live',
+    earlyStatus:null, earlyBid:12000, earlyReason:'',
+    notifOpen:false, voteActions:{},
+    employer:null, empId:'', empOtp:'', empStage:'select', empVerified:false
+  };
+
+  // ---------- timers / animation ----------
+  animateScore(){
+    const target=850, dur=1400, start=Date.now();
+    if(this._sc) clearInterval(this._sc);
+    this._sc=setInterval(()=>{
+      const t=Math.min(1,(Date.now()-start)/dur), e=1-Math.pow(1-t,3);
+      this.setState({displayScore:Math.round(target*e)});
+      if(t>=1){ clearInterval(this._sc); this._sc=null; this.setState({displayScore:target}); }
+    },28);
+    this._scS=setTimeout(()=>this.setState({displayScore:target}), dur+500);
+  }
+  animateInvestor(){
+    const dur=1500, start=Date.now();
+    if(this._iv) clearInterval(this._iv);
+    this._iv=setInterval(()=>{
+      const t=Math.min(1,(Date.now()-start)/dur), e=1-Math.pow(1-t,3);
+      this.setState({invT:e});
+      if(t>=1){ clearInterval(this._iv); this._iv=null; this.setState({invT:1}); }
+    },28);
+    this._ivS=setTimeout(()=>this.setState({invT:1}), dur+500);
+  }
+  componentWillUnmount(){
+    [this._sc,this._iv].forEach(x=>x&&clearInterval(x));
+    [this._scS,this._ivS].forEach(x=>x&&clearTimeout(x));
+  }
+
+  scrollTop(){ try{ window.scrollTo(0,0); }catch(e){} }
+  scrollToId(id){ const el=document.getElementById(id); if(el){ window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-70, behavior:'smooth'}); } }
+
+  // ---------- navigation ----------
+  joinNow(){ this.setState({view:'app',screen:'auth'}); this.scrollTop(); }
+  toLanding(){ this.setState({view:'landing'}); this.scrollTop(); }
+  toInvestor(){ this.setState({view:'investor'}); this.scrollTop(); this.animateInvestor(); }
+  setScreen(s){ this.setState({view:'app',screen:s}); this.scrollTop(); }
+  ensureScore(){ if(this.state.displayScore<850 && !this._sc) this.animateScore(); }
+
+  pickProvider(){ this.setScreen('verify'); }
+  openEmail(){ this.setState({authMode:'email'}); }
+  closeEmail(){ this.setState({authMode:'choices',email:''}); }
+  setEmail(v){ this.setState({email:v}); }
+  continueVerify(){ this.setScreen('employer'); }
+  // employer verification
+  setEmployer(id){ const m={emirates:'EK-482610',maf:'MAF-30715',adnoc:'AD-118204'}; this.setState({employer:id, empId:m[id]||'EK-482610'}); }
+  setEmpId(v){ this.setState({empId:v}); }
+  matchEmployee(){ this.setState({empStage:'otp'}); }
+  setEmpOtp(v){ this.setState({empOtp:v}); }
+  verifyEmployer(){ this.setState({empVerified:true,empStage:'done'}); this.setScreen('purpose'); }
+  skipEmployer(){ this.setState({employer:null,empVerified:false}); this.setScreen('purpose'); }
+  continuePurpose(){ this.setScreen('profile'); this.ensureScore(); }
+  continueProfile(){ this.setScreen('dashboard'); this.ensureScore(); }
+  toExplore(){ this.setScreen('explore'); }
+  toDashboard(){ this.setScreen('dashboard'); this.ensureScore(); }
+  toGovernance(){ this.setScreen('governance'); }
+  toDistribution(){ this.setScreen('distribution'); }
+  toTerms(){ this.setScreen('terms'); }
+  toConfirm(){ this.setScreen('confirm'); }
+  selectCircle(id){ this.setState({circleId:id,screen:'detail',view:'app'}); this.scrollTop(); }
+  setFilter(id){ this.setState({filter:id}); }
+  setDiscount(v){ this.setState({discount:Number(v)}); }
+  togglePurpose(id){ this.setState(s=>({ purposes: s.purposes.includes(id)? s.purposes.filter(p=>p!==id): s.purposes.concat(id) })); }
+  toggleAgree(){ this.setState(s=>({agreed:!s.agreed})); }
+  castVote(id){ this.setState(s=> s.votedId? {} : {votedId:id}); }
+  voteAction(id,act){ this.setState(s=>{ if(s.voteActions[id]) return {}; return { voteActions: Object.assign({}, s.voteActions, {[id]:act}) }; }); }
+  joinCircle(){ if(this.state.approvalStatus!=='approved'){ this.setState({screen:'apply'}); this.scrollTop(); return; } this.setState({joined:true,screen:'success'}); this.scrollTop(); }
+  // approval lifecycle
+  toApply(){ this.setScreen('apply'); }
+  submitApplication(){ this.setState({approvalStatus:'reviewing',screen:'reviewing'}); this.scrollTop(); }
+  approveApplication(){ this.setState({approvalStatus:'approved',screen:'approved'}); this.scrollTop(); }
+  // navigation extras
+  toMyCircles(){ this.setScreen('myCircles'); }
+  setGovTab(t){ this.setState({govTab:t}); }
+  toggleNotif(){ this.setState(s=>({notifOpen:!s.notifOpen})); }
+  closeNotif(){ this.setState({notifOpen:false}); }
+  // early payout
+  toEarlyRequest(){ this.setScreen('earlyRequest'); }
+  setEarlyDiscount(v){ this.setState({earlyBid:Number(v)}); }
+  setEarlyReason(v){ this.setState({earlyReason:v}); }
+  submitEarly(){ this.setState({earlyStatus:'voting',screen:'earlyTrack'}); this.scrollTop(); }
+  advanceEarly(){
+    const order=['voting','community','office','released'];
+    const i=order.indexOf(this.state.earlyStatus);
+    const nx=order[Math.min(order.length-1,i+1)];
+    this.setState({earlyStatus:nx}); this.scrollTop();
+  }
+  back(){
+    const s=this.state.screen;
+    const map={verify:'auth',employer:'verify',purpose:'employer',profile:'purpose',dashboard:'profile',explore:'dashboard',detail:'explore',distribution:'detail',governance:'dashboard',terms:'distribution',confirm:'terms',success:'dashboard',auth:'auth',apply:'dashboard',reviewing:'apply',approved:'reviewing',myCircles:'dashboard',earlyRequest:'myCircles',earlyTrack:'myCircles'};
+    if(s==='auth'){ this.toLanding(); return; }
+    this.setState({screen: map[s]||'dashboard'}); this.scrollTop();
+  }
+
+  fmt(n){ return 'AED '+Number(n).toLocaleString('en-US'); }
+
+  baseCircles(){
+    return [
+      { id:'home',    name:'Home Ownership Circle',  purpose:'Home Ownership',          monthly:12000, members:12, filled:9,  trust:'4.9', verified:100 },
+      { id:'edu',     name:'Education Fund Circle',   purpose:'Education',               monthly:5000,  members:10, filled:7,  trust:'4.8', verified:100 },
+      { id:'biz',     name:'Business Growth Circle',  purpose:'Business Growth',         monthly:20000, members:12, filled:5,  trust:'4.7', verified:92  },
+      { id:'family',  name:'Family Goals Circle',     purpose:'Family Goals',            monthly:8000,  members:10, filled:8,  trust:'4.9', verified:100 },
+      { id:'vehicle', name:'Vehicle Purchase Circle', purpose:'Vehicle Purchase',        monthly:6000,  members:8,  filled:6,  trust:'4.6', verified:88  },
+      { id:'wealth',  name:'Wealth Planning Circle',  purpose:'General Wealth Planning', monthly:15000, members:24, filled:14, trust:'4.8', verified:96  },
+      // employer-backed (payroll-protected) circles — one marketplace per employer
+      { id:'emk1', name:'Emirates Group · Home Circle',      purpose:'Home Ownership', monthly:10000, members:10, filled:8,  trust:'5.0', verified:100, employer:'emirates' },
+      { id:'emk2', name:'Emirates Group · Education Circle', purpose:'Education',       monthly:5000,  members:10, filled:9,  trust:'5.0', verified:100, employer:'emirates' },
+      { id:'maf1', name:'Majid Al Futtaim · Family Circle',  purpose:'Family Goals',    monthly:8000,  members:12, filled:10, trust:'4.9', verified:100, employer:'maf' },
+      { id:'adn1', name:'ADNOC · Wealth Circle',             purpose:'General Wealth Planning', monthly:15000, members:12, filled:7, trust:'4.9', verified:100, employer:'adnoc' }
+    ];
+  }
+  employers(){ return [
+    { id:'emirates', name:'Emirates Group', short:'EK' },
+    { id:'maf',      name:'Majid Al Futtaim', short:'MAF' },
+    { id:'adnoc',    name:'ADNOC', short:'AD' }
+  ]; }
+  employerName(id){ const e=this.employers().find(x=>x.id===id); return e?e.name:''; }
+  palette(){ return ['#0F3D2F','#A8853F','#1B5C45','#7A6320','#2E5C4A','#5E7D6E','#0F3D2C','#9C7B2E']; }
+  pool(){ return ['Fatima A.','Omar S.','Layla H.','Khalid M.','Sara N.','Yusuf R.','Noura A.','Hassan T.','Mariam K.','Tariq B.','Aisha Z.','Saeed F.','Hind R.','Rashid M.','Mona S.','Faisal D.']; }
+
+  buildCircle(b){
+    const monthly=b.monthly, members=b.members;
+    const monthlyPool=monthly*members, total=monthlyPool*members;
+    const pal=this.palette(), pool=this.pool();
+    const avatars=[]; const shown=Math.min(5,b.filled);
+    for(let i=0;i<shown;i++) avatars.push({ initials:pool[i].charAt(0), bg:pal[i%pal.length] });
+    const extra=Math.max(0,b.filled-shown);
+    const pct=Math.round(b.filled/members*100);
+    return {
+      id:b.id, name:b.name, purpose:b.purpose,
+      monthlyStr:this.fmt(monthly), poolStr:this.fmt(monthlyPool), totalStr:this.fmt(total),
+      membersNum:members, membersStr:members+' Members', monthsStr:members+' Months',
+      filledStr:b.filled+' Filled', progressStr:pct+'% Complete', progressW:pct+'%',
+      trust:b.trust, verifiedStr:b.verified+'% Verified',
+      avatars, hasExtra:extra>0, extraStr:'+'+extra, monthlyPoolNum:monthlyPool,
+      employerId:b.employer||null, isEmployer:!!b.employer, employerName:b.employer?this.employerName(b.employer):'',
+      catKey:({'Home Ownership':'home','Education':'edu','Business Growth':'biz','Family Goals':'family','Vehicle Purchase':'vehicle','General Wealth Planning':'wealth'})[b.purpose]||'home'
+    };
+  }
+
+  renderVals(){
+    const st=this.state, view=st.view, screen=st.screen;
+    const isApp = view==='app';
+
+    // selected + list circles
+    const allCircles=this.baseCircles().map(b=>{ const o=this.buildCircle(b); o.open=()=>this.selectCircle(b.id); o.purposeId=o.catKey; return o; });
+    const visibleCircles=allCircles.filter(c=> !c.employerId || c.employerId===st.employer);
+    const circles = st.filter==='all'? visibleCircles : visibleCircles.filter(c=>c.purposeId===st.filter);
+
+    // ----- employer verification -----
+    const employerList=this.employers().map(e=>({ id:e.id, name:e.name, short:e.short, selected:st.employer===e.id, pick:()=>this.setEmployer(e.id),
+      rowStyle:'display:flex;align-items:center;gap:13px;cursor:pointer;padding:14px 16px;border-radius:14px;background:'+(st.employer===e.id?'#E9EFE3':'#fff')+';border:1px solid '+(st.employer===e.id?'#0F3D2F':'#E6E1D3')+';',
+      badgeStyle:'width:40px;height:40px;border-radius:10px;background:'+(st.employer===e.id?'#0F3D2F':'#F0ECE0')+';color:'+(st.employer===e.id?'#fff':'#5A6B62')+';display:flex;align-items:center;justify-content:center;font-family:\'Gantari\';font-weight:800;font-size:13px;flex-shrink:0;',
+      tickStyle:'margin-left:auto;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;background:'+(st.employer===e.id?'#0F3D2F':'transparent')+';color:#fff;', tick:(st.employer===e.id?'✓':'') }));
+    const empSelectedName=st.employer?this.employerName(st.employer):'';
+    const empCanMatch=!!st.employer && st.empId.trim().length>=4;
+    const empOtpValid=/^[0-9]{4,6}$/.test(st.empOtp);
+    const empMaskedContact = st.employer? ('a.almansoori@'+({emirates:'emirates.com',maf:'maf.ae',adnoc:'adnoc.ae'})[st.employer]) : '';
+    const circle=this.buildCircle(this.baseCircles().find(x=>x.id===st.circleId));
+
+    // landing data
+    const ancientSystems=['Jam\u2019iya','ROSCA','Committee','Hui','Tanda','Susu','Savings Circles'].map(n=>({name:n}));
+    const howSteps=[
+      {num:'01',title:'Join a verified circle',body:'TrustCircle administers every circle. You join one matched to your goal — all members verified before it activates.'},
+      {num:'02',title:'Contribute monthly',body:'Each member contributes the same amount into a segregated, audited pool. Members equal months.'},
+      {num:'03',title:'Request & receive',body:'Submit a request with your reason; the community votes; the chosen member receives that month\u2019s full pool.'}
+    ];
+    const trustDims=['Identity Verification','Contribution Consistency','Community Standing','Circle Completion History','Governance Participation','Community Endorsements','Reliability','Network Quality'].map(n=>({name:n}));
+    const govFlow=[
+      {num:'1',title:'Pool forms',body:'All members contribute; the monthly pool is created.'},
+      {num:'2',title:'Members request',body:'Members submit requests with a reason — education, medical, business, housing.'},
+      {num:'3',title:'Community votes',body:'Members review requests and supporting context, then vote.'},
+      {num:'4',title:'Capital allocated',body:'The selected member receives the full pool that month.'}
+    ];
+    const principles=['Riba-free','Ethical finance','Mutual cooperation','Transparent governance','No predatory finance','No debt traps'].map(n=>({name:n}));
+    const revenueStreams=['Circle Creation Fees','KYC / AML Fees','Contribution Processing','Monthly Distribution Fees','Circle Administration','Circle Completion Fees','TrustCircle Plus','Trust Score™ Premium','Enterprise Programs','Franchise Network','White Label Licensing'].map(n=>({name:n}));
+
+    // GCC phases
+    const phaseDefs=[
+      {phase:'Phase 1', short:'01', title:'United Arab Emirates', markets:['United Arab Emirates']},
+      {phase:'Phase 2', short:'02', title:'GCC', markets:['Saudi Arabia','Qatar','Kuwait','Bahrain','Oman']},
+      {phase:'Phase 3', short:'03', title:'MENA', markets:['Egypt','Jordan','Morocco']},
+      {phase:'Phase 4', short:'04', title:'Global', markets:['Ethical Capital Network']}
+    ];
+    const phases=phaseDefs.map((p,i)=>{
+      const active=i===0;
+      return {
+        phase:p.phase, short:p.short, title:p.title,
+        markets:p.markets.map(m=>({name:m})), marketsStr:p.markets.join(', '),
+        select:()=>{},
+        cardStyle:'cursor:default;border-radius:18px;padding:24px;background:'+(active?'#0F3D2F':'#F6F2E9')+';border:1px solid '+(active?'#0F3D2F':'#ECEFEC')+';',
+        tagStyle:'display:inline-block;font-family:\'Gantari\';font-weight:700;font-size:12px;letter-spacing:.06em;padding:5px 11px;border-radius:999px;background:'+(active?'rgba(255,255,255,.16)':'#E9EFE3')+';color:'+(active?'#fff':'#0F3D2F')+';',
+        titleColor: active?'#fff':'#13251D',
+        bodyColor: active?'#A7D8C2':'#6B7A72',
+        dotBg: active?'#7FE0A8':'#243029', dotColor: active?'#13251D':'#7FE0A8'
+      };
+    });
+
+    // hero network mesh (constellation circle)
+    const pal=this.palette(), pool=this.pool();
+    const hcx=210, hcy=210, hR=176, hN=12, hHi=2; // center, radius, node count, highlighted index
+    const hAngles=[]; for(let i=0;i<hN;i++){ hAngles.push((-90 + i*(360/hN))*Math.PI/180); }
+    const hPts=hAngles.map(a=>({ x:hcx+hR*Math.cos(a), y:hcy+hR*Math.sin(a) }));
+    const heroLines=[];
+    for(let i=0;i<hN;i++){ for(let j=i+1;j<hN;j++){
+      // vary density: skip a few near-adjacent chords for a cleaner web
+      if((j-i)===1 && (i%3===1)) continue;
+      heroLines.push({ x1:hPts[i].x, y1:hPts[i].y, x2:hPts[j].x, y2:hPts[j].y, op:((i+j)%3===0?'0.10':'0.16') });
+    }}
+    const heroNodes=hPts.map((p,i)=>({
+      cx:p.x, cy:p.y,
+      r:(i===hHi?9:5),
+      fill:(i===hHi?'#C9A24B':'#F4EFE4'),
+      stroke:(i===hHi?'#E9C77E':'#F4EFE4'),
+      sw:(i===hHi?2:0)
+    }));
+    const heroInner=[[150,150],[268,170],[235,250],[160,270],[285,255],[195,200],[120,205],[300,205]].map((p,i)=>({ cx:p[0], cy:p[1], r:(i%2?2.2:3.2), op:(i%2?'0.5':'0.7') }));
+    const heroHaloX=hPts[hHi].x, heroHaloY=hPts[hHi].y;
+
+    // hero ring (full 850)
+    const heroRingCirc=2*Math.PI*92;
+    const heroRingOffset=heroRingCirc*(1-850/1000);
+
+    // onboarding score
+    const shownScore=['profile','dashboard'].includes(screen)? (st.displayScore||850) : st.displayScore;
+    const ringCirc=2*Math.PI*84;
+    const ringOffset=ringCirc*(1-shownScore/1000);
+
+    // purposes
+    const purposeDefs=[['home','Home Ownership'],['edu','Education'],['biz','Business Growth'],['family','Family Goals'],['vehicle','Vehicle Purchase'],['emergency','Emergency Preparedness'],['wealth','General Wealth Planning']];
+    const purposes=purposeDefs.map(([id,label])=>{
+      const sel=st.purposes.includes(id);
+      return { id,label, toggle:()=>this.togglePurpose(id), check:sel?'✓':'',
+        cardStyle:'display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:18px 20px;border-radius:16px;background:'+(sel?'#0F3D2F':'#fff')+';color:'+(sel?'#fff':'#13251D')+';border:1px solid '+(sel?'#0F3D2F':'#E6E1D3')+';box-shadow:'+(sel?'0 14px 30px -18px rgba(15,61,47,.6)':'none')+';',
+        dotStyle:'width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;background:'+(sel?'#E9C77E':'#EFEBDF')+';color:'+(sel?'#13251D':'#0F3D2F')+';' };
+    });
+
+    const profile=[
+      {label:'Identity Strength',w:'92%',value:'Strong'},{label:'Community Readiness',w:'80%',value:'Ready'},
+      {label:'Participation Status',w:'88%',value:'Eligible'},{label:'Network Verification',w:'100%',value:'Verified'}
+    ];
+    const identity=[
+      {label:'Full Name',value:'Ahmed Al Mansoori'},{label:'Nationality',value:'United Arab Emirates'},
+      {label:'Mobile Number',value:'+971 50 248 6601'},{label:'Verification Status',value:'Verified via UAE PASS ✓'}
+    ];
+    const governance=[
+      'Contributions are due on the 1st of each month.',
+      'Capital is allocated each month by verified community vote.',
+      'Every member is identity-verified before the circle activates.',
+      'A missed contribution opens a 5-day grace window before review.',
+      'All capital is held in a segregated, independently audited account.'
+    ].map(t=>({text:t}));
+    const terms=[
+      ['Monthly Commitment',circle.monthlyStr+' every month for '+circle.membersNum+' months.'],
+      ['Distribution Rules','Each month\u2019s pool is allocated to one member by community vote — there is no fixed rotation.'],
+      ['Governance Framework','You review requests and vote; decisions follow verified-member consensus.'],
+      ['Participation Obligations','On-time contributions keep the circle and your standing healthy.'],
+      ['Trust Score Impact','Completing the circle and participating in governance raises your Trust Score™.'],
+      ['Exit Policy','Early exit requires an approved, verified replacement member.'],
+      ['Member Responsibilities','Uphold the circle code of conduct and community standards.']
+    ].map((t,i)=>({num:i+1,title:t[0],desc:t[1]}));
+    const activity=[
+      ['Noura A.','submitted a capital request','2h ago'],
+      ['Omar S.','voted on this month\u2019s allocation','5h ago'],
+      ['Khalid M.','completed identity verification','1d ago'],
+      ['Sara N.','contributed for June','2d ago']
+    ].map(a=>({who:a[0],what:a[1],when:a[2],initials:a[0].charAt(0)}));
+
+    // ===== MONTHLY PAYOUT BID model =====
+    const poolNum=circle.monthlyPoolNum;          // current month's pool (e.g. AED 144,000)
+    const totalMonths=circle.membersNum;          // members == months
+    const activeMonth=9;                           // circle is currently in Month 9
+    const activeMonthStr='Month '+activeMonth;
+    const monthsPaid=activeMonth-1;                // months 1–8 completed
+    const myBidAmt = st.earlyBid;                  // member's own bid (discount, AED)
+    const myBidNet = poolNum - myBidAmt;
+    const haveMyBid = !!st.earlyStatus;            // a live bid exists once submitted
+
+    // other members' live bids on the CURRENT month (discount offered, AED)
+    const bidDefs=[
+      {id:'b1',name:'Omar Saeed',initials:'OS',trust:915,purpose:'Business',reason:'Inventory to expand my catering business ahead of the festival season.',bid:18000,bg:pal[0]},
+      {id:'b2',name:'Layla Hassan',initials:'LH',trust:872,purpose:'Education',reason:'Final-year university tuition for my daughter, due before the next term.',bid:12000,bg:pal[2]},
+      {id:'b3',name:'Sara Nasser',initials:'SN',trust:848,purpose:'Medical',reason:'An urgent family medical procedure not fully covered by insurance.',bid:6000,bg:pal[1]}
+    ];
+    const liveBidsRaw = bidDefs.slice();
+    if(haveMyBid) liveBidsRaw.push({id:'me',name:'You (Ahmed Al Mansoori)',initials:'You',trust:850,purpose:'Capital',reason:(st.earlyReason||'Early access to capital this month.'),bid:myBidAmt,bg:'#0F3D2F',mine:true});
+    const topBid = Math.max.apply(null, liveBidsRaw.map(b=>b.bid));
+    const leaderBid = liveBidsRaw.reduce((a,b)=>b.bid>a.bid?b:a, liveBidsRaw[0]);
+    const govReqs = liveBidsRaw.slice().sort((a,b)=>b.bid-a.bid).map(b=>{
+      const net=poolNum-b.bid;
+      const isLeader=b.bid===topBid;
+      const status= isLeader? 'Leading Bid' : (b.mine? 'Outbid' : 'Live');
+      const statusBg= isLeader?'#E9EFE3':(b.mine?'#FBF4E6':'#F0ECE0');
+      const statusColor= isLeader?'#0F3D2F':(b.mine?'#9A742C':'#5A6B62');
+      return {
+        id:b.id, name:b.name, initials:b.initials, trust:b.trust, purpose:b.purpose, reason:b.reason, bg:b.bg, mine:!!b.mine,
+        bidStr:this.fmt(b.bid), netStr:this.fmt(net),
+        status, statusStyle:'background:'+statusBg+';color:'+statusColor+';padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;',
+        barW: topBid? Math.round(b.bid/topBid*100)+'%':'0%',
+        barColor: isLeader? 'linear-gradient(90deg,#0F3D2F,#7FE0A8)' : '#C5D2CB',
+        cardStyle:'background:#fff;border:1px solid '+(isLeader?'#0F3D2F':'#E6E1D3')+';border-radius:20px;padding:24px;box-shadow:'+(isLeader?'0 20px 44px -30px rgba(15,61,47,.4)':'0 18px 44px -36px rgba(15,26,21,.35)')+';'
+      };
+    });
+    const govReqCount=liveBidsRaw.length;
+    const leaderName=leaderBid.name;
+    const leaderBidStr=this.fmt(leaderBid.bid);
+    const highestDiscount=this.fmt(topBid);
+    const largestReleased=this.fmt(poolNum);
+
+    // completed bids — previous months of THIS circle
+    const completedVotes=[
+      {month:'Month 8',name:'Ahmed Al Mansoori',initials:'AM',disc:this.fmt(21600),received:this.fmt(122400),bg:pal[0]},
+      {month:'Month 7',name:'Mariam Khalifa',initials:'MK',disc:this.fmt(8640),received:this.fmt(135360),bg:pal[2]},
+      {month:'Month 6',name:'Yusuf Rahman',initials:'YR',disc:this.fmt(17280),received:this.fmt(126720),bg:pal[1]},
+      {month:'Month 5',name:'Hassan Tariq',initials:'HT',disc:this.fmt(12000),received:this.fmt(132000),bg:pal[3]}
+    ];
+
+    // my bid (My Bid tab)
+    const myBidLeading = haveMyBid && myBidAmt>=topBid;
+    const myReqsList = haveMyBid ? [{
+      month:activeMonthStr, bidStr:this.fmt(myBidAmt), net:this.fmt(myBidNet),
+      statusLabel: (st.earlyStatus==='released'?'Capital Released':(myBidLeading?'Leading Bid':'Outbid')),
+      statusStyle:'background:'+(st.earlyStatus==='released'?'#E9EFE3':(myBidLeading?'#E9EFE3':'#FBF4E6'))+';color:'+(st.earlyStatus==='released'||myBidLeading?'#0F3D2F':'#9A742C')+';padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;',
+      track:()=>this.setScreen('earlyTrack')
+    }] : [];
+
+    // My Circles
+    const myCirclesList = st.joined ? [{
+      name:circle.name, monthlyStr:circle.monthlyStr, poolStr:circle.poolStr,
+      currentMonth:activeMonthStr+' of '+totalMonths, paid:monthsPaid+' of '+totalMonths,
+      remaining:(totalMonths-monthsPaid)+' Months', nextDate:'1 July 2026',
+      payoutStatus:(haveMyBid?(st.earlyStatus==='released'?'Bid won · capital received':'Bid placed for '+activeMonthStr):'No active bid')
+    }] : [];
+
+    // Notifications
+    const notifDefs = st.approvalStatus==='none'
+      ? [['Welcome to TrustCircle','Complete your participation application to join a circle.','now',true]]
+      : st.approvalStatus==='reviewing'
+      ? [['Application received','Your profile is under review (24–72h).','2m','true']]
+      : [
+          ['You\u2019ve been approved','You can now participate in eligible circles.','1h',true],
+          ['New leading bid','Omar Saeed is leading '+activeMonthStr+' with a '+this.fmt(18000)+' discount.','3h',true],
+          ['Contribution due','Your July contribution of '+circle.monthlyStr+' is due 1 Jul.','1d',false]
+        ];
+    const notifications=notifDefs.map(n=>({title:n[0],body:n[1],when:n[2],unread:!!n[3], dotColor:n[3]?'#0F3D2F':'#C9CFCB'}));
+    const unreadCount=notifications.filter(n=>n.unread).length;
+
+    // landing discounted-access interactive (unchanged)
+    const disc=st.discount;
+    const discPriority = disc>=8000?'Highest':disc>=4000?'Higher':disc>0?'Slightly earlier':'Standard';
+    const discPct = Math.round(disc/10000*100);
+
+    // filter chips
+    const filterDefs=[['all','All Circles'],['home','Home'],['edu','Education'],['biz','Business'],['family','Family'],['vehicle','Vehicle'],['wealth','Wealth']];
+    const filterChips=filterDefs.map(([id,label])=>{
+      const active=st.filter===id;
+      return { id,label, go:()=>this.setFilter(id),
+        style:'cursor:pointer;font-family:\'Gantari\';font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;white-space:nowrap;background:'+(active?'#0F3D2F':'#fff')+';color:'+(active?'#fff':'#5A6B62')+';border:1px solid '+(active?'#0F3D2F':'#E6E1D3')+';' };
+    });
+
+    // nav tabs (app)
+    const showNav = isApp && ['dashboard','explore','detail','distribution','governance','terms','confirm','myCircles','earlyRequest','earlyTrack'].includes(screen);
+    const navDefs = st.joined
+      ? [['Dashboard','dashboard',['dashboard']],['Explore','explore',['explore','detail','distribution','terms','confirm']],['My Circles','myCircles',['myCircles','earlyRequest','earlyTrack']],['Governance','governance',['governance']]]
+      : [['Dashboard','dashboard',['dashboard']],['Explore','explore',['explore','detail','distribution','terms','confirm']]];
+    const navTabs=navDefs.map(([label,target,on])=>{
+      const active=on.includes(screen);
+      return { label, go:()=>this.setScreen(target),
+        style:'cursor:pointer;font-family:\'Gantari\';font-weight:600;font-size:13px;padding:8px 14px;border-radius:10px;background:'+(active?'#E9C77E':'transparent')+';color:'+(active?'#1C2A1F':'#C7D6CB')+';white-space:nowrap;' };
+    });
+
+    // ----- approval / eligibility -----
+    const approved = st.approvalStatus==='approved';
+    const employmentOpts=['Government Employee','Private Employee','Self Employed','Business Owner'];
+    const eligibleCircles=[{amt:'AED 3,000',ok:true},{amt:'AED 5,000',ok:true},{amt:'AED 10,000',ok:true},{amt:'AED 25,000+',ok:false}];
+
+    // ----- early payout / bid calc -----
+    const eMonthly=12000, eMembers=12, ePool=eMonthly*eMembers; // active circle (home)
+    const eBid=st.earlyBid;                       // bid = discount offered (AED)
+    const eNet=ePool-eBid;                         // expected net payout
+    const earlyStages=[
+      {key:'voting',title:'Live Bidding',desc:'Members place bids for this month\u2019s payout — highest discount leads.'},
+      {key:'community',title:'Bid Won',desc:'Your bid leads. Pending TrustCircle verification.'},
+      {key:'office',title:'TrustCircle Verification',desc:'Document & risk review at a TrustCircle office.'},
+      {key:'released',title:'Capital Released',desc:'Funds disbursed to your account.'}
+    ];
+    const eIdx=earlyStages.findIndex(s=>s.key===st.earlyStatus);
+    const earlyTimeline=earlyStages.map((s,i)=>({
+      title:s.title, desc:s.desc,
+      done:i<eIdx, current:i===eIdx,
+      dotStyle:'width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:\'Gantari\';font-weight:800;font-size:13px;background:'+(i<=eIdx?'#0F3D2F':'#ECE7D9')+';color:'+(i<=eIdx?'#fff':'#9AA69F')+';',
+      mark:(i<eIdx?'✓':(i+1)+''),
+      titleColor:(i<=eIdx?'#13251D':'#9AA69F')
+    }));
+    const earlyStatusLabel={voting:'Live Bidding · 48h remaining',community:'Bid Won · Pending Verification',office:'Verification Appointment Required',released:'Capital Released'}[st.earlyStatus]||'';
+    const earlyAdvanceLabel={voting:'View Bid Result →',community:'Schedule Verification Appointment →',office:'Confirm Appointment & Release →',released:''}[st.earlyStatus]||'';
+
+    // ----- voting dashboard tabs -----
+    const gt=st.govTab;
+
+    // investor metrics
+    const T=st.invT;
+    const fmtN=(n)=>Math.round(n).toLocaleString('en-US');
+    const invMetrics=[
+      {label:'Total Network Capital',value:'AED '+(2.4*T).toFixed(1)+'B',delta:'+38% YoY',deltaColor:'#7FE0A8'},
+      {label:'Capital Distributed',value:'AED '+(1.9*T).toFixed(1)+'B',delta:'across completed circles',deltaColor:'#7E9389'},
+      {label:'Active Circles',value:fmtN(4820*T),delta:'+22% QoQ',deltaColor:'#7FE0A8'},
+      {label:'Verified Members',value:fmtN(58400*T),delta:'+31% QoQ',deltaColor:'#7FE0A8'},
+      {label:'Average Trust Score™',value:fmtN(842*T)+' / 1000',delta:'network-wide',deltaColor:'#7E9389'},
+      {label:'Circle Completion Rate',value:(98.6*T).toFixed(1)+'%',delta:'institutional grade',deltaColor:'#7E9389'},
+      {label:'Enterprise Clients',value:fmtN(47*T),delta:'+12 this quarter',deltaColor:'#7FE0A8'},
+      {label:'Community Health Index',value:fmtN(96*T),delta:'Excellent',deltaColor:'#7FE0A8'}
+    ];
+    const growthVals=[14,26,38,55,78,100];
+    const growthLabels=['Q1','Q2','Q3','Q4','Q5','Q6'];
+    const growthBars=growthVals.map((v,i)=>({ h:Math.round(v*T)+'%', label:growthLabels[i] }));
+
+    return {
+      // view flags
+      isLanding: view==='landing', isInvestor: view==='investor',
+      isAppShell: isApp && screen!=='auth',
+      scAuth: isApp && screen==='auth',
+      scVerify:screen==='verify', scEmployer:screen==='employer', scPurpose:screen==='purpose', scProfile:screen==='profile',
+      scDashboard:screen==='dashboard', scExplore:screen==='explore', scDetail:screen==='detail',
+      scDistribution:screen==='distribution', scGovernance:screen==='governance', scTerms:screen==='terms',
+      scConfirm:screen==='confirm', scSuccess:screen==='success',
+      scApply:screen==='apply', scReviewing:screen==='reviewing', scApproved:screen==='approved',
+      scMyCircles:screen==='myCircles', scEarlyRequest:screen==='earlyRequest', scEarlyTrack:screen==='earlyTrack',
+      // employer verification
+      employerList, employer:st.employer, empSelectedName, empId:st.empId, empOtp:st.empOtp,
+      empSelect: st.empStage==='select', empOtpStage: st.empStage==='otp',
+      empCanMatch, empNotCanMatch:!empCanMatch, empOtpValid, empNotOtpValid:!empOtpValid,
+      empMaskedContact, empVerified:st.empVerified, hasEmployer:!!st.employer && st.empVerified,
+      approved, notApproved:!approved, isReviewing: st.approvalStatus==='reviewing', isPending:st.approvalStatus==='none',
+      employmentOpts:employmentOpts.map(o=>({name:o})), eligibleCircles:eligibleCircles.map(c=>({amt:c.amt, ok:c.ok, style:'display:flex;align-items:center;gap:9px;padding:13px 16px;border-radius:12px;background:'+(c.ok?'#E9EFE3':'#F6F2E9')+';border:1px solid '+(c.ok?'#CDE6D9':'#ECEFEC')+';', mark:c.ok?'✓':'—', markColor:c.ok?'#0F3D2F':'#9AA69F', textColor:c.ok?'#13251D':'#9AA69F'})),
+      // early payout / bid
+      earlyBid:eBid, earlyBidStr:this.fmt(eBid), earlyDiscountStr:this.fmt(eBid), earlyNetStr:this.fmt(eNet), earlyPoolStr:this.fmt(ePool), earlyReason:st.earlyReason,
+      activeMonthStr, activeMonth, monthsPaidStr:monthsPaid+'',
+      earlyTimeline, earlyStatusLabel, earlyAdvanceLabel, earlyReleased: st.earlyStatus==='released', earlyNotReleased: st.earlyStatus!=='released' && !!st.earlyStatus,
+      // bidding tabs
+      govTabLive: gt==='live', govTabMine: gt==='mine', govTabDone: gt==='completed',
+      govTabs:[['live','Live Bids'],['mine','My Bid'],['completed','Completed Bids']].map(([id,label])=>({label, active:gt===id, go:()=>this.setGovTab(id), style:'cursor:pointer;font-family:\'Gantari\';font-weight:600;font-size:14px;padding:10px 18px;border-radius:10px;white-space:nowrap;background:'+(gt===id?'#0F3D2F':'transparent')+';color:'+(gt===id?'#fff':'#5A6B62')+';'})),
+      completedVotes, myReqsList, hasMyReqs:myReqsList.length>0, noMyReqs:myReqsList.length===0,
+      highestDiscount, largestReleased,
+      // my circles
+      myCirclesList, hasMyCircles:myCirclesList.length>0, noMyCircles:myCirclesList.length===0,
+      // notifications
+      notifications, notifOpen:st.notifOpen, unreadCount, hasUnread:unreadCount>0, unreadStr:unreadCount+'',
+      showNav, navTabs,
+      showScore: isApp && ['profile','dashboard','explore','detail','distribution','governance','terms','confirm','success'].includes(screen),
+      displayScore: shownScore,
+
+      // landing
+      ancientSystems, howSteps, trustDims, govFlow, principles, revenueStreams, phases,
+      heroLines, heroNodes, heroInner, heroHaloX, heroHaloY, heroRingCirc, heroRingOffset, landingCircles: allCircles.slice(0,3),
+      navVision:()=>this.scrollToId('vision'), navScore:()=>this.scrollToId('trustscore'),
+      navCircles:()=>this.scrollToId('circles'), navGov:()=>this.scrollToId('governance'), navHow:()=>this.scrollToId('how'),
+
+      // auth
+      authChoices: st.authMode==='choices', authEmail: st.authMode==='email',
+      email: st.email, emailValid:/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.email), notEmailValid:!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.email),
+
+      // onboarding
+      identity, purposes, profile,
+      canContinuePurpose: st.purposes.length>0, notCanContinuePurpose: st.purposes.length===0,
+      ringCirc, ringOffset,
+
+      // dashboard
+      dashKicker: st.joined?'My Dashboard':'Dashboard',
+      dashTitle: st.joined?'Welcome back, Ahmed':'Welcome, Ahmed',
+      dashSubtitle: st.joined?'You\u2019re an active member. Here\u2019s your circle at a glance.':'Your network is ready. Here\u2019s where you stand today.',
+      joined: st.joined, notJoined: !st.joined, approvedNotJoined: approved && !st.joined,
+      activeStr: st.joined?'1':'0', activeSub: st.joined?'in good standing':'none yet',
+      govReqCount: govReqCount, voteCountStr: haveMyBid?'1':'0',
+
+      // circles
+      circles, circle, filterChips, circleCountStr: circles.length+(circles.length===1?' circle':' circles'),
+
+      // detail/terms
+      governance, terms, activity,
+      agreed: st.agreed, notAgreed: !st.agreed, agreeCheck: st.agreed?'✓':'',
+      checkboxStyle:'width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;background:'+(st.agreed?'#0F3D2F':'#fff')+';color:#E9C77E;border:1px solid '+(st.agreed?'#0F3D2F':'#D9E0DB')+';',
+
+      // distribution / discount
+      discount: disc, discountStr:this.fmt(disc), discountReceiveStr:this.fmt(poolNum-disc),
+      discountPriority: discPriority, discountPctStr: discPct+'%',
+
+      // governance bidding
+      govReqs, leaderName, leaderBidStr, hasMyBid:haveMyBid, myBidLeading,
+
+      // success
+      confetti: [['#0F3D2F','30%','10%','1.6s','.1s'],['#E9C77E','62%','14%','1.8s','.2s'],['#7FE0A8','48%','8%','2s','0s'],['#1B5C45','38%','16%','1.7s','.3s'],['#A8853F','70%','12%','1.9s','.15s'],['#0F3D2F','55%','18%','1.75s','.25s']].map(c=>({
+        style:'position:absolute;top:'+c[2]+';left:'+c[1]+';width:10px;height:10px;background:'+c[0]+';animation:tcFloat '+c[3]+' ease-out '+c[4]+' forwards;'
+      })),
+
+      // investor
+      invMetrics, growthBars,
+
+      // handlers
+      joinNow:()=>this.joinNow(), toLanding:()=>this.toLanding(), toInvestor:()=>this.toInvestor(),
+      pickProvider:()=>this.pickProvider(), openEmail:()=>this.openEmail(), closeEmail:()=>this.closeEmail(),
+      setEmail:(e)=>this.setEmail(e&&e.target?e.target.value:e),
+      continueVerify:()=>this.continueVerify(), continuePurpose:()=>this.continuePurpose(), continueProfile:()=>this.continueProfile(),
+      setEmpId:(e)=>this.setEmpId(e&&e.target?e.target.value:e), matchEmployee:()=>this.matchEmployee(),
+      setEmpOtp:(e)=>this.setEmpOtp(e&&e.target?e.target.value:e), verifyEmployer:()=>this.verifyEmployer(), skipEmployer:()=>this.skipEmployer(),
+      toExplore:()=>this.toExplore(), toDashboard:()=>this.toDashboard(), toGovernance:()=>this.toGovernance(),
+      toDistribution:()=>this.toDistribution(), toTerms:()=>this.toTerms(), toConfirm:()=>this.toConfirm(),
+      setFilter:(id)=>this.setFilter(id), setDiscount:(e)=>this.setDiscount(e&&e.target?e.target.value:e),
+      toggleAgree:()=>this.toggleAgree(), joinCircle:()=>this.joinCircle(), back:()=>this.back(),
+      toApply:()=>this.toApply(), submitApplication:()=>this.submitApplication(), approveApplication:()=>this.approveApplication(),
+      toMyCircles:()=>this.toMyCircles(), toEarlyRequest:()=>this.toEarlyRequest(),
+      setEarlyDiscount:(e)=>this.setEarlyDiscount(e&&e.target?e.target.value:e), setEarlyReason:(e)=>this.setEarlyReason(e&&e.target?e.target.value:e),
+      submitEarly:()=>this.submitEarly(), advanceEarly:()=>this.advanceEarly(),
+      toggleNotif:()=>this.toggleNotif(), closeNotif:()=>this.closeNotif()
+    };
+  }
+}
+</script>
+</body>
+</html>

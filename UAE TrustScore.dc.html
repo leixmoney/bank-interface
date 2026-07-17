@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#0B1F17;}
+  section[data-label]{font-family:'Manrope',sans-serif;overflow:hidden;position:relative;}
+  .k{font-family:'Sora',sans-serif;font-weight:600;letter-spacing:.24em;text-transform:uppercase;font-size:17px;}
+  .h{font-family:'Sora',sans-serif;font-weight:700;letter-spacing:-0.02em;}
+  .num{font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-0.02em;}
+  .ft{position:absolute;left:120px;right:120px;bottom:44px;display:flex;justify-content:space-between;align-items:center;padding-top:16px;font-family:'Sora',sans-serif;font-size:16px;letter-spacing:.05em;}
+  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+</style>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<!-- 1 · COVER -->
+<section data-label="Cover" data-speaker-notes="This is the official framing document for the UAE Trust Score — a national trust framework, prepared to a Government of Dubai standard. Dubai's name is built on trust; this codifies trust into a measurable, portable, honourable national asset. Every UAE resident, once established, earns the standing to hold and maintain a Trust Score." style="width:1920px;height:1080px;background:radial-gradient(125% 110% at 78% -15%,#127150 0%,#0c4631 44%,#08271c 100%);color:#EAF1ED;padding:96px 120px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <svg width="46" height="46" viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="none" stroke="#E9C77E" stroke-width="2"/><circle cx="30" cy="30" r="16" fill="none" stroke="#EAF1ED" stroke-width="2"/><circle cx="30" cy="30" r="5" fill="#E9C77E"/><g stroke="#E9C77E" stroke-width="1.4" opacity=".7"><line x1="30" y1="3" x2="30" y2="13"/><line x1="30" y1="47" x2="30" y2="57"/><line x1="3" y1="30" x2="13" y2="30"/><line x1="47" y1="30" x2="57" y2="30"/></g></svg>
+      <div>
+        <div class="h" style="font-size:21px;letter-spacing:.06em;">UAE TRUST SCORE</div>
+        <div style="font-size:14px;color:#9FBFAE;letter-spacing:.16em;font-family:'Sora';margin-top:2px;">A NATIONAL TRUST FRAMEWORK</div>
+      </div>
+    </div>
+    <div style="text-align:right;font-family:'Sora';font-size:14px;letter-spacing:.14em;color:#7E9C8C;">PREPARED TO A<br/>GOVERNMENT OF DUBAI STANDARD</div>
+  </div>
+  <div>
+    <div class="k" style="color:#E9C77E;">Dubai · The Capital of Trust</div>
+    <h1 class="h" style="font-size:96px;line-height:1.0;margin:28px 0 0;color:#FBFAF5;max-width:1450px;">Trust, made measurable. Trust, made national.</h1>
+    <p style="font-size:31px;color:#A7C6B5;margin:30px 0 0;font-weight:500;max-width:1150px;">A single, portable standard that reflects how every resident and business honours their commitments — and that the world can rely on.</p>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.13);padding-top:24px;">
+    <div style="font-size:20px;color:#7E9C8C;">Framework &amp; Standards Document · 2026</div>
+    <div style="font-size:20px;color:#7E9C8C;">Official · For Public Consultation</div>
+  </div>
+</section>
+
+<!-- 2 · PREAMBLE -->
+<section data-label="Preamble" data-speaker-notes="Open on the cultural truth: Dubai is the second name of trust. Its reputation — for safety, for honouring agreements, for reliability — is its greatest asset. This document proposes to make that intangible reputation explicit and measurable at the level of every resident and business." style="width:1920px;height:1080px;background:#F5F7F4;color:#0B1F17;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Preamble</div><div class="k" style="color:#B7C2BB;">02 / 16</div></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1500px;">
+    <h2 class="h" style="font-size:68px;line-height:1.08;">Dubai is the second name of trust.</h2>
+    <p style="font-size:30px;line-height:1.55;color:#3C4A43;margin:30px 0 0;">Its safety, its rule of law, and its reputation for honouring agreements are the foundation of everything built here. That trust is the Emirate's most valuable and most carefully guarded asset.</p>
+    <p style="font-size:30px;line-height:1.55;color:#3C4A43;margin:24px 0 0;">Until now it has been intangible — felt, but never measured. The <span style="color:#0A6E4E;font-weight:600;">UAE Trust Score</span> makes it explicit: a verifiable standard of personal and commercial reliability that every resident earns, holds, and protects.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div style="background:#fff;border:1px solid #E0E7E2;border-radius:18px;padding:28px;"><div class="h" style="font-size:24px;color:#0A6E4E;">Earned</div><p style="font-size:20px;color:#5A6B62;line-height:1.45;margin:8px 0 0;">Built through consistent, honourable behaviour — never bought.</p></div>
+    <div style="background:#fff;border:1px solid #E0E7E2;border-radius:18px;padding:28px;"><div class="h" style="font-size:24px;color:#0A6E4E;">Portable</div><p style="font-size:20px;color:#5A6B62;line-height:1.45;margin:8px 0 0;">One standard, recognised across society, business and government.</p></div>
+    <div style="background:#fff;border:1px solid #E0E7E2;border-radius:18px;padding:28px;"><div class="h" style="font-size:24px;color:#0A6E4E;">Protected</div><p style="font-size:20px;color:#5A6B62;line-height:1.45;margin:8px 0 0;">The one asset a resident would least want to damage.</p></div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E0E7E2;color:#9AA69F;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 3 · DEFINITION -->
+<section data-label="Definition" data-speaker-notes="Define precisely what the Trust Score is and is not. It is a social trust score — a living measure of how reliably a person or business honours commitments. It is explicitly NOT a measure of wealth, a credit score, or a judgement of character. This distinction is essential for fairness and public acceptance." style="width:1920px;height:1080px;background:#0B1F17;color:#EAF1ED;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">Definition</div><div class="k" style="color:#33453D;">03 / 16</div></div>
+  <h2 class="h" style="font-size:62px;line-height:1.05;margin:16px 0 0;max-width:1300px;color:#FBFAF5;">A measure of reliability — not of wealth.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:44px;flex:1;">
+    <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border:1px solid rgba(233,199,126,.3);border-radius:22px;padding:44px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:21px;color:#E9C77E;font-family:'Sora';font-weight:600;letter-spacing:.04em;">THE TRUST SCORE IS</div>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-top:24px;font-size:25px;color:#EAF1ED;">
+        <div style="display:flex;gap:13px;"><span style="color:#7FE0A8;">✓</span> A living measure of how consistently you honour commitments</div>
+        <div style="display:flex;gap:13px;"><span style="color:#7FE0A8;">✓</span> Earned over time through verified, responsible behaviour</div>
+        <div style="display:flex;gap:13px;"><span style="color:#7FE0A8;">✓</span> A portable standard of personal &amp; commercial reliability</div>
+        <div style="display:flex;gap:13px;"><span style="color:#7FE0A8;">✓</span> A shared language of trust for society</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:44px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:21px;color:#E0907F;font-family:'Sora';font-weight:600;letter-spacing:.04em;">IT IS NOT</div>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-top:24px;font-size:25px;color:#9DBDAC;">
+        <div style="display:flex;gap:13px;"><span style="color:#E0907F;">✕</span> A measure of wealth or income</div>
+        <div style="display:flex;gap:13px;"><span style="color:#E0907F;">✕</span> A bank credit score or debt rating</div>
+        <div style="display:flex;gap:13px;"><span style="color:#E0907F;">✕</span> A judgement of personal or political character</div>
+        <div style="display:flex;gap:13px;"><span style="color:#E0907F;">✕</span> A surveillance tool — it records only verified commitments</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 4 · THE PRINCIPLE / ELIGIBILITY -->
+<section data-label="The Principle" data-speaker-notes="The founding principle: trust is earned, and it begins once a resident is established. After one year of residency, every individual and business becomes eligible to hold a Trust Score — and it becomes an honour to present, follow, and maintain. Frame it as a privilege of belonging, not an imposition." style="width:1920px;height:1080px;background:#F5F7F4;color:#0B1F17;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">The founding principle</div><div class="k" style="color:#B7C2BB;">04 / 16</div></div>
+  <h2 class="h" style="font-size:62px;line-height:1.04;margin:16px 0 0;max-width:1350px;">After one year here, trust becomes an honour to carry.</h2>
+  <div style="display:grid;grid-template-columns:.62fr 1.38fr;gap:54px;margin-top:40px;flex:1;align-items:center;">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+      <div style="width:240px;height:240px;border-radius:50%;background:linear-gradient(150deg,#0A6E4E,#08533B);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 30px 60px -28px rgba(10,110,78,.55);">
+        <div class="num" style="font-size:96px;color:#fff;line-height:1;">1</div>
+        <div class="k" style="font-size:16px;color:#E9C77E;margin-top:6px;">YEAR OF RESIDENCY</div>
+      </div>
+      <div style="font-size:22px;color:#3C4A43;margin-top:26px;max-width:320px;line-height:1.45;">Establishes the standing to hold a Trust Score — for every resident and business.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;gap:20px;align-items:center;background:#fff;border:1px solid #E0E7E2;border-radius:18px;padding:28px 32px;"><div class="num" style="font-size:32px;color:#E9C77E;">Present</div><div style="font-size:24px;color:#3C4A43;">A standing you are proud to show — to a landlord, a partner, an employer.</div></div>
+      <div style="display:flex;gap:20px;align-items:center;background:#fff;border:1px solid #E0E7E2;border-radius:18px;padding:28px 32px;"><div class="num" style="font-size:32px;color:#E9C77E;">Follow</div><div style="font-size:24px;color:#3C4A43;">A standard worth living up to, day after day, commitment after commitment.</div></div>
+      <div style="display:flex;gap:20px;align-items:center;background:linear-gradient(120deg,#0F1A15,#13241D);border-radius:18px;padding:28px 32px;color:#EAF1ED;"><div class="num" style="font-size:32px;color:#E9C77E;">Maintain</div><div style="font-size:24px;color:#CFE0D6;">An asset to protect for life — because trust, once lost, is hard to rebuild.</div></div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E0E7E2;color:#9AA69F;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 5 · WHAT IT MEASURES -->
+<section data-label="What It Measures" data-speaker-notes="Detail the inputs. The score is composed of verified, real-world signals of responsibility grouped into clear domains — financial commitments, residency obligations, civic conduct, and community standing. Emphasise that every input is a commitment honoured, verifiable, and consented to. It measures consistency, not wealth." style="width:1920px;height:1080px;background:#0B1F17;color:#EAF1ED;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">What it measures</div><div class="k" style="color:#33453D;">05 / 16</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.04;margin:16px 0 0;max-width:1300px;color:#FBFAF5;">Four domains of honoured commitment.</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:42px;flex:1;">
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px;display:flex;flex-direction:column;">
+      <div style="font-size:38px;">💳</div>
+      <div class="h" style="font-size:25px;color:#E9C77E;margin-top:14px;">Financial</div>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;font-size:20px;color:#9DBDAC;line-height:1.3;">
+        <div>Rent payments</div><div>Utility &amp; DEWA bills</div><div>Telecom &amp; internet</div><div>Insurance premiums</div><div>School fees</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px;display:flex;flex-direction:column;">
+      <div style="font-size:38px;">🪪</div>
+      <div class="h" style="font-size:25px;color:#E9C77E;margin-top:14px;">Residency</div>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;font-size:20px;color:#9DBDAC;line-height:1.3;">
+        <div>Verified identity</div><div>Employment stability</div><div>Labour obligations</div><div>Property obligations</div><div>Tenancy conduct</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px;display:flex;flex-direction:column;">
+      <div style="font-size:38px;">🏛️</div>
+      <div class="h" style="font-size:25px;color:#E9C77E;margin-top:14px;">Civic</div>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;font-size:20px;color:#9DBDAC;line-height:1.3;">
+        <div>Government services</div><div>Municipality dues</div><div>Traffic fine settlement</div><div>Licence &amp; permit renewals</div><div>Regulatory compliance</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border:1px solid rgba(233,199,126,.3);border-radius:20px;padding:32px;display:flex;flex-direction:column;">
+      <div style="font-size:38px;">🤝</div>
+      <div class="h" style="font-size:25px;color:#E9C77E;margin-top:14px;">Community</div>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;font-size:20px;color:#CFE0D6;line-height:1.3;">
+        <div>Honoured agreements</div><div>Savings-circle reliability</div><div>Community endorsements</div><div>Verified reputation</div><div>Consistent participation</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:rgba(233,199,126,.1);border:1px solid rgba(233,199,126,.28);border-radius:16px;padding:22px 30px;margin-top:22px;font-size:22px;color:#E9C77E;text-align:center;">Every input is a commitment <span style="color:#fff;font-weight:600;">honoured</span>, <span style="color:#fff;font-weight:600;">verified</span>, and shared only with <span style="color:#fff;font-weight:600;">consent</span> — it measures consistency, never wealth.</div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 6 · TRUST TIERS -->
+<section data-label="Trust Tiers" data-speaker-notes="Present the standard scale: 0–1000, banded into recognisable tiers — Foundation, Established, Trusted, Distinguished. Each tier unlocks standing and opportunity. The gauge shows an exemplary resident at 850, Distinguished. This is the common language the whole society can read at a glance." style="width:1920px;height:1080px;background:#F5F7F4;color:#0B1F17;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">The standard scale</div><div class="k" style="color:#B7C2BB;">06 / 16</div></div>
+  <h2 class="h" style="font-size:60px;line-height:1.04;margin:16px 0 0;">One scale. Four tiers. Read at a glance.</h2>
+  <div style="display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;margin-top:36px;flex:1;align-items:center;">
+    <div style="display:flex;justify-content:center;">
+      <div style="position:relative;width:330px;height:330px;">
+        <svg width="330" height="330" viewBox="0 0 330 330" style="transform:rotate(-90deg);">
+          <circle cx="165" cy="165" r="145" fill="none" stroke="#E2E8E4" stroke-width="26"/>
+          <circle cx="165" cy="165" r="145" fill="none" stroke="url(#tg)" stroke-width="26" stroke-linecap="round" stroke-dasharray="911" stroke-dashoffset="137"/>
+          <defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6E4E"/><stop offset="1" stop-color="#E9C77E"/></linearGradient></defs>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <div class="k" style="font-size:14px;color:#0A6E4E;">Trust Score</div>
+          <div class="num" style="font-size:92px;color:#0B1F17;line-height:1;margin-top:4px;">850</div>
+          <div style="font-size:21px;color:#6B7A72;">/ 1000</div>
+          <div style="display:inline-flex;align-items:center;gap:7px;background:#0A6E4E;color:#fff;padding:7px 16px;border-radius:999px;font-size:17px;margin-top:12px;font-family:'Sora';font-weight:600;">Distinguished</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div style="display:flex;align-items:center;gap:20px;background:#fff;border:1px solid #E0E7E2;border-radius:16px;padding:22px 28px;"><div style="width:14px;height:46px;border-radius:6px;background:#C7D2CC;"></div><div style="flex:1;"><div class="h" style="font-size:24px;">Foundation</div><div style="font-size:19px;color:#6B7A72;">Building a record of reliability.</div></div><div class="num" style="font-size:26px;color:#8A968F;">0–549</div></div>
+      <div style="display:flex;align-items:center;gap:20px;background:#fff;border:1px solid #E0E7E2;border-radius:16px;padding:22px 28px;"><div style="width:14px;height:46px;border-radius:6px;background:#7FB79C;"></div><div style="flex:1;"><div class="h" style="font-size:24px;">Established</div><div style="font-size:19px;color:#6B7A72;">A consistent, dependable resident.</div></div><div class="num" style="font-size:26px;color:#5A6B62;">550–699</div></div>
+      <div style="display:flex;align-items:center;gap:20px;background:#fff;border:1px solid #BfD8CC;border-radius:16px;padding:22px 28px;"><div style="width:14px;height:46px;border-radius:6px;background:#0fa071;"></div><div style="flex:1;"><div class="h" style="font-size:24px;color:#0A6E4E;">Trusted</div><div style="font-size:19px;color:#6B7A72;">Recognised reliability across society.</div></div><div class="num" style="font-size:26px;color:#0A6E4E;">700–824</div></div>
+      <div style="display:flex;align-items:center;gap:20px;background:linear-gradient(120deg,#0F1A15,#13241D);border-radius:16px;padding:22px 28px;color:#EAF1ED;"><div style="width:14px;height:46px;border-radius:6px;background:#E9C77E;"></div><div style="flex:1;"><div class="h" style="font-size:24px;color:#E9C77E;">Distinguished</div><div style="font-size:19px;color:#9DBDAC;">An exemplary standard of trust.</div></div><div class="num" style="font-size:26px;color:#E9C77E;">825–1000</div></div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E0E7E2;color:#9AA69F;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 7 · A LAYER OF TRUST (P2P / P2B) -->
+<section data-label="A Layer of Trust" data-speaker-notes="Explain the network effect. Today every relationship re-asks the same question — can I trust you? — and re-verifies from scratch. The Trust Score becomes a shared layer beneath every interaction: person-to-person, person-to-business, and business-to-business. One verified signal replaces endless guesswork." style="width:1920px;height:1080px;background:#0B1F17;color:#EAF1ED;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">A shared layer of trust</div><div class="k" style="color:#33453D;">07 / 16</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.04;margin:16px 0 0;max-width:1250px;color:#FBFAF5;">One question, asked everywhere — finally answered.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:54px;margin-top:36px;flex:1;align-items:center;">
+    <div style="display:flex;justify-content:center;">
+      <svg width="470" height="380" viewBox="0 0 470 380">
+        <line x1="120" y1="100" x2="350" y2="100" stroke="#2c5446" stroke-width="2"/>
+        <line x1="120" y1="100" x2="120" y2="280" stroke="#2c5446" stroke-width="2"/>
+        <line x1="350" y1="100" x2="350" y2="280" stroke="#2c5446" stroke-width="2"/>
+        <line x1="120" y1="280" x2="350" y2="280" stroke="#2c5446" stroke-width="2"/>
+        <line x1="120" y1="100" x2="350" y2="280" stroke="#2c5446" stroke-width="2"/>
+        <line x1="350" y1="100" x2="120" y2="280" stroke="#2c5446" stroke-width="2"/>
+        <g font-family="Sora" font-weight="700" font-size="17" text-anchor="middle">
+          <circle cx="120" cy="100" r="44" fill="#16352a" stroke="#E9C77E" stroke-width="2"/><text x="120" y="95" fill="#EAF1ED">Person</text><text x="120" y="116" fill="#9DBDAC" font-size="13">resident</text>
+          <circle cx="350" cy="100" r="44" fill="#16352a" stroke="#E9C77E" stroke-width="2"/><text x="350" y="95" fill="#EAF1ED">Person</text><text x="350" y="116" fill="#9DBDAC" font-size="13">resident</text>
+          <circle cx="120" cy="280" r="44" fill="#16352a" stroke="#E9C77E" stroke-width="2"/><text x="120" y="275" fill="#EAF1ED">Business</text><text x="120" y="296" fill="#9DBDAC" font-size="13">SME</text>
+          <circle cx="350" cy="280" r="44" fill="#16352a" stroke="#E9C77E" stroke-width="2"/><text x="350" y="275" fill="#EAF1ED">Business</text><text x="350" y="296" fill="#9DBDAC" font-size="13">enterprise</text>
+        </g>
+        <circle cx="235" cy="190" r="50" fill="#0A6E4E" stroke="#E9C77E" stroke-width="2.5"/>
+        <text x="235" y="184" text-anchor="middle" fill="#E9C77E" font-family="Sora" font-weight="700" font-size="16">TRUST</text>
+        <text x="235" y="204" text-anchor="middle" fill="#fff" font-family="Sora" font-weight="700" font-size="16">SCORE</text>
+      </svg>
+    </div>
+    <div>
+      <p style="font-size:27px;line-height:1.5;color:#CFE0D6;margin:0 0 26px;">Every relationship begins with the same unanswered question — and today, each one re-verifies from scratch.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px 26px;font-size:23px;"><span style="color:#E9C77E;font-weight:600;font-family:'Sora';">Peer → Peer</span> &nbsp;<span style="color:#9DBDAC;">A flatmate, a private sale, a personal loan.</span></div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px 26px;font-size:23px;"><span style="color:#E9C77E;font-weight:600;font-family:'Sora';">Peer → Business</span> &nbsp;<span style="color:#9DBDAC;">A tenant, a customer, a job applicant.</span></div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px 26px;font-size:23px;"><span style="color:#E9C77E;font-weight:600;font-family:'Sora';">Business → Business</span> &nbsp;<span style="color:#9DBDAC;">A supplier, a partner, a counterparty.</span></div>
+      </div>
+      <p style="font-size:24px;line-height:1.5;color:#9DBDAC;margin:26px 0 0;">One verified Trust Score replaces endless guesswork — beneath every interaction in society.</p>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 8 · USE CASES -->
+<section data-label="Use Cases" data-speaker-notes="Make it concrete across three audiences. For individuals: faster rentals, deposits waived, doors opened on reputation. For businesses: safer customers, partners and hires. For government: a healthier, more accountable society with less friction in every service. Trust becomes the currency of opportunity." style="width:1920px;height:1080px;background:#F5F7F4;color:#0B1F17;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Where it works</div><div class="k" style="color:#B7C2BB;">08 / 16</div></div>
+  <h2 class="h" style="font-size:60px;line-height:1.04;margin:16px 0 0;">Trust becomes the currency of opportunity.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:42px;flex:1;">
+    <div style="background:#fff;border:1px solid #E0E7E2;border-radius:20px;padding:38px;display:flex;flex-direction:column;">
+      <div style="font-size:42px;">👤</div>
+      <div class="h" style="font-size:28px;margin-top:16px;color:#0A6E4E;">For individuals</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:20px;font-size:21px;color:#3C4A43;line-height:1.4;">
+        <div>— Rent a home with deposits reduced or waived</div>
+        <div>— Access community capital &amp; better terms</div>
+        <div>— Stand out to employers on proven reliability</div>
+        <div>— Carry one reputation everywhere you go</div>
+      </div>
+    </div>
+    <div style="background:#fff;border:1px solid #E0E7E2;border-radius:20px;padding:38px;display:flex;flex-direction:column;">
+      <div style="font-size:42px;">🏢</div>
+      <div class="h" style="font-size:28px;margin-top:16px;color:#0A6E4E;">For businesses</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:20px;font-size:21px;color:#3C4A43;line-height:1.4;">
+        <div>— Screen tenants &amp; customers with confidence</div>
+        <div>— Onboard partners &amp; suppliers safely</div>
+        <div>— Hire on verified track record</div>
+        <div>— Reduce defaults, disputes &amp; fraud</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(150deg,#0F1A15,#13241D);border-radius:20px;padding:38px;color:#EAF1ED;display:flex;flex-direction:column;">
+      <div style="font-size:42px;">🏛️</div>
+      <div class="h" style="font-size:28px;margin-top:16px;color:#E9C77E;">For government</div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:20px;font-size:21px;color:#CFE0D6;line-height:1.4;">
+        <div>— A more accountable, responsible society</div>
+        <div>— Less friction across public services</div>
+        <div>— A data-light signal of civic reliability</div>
+        <div>— A globally legible mark of UAE standards</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E0E7E2;color:#9AA69F;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 9 · INTERNATIONAL CREDIBILITY -->
+<section data-label="International Credibility" data-speaker-notes="Elevate to the global stage. The world already trusts the UAE; the Trust Score lets that trust travel with each resident and business. For anyone abroad wanting to do business with a UAE resident or company, the score is portable, verifiable proof — a passport of reliability that strengthens the nation's brand." style="width:1920px;height:1080px;background:#0B1F17;color:#EAF1ED;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">International credibility</div><div class="k" style="color:#33453D;">09 / 16</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.04;margin:16px 0 0;max-width:1300px;color:#FBFAF5;">A passport of reliability the world can read.</h2>
+  <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:54px;margin-top:38px;flex:1;align-items:center;">
+    <div>
+      <p style="font-size:27px;line-height:1.55;color:#CFE0D6;margin:0;max-width:680px;">The world already trusts the UAE. The Trust Score lets that trust travel — with every resident and every business, wherever they go.</p>
+      <p style="font-size:24px;line-height:1.5;color:#9DBDAC;margin:24px 0 0;max-width:680px;">For a counterparty abroad weighing whether to deal with a UAE resident or company, the Trust Score is portable, verifiable proof — backed by the credibility of UAE standards.</p>
+      <div style="display:flex;gap:36px;margin-top:36px;">
+        <div><div class="num" style="font-size:54px;color:#E9C77E;">Verifiable</div><div style="font-size:20px;color:#9DBDAC;">independently checkable</div></div>
+        <div style="border-left:1px solid rgba(255,255,255,.14);padding-left:36px;"><div class="num" style="font-size:54px;color:#E9C77E;">Portable</div><div style="font-size:20px;color:#9DBDAC;">recognised across borders</div></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <svg width="420" height="420" viewBox="0 0 420 420">
+        <circle cx="210" cy="210" r="180" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1.5"/>
+        <ellipse cx="210" cy="210" rx="180" ry="70" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
+        <ellipse cx="210" cy="210" rx="70" ry="180" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1.5"/>
+        <ellipse cx="210" cy="210" rx="180" ry="130" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1.5"/>
+        <g stroke="#E9C77E" stroke-width="1.6" opacity=".55">
+          <line x1="210" y1="210" x2="210" y2="40"/><line x1="210" y1="210" x2="372" y2="150"/><line x1="210" y1="210" x2="330" y2="350"/><line x1="210" y1="210" x2="90" y2="350"/><line x1="210" y1="210" x2="48" y2="150"/>
+        </g>
+        <g fill="#E9C77E"><circle cx="210" cy="40" r="7"/><circle cx="372" cy="150" r="7"/><circle cx="330" cy="350" r="7"/><circle cx="90" cy="350" r="7"/><circle cx="48" cy="150" r="7"/></g>
+        <circle cx="210" cy="210" r="62" fill="#0A6E4E" stroke="#E9C77E" stroke-width="2.5"/>
+        <text x="210" y="203" text-anchor="middle" fill="#E9C77E" font-family="Sora" font-weight="700" font-size="17">UAE</text>
+        <text x="210" y="226" text-anchor="middle" fill="#fff" font-family="Sora" font-weight="600" font-size="14">TRUST</text>
+      </svg>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 10 · THE WEIGHT OF TRUST -->
+<section data-label="The Weight of Trust" data-speaker-notes="This is the emotional core: the score must carry real weight. It should be the last thing anyone would want to damage. Honouring commitments lifts it slowly and steadily; breaking them costs disproportionately — because that asymmetry is exactly what makes the signal trustworthy and behaviour-changing." style="width:1920px;height:1080px;background:radial-gradient(120% 110% at 80% -12%,#127150,#08271c);color:#EAF1ED;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">The weight of trust</div><div class="k" style="color:#33453D;">10 / 16</div></div>
+  <h2 class="h" style="font-size:62px;line-height:1.03;margin:16px 0 0;max-width:1350px;color:#FBFAF5;">The last thing you would ever want to damage.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:42px;flex:1;align-items:center;">
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:42px;">
+      <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:34px;">📈</span><div class="h" style="font-size:28px;color:#7FE0A8;">Earned slowly</div></div>
+      <p style="font-size:23px;color:#CFE0D6;line-height:1.5;margin:18px 0 0;">Every honoured commitment adds a little. Trust compounds quietly, month after month, year after year.</p>
+      <div style="height:14px;border-radius:8px;background:rgba(255,255,255,.08);margin-top:26px;overflow:hidden;"><div style="width:78%;height:100%;background:linear-gradient(90deg,#0A6E4E,#7FE0A8);border-radius:8px;"></div></div>
+      <div style="font-size:18px;color:#9DBDAC;margin-top:10px;">steady, patient, cumulative</div>
+    </div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(224,144,127,.4);border-radius:22px;padding:42px;">
+      <div style="display:flex;align-items:center;gap:14px;"><span style="font-size:34px;">⚠️</span><div class="h" style="font-size:28px;color:#E0907F;">Lost quickly</div></div>
+      <p style="font-size:23px;color:#CFE0D6;line-height:1.5;margin:18px 0 0;">A broken commitment costs disproportionately. That asymmetry is what makes the signal honest — and worth protecting.</p>
+      <div style="height:14px;border-radius:8px;background:rgba(255,255,255,.08);margin-top:26px;overflow:hidden;"><div style="width:30%;height:100%;background:linear-gradient(90deg,#9A4B3B,#E0907F);border-radius:8px;"></div></div>
+      <div style="font-size:18px;color:#9DBDAC;margin-top:10px;">a single default echoes</div>
+    </div>
+  </div>
+  <div style="background:linear-gradient(120deg,#E9C77E,#C9A24B);border-radius:18px;padding:26px 34px;margin-top:24px;color:#231A06;text-align:center;font-family:'Sora';font-weight:600;font-size:26px;">When trust is this valuable, people protect it — and behaviour changes for the better.</div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 11 · BEHAVIOR CHANGE -->
+<section data-label="Behaviour Change" data-speaker-notes="Show the societal shift. When reliability is visible and valuable, incentives realign: people pay on time, honour agreements, and participate responsibly — not from fear, but because trust is now an asset worth building. Map the before and after at the level of everyday behaviour." style="width:1920px;height:1080px;background:#F5F7F4;color:#0B1F17;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">How behaviour changes</div><div class="k" style="color:#B7C2BB;">11 / 16</div></div>
+  <h2 class="h" style="font-size:60px;line-height:1.04;margin:16px 0 0;">When trust is visible, society self-improves.</h2>
+  <div style="display:grid;grid-template-columns:1fr 64px 1fr;gap:24px;margin-top:42px;flex:1;align-items:center;">
+    <div style="background:#fff;border:1px solid #E0E7E2;border-radius:20px;padding:38px;">
+      <div class="k" style="font-size:16px;color:#9AA69F;">Today · trust is invisible</div>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:22px;font-size:23px;color:#5A6B62;">
+        <div style="display:flex;gap:12px;"><span style="color:#C0857A;">—</span> Commitments honoured quietly, unrewarded</div>
+        <div style="display:flex;gap:12px;"><span style="color:#C0857A;">—</span> Every deal re-verified from zero</div>
+        <div style="display:flex;gap:12px;"><span style="color:#C0857A;">—</span> Good behaviour and bad look alike</div>
+        <div style="display:flex;gap:12px;"><span style="color:#C0857A;">—</span> Trust rests on personal connections</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;font-size:40px;color:#0A6E4E;">→</div>
+    <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border-radius:20px;padding:38px;color:#EAF1ED;">
+      <div class="k" style="font-size:16px;color:#E9C77E;">Tomorrow · trust is an asset</div>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:22px;font-size:23px;color:#EAF1ED;">
+        <div style="display:flex;gap:12px;"><span style="color:#7FE0A8;">✓</span> Reliability is seen, valued &amp; rewarded</div>
+        <div style="display:flex;gap:12px;"><span style="color:#7FE0A8;">✓</span> One verified signal opens doors</div>
+        <div style="display:flex;gap:12px;"><span style="color:#7FE0A8;">✓</span> Responsibility becomes aspirational</div>
+        <div style="display:flex;gap:12px;"><span style="color:#7FE0A8;">✓</span> Trust rests on a shared standard</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E0E7E2;color:#9AA69F;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 12 · GOVERNANCE & SAFEGUARDS -->
+<section data-label="Governance" data-speaker-notes="A government-standard document must address safeguards head-on. The framework is built on consent, fairness, transparency, the right to correct, and strict purpose limitation. It is not surveillance: it records only verified commitments the resident agrees to share, and never measures wealth, opinion, or origin." style="width:1920px;height:1080px;background:#0B1F17;color:#EAF1ED;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">Governance &amp; safeguards</div><div class="k" style="color:#33453D;">12 / 16</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.04;margin:16px 0 0;max-width:1250px;color:#FBFAF5;">Built on consent, fairness and transparency.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px;flex:1;">
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:32px;"><div style="font-size:34px;">🔐</div><div class="h" style="font-size:24px;color:#E9C77E;margin-top:12px;">Consent-first</div><p style="font-size:20px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Data is shared only with the resident's explicit permission, per interaction.</p></div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:32px;"><div style="font-size:34px;">⚖️</div><div class="h" style="font-size:24px;color:#E9C77E;margin-top:12px;">Fair &amp; unbiased</div><p style="font-size:20px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Measures commitments only — never wealth, opinion, nationality or origin.</p></div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:32px;"><div style="font-size:34px;">👁️</div><div class="h" style="font-size:24px;color:#E9C77E;margin-top:12px;">Transparent</div><p style="font-size:20px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Every resident can see exactly what shapes their score and why.</p></div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:32px;"><div style="font-size:34px;">✏️</div><div class="h" style="font-size:24px;color:#E9C77E;margin-top:12px;">Right to correct</div><p style="font-size:20px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Errors can be disputed and corrected through due process.</p></div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:32px;"><div style="font-size:34px;">🎯</div><div class="h" style="font-size:24px;color:#E9C77E;margin-top:12px;">Purpose-limited</div><p style="font-size:20px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Used only for trust verification — never repurposed or sold.</p></div>
+    <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border:1px solid rgba(233,199,126,.3);border-radius:18px;padding:32px;"><div style="font-size:34px;">🛡️</div><div class="h" style="font-size:24px;color:#E9C77E;margin-top:12px;">Not surveillance</div><p style="font-size:20px;color:#CFE0D6;line-height:1.45;margin:10px 0 0;">A record of kept promises — held by the resident, not watched over them.</p></div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 13 · ARCHITECTURE -->
+<section data-label="Architecture" data-speaker-notes="Show how it fits together as national infrastructure: verified sources feed a consented trust ledger, which computes the score, which is presented through a single resident-held credential that businesses and services can verify. TrustCircle is the first live source generating this data today." style="width:1920px;height:1080px;background:#F5F7F4;color:#0B1F17;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">How it fits together</div><div class="k" style="color:#B7C2BB;">13 / 16</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.04;margin:16px 0 0;">National trust infrastructure, end to end.</h2>
+  <div style="display:flex;align-items:stretch;gap:16px;margin-top:50px;">
+    <div style="flex:1;background:#fff;border:1px solid #E0E7E2;border-radius:18px;padding:30px;"><div class="k" style="font-size:14px;color:#0A6E4E;">Step 1</div><div class="h" style="font-size:24px;margin-top:10px;">Verified sources</div><p style="font-size:19px;color:#5A6B62;line-height:1.4;margin:10px 0 0;">Rent, utilities, employment, civic dues, community conduct.</p></div>
+    <div style="display:flex;align-items:center;color:#B7C2BB;font-size:28px;">→</div>
+    <div style="flex:1;background:#fff;border:1px solid #E0E7E2;border-radius:18px;padding:30px;"><div class="k" style="font-size:14px;color:#0A6E4E;">Step 2</div><div class="h" style="font-size:24px;margin-top:10px;">Consented ledger</div><p style="font-size:19px;color:#5A6B62;line-height:1.4;margin:10px 0 0;">Commitments recorded only with permission, securely.</p></div>
+    <div style="display:flex;align-items:center;color:#B7C2BB;font-size:28px;">→</div>
+    <div style="flex:1;background:#fff;border:1px solid #E0E7E2;border-radius:18px;padding:30px;"><div class="k" style="font-size:14px;color:#0A6E4E;">Step 3</div><div class="h" style="font-size:24px;margin-top:10px;">Trust Score engine</div><p style="font-size:19px;color:#5A6B62;line-height:1.4;margin:10px 0 0;">A transparent, fair computation into one standard score.</p></div>
+    <div style="display:flex;align-items:center;color:#B7C2BB;font-size:28px;">→</div>
+    <div style="flex:1;background:linear-gradient(150deg,#0A6E4E,#08533B);border-radius:18px;padding:30px;color:#EAF1ED;"><div class="k" style="font-size:14px;color:#E9C77E;">Step 4</div><div class="h" style="font-size:24px;margin-top:10px;color:#fff;">Resident credential</div><p style="font-size:19px;color:#CFE0D6;line-height:1.4;margin:10px 0 0;">Held by the resident; verified by anyone, on consent.</p></div>
+  </div>
+  <div style="background:#0B1F17;border-radius:20px;padding:34px 40px;margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;color:#EAF1ED;">
+    <div style="font-size:25px;line-height:1.4;max-width:1080px;"><span style="color:#E9C77E;font-weight:600;font-family:'Sora';">TrustCircle is the first live source</span> — already generating verified, consented trust data through community capital circles today.</div>
+    <div style="display:flex;align-items:center;gap:12px;"><svg width="34" height="34" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="none" stroke="#E9C77E" stroke-width="2"/><circle cx="15" cy="15" r="7" fill="none" stroke="#EAF1ED" stroke-width="2"/><circle cx="15" cy="15" r="2.4" fill="#E9C77E"/></svg><div class="h" style="font-size:18px;color:#fff;letter-spacing:.04em;">TRUSTCIRCLE™</div></div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E0E7E2;color:#9AA69F;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 14 · ADOPTION ROADMAP -->
+<section data-label="Adoption" data-speaker-notes="Lay out a phased national adoption path: begin with voluntary early adopters via TrustCircle and willing partners; extend to rental, employment and SME verification; then integrate utilities and civic sources; ultimately a recognised national standard residents are proud to maintain. Each phase is opt-in and consent-based." style="width:1920px;height:1080px;background:#0B1F17;color:#EAF1ED;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">Adoption roadmap</div><div class="k" style="color:#33453D;">14 / 16</div></div>
+  <h2 class="h" style="font-size:60px;line-height:1.04;margin:16px 0 0;">From early adopters to national standard.</h2>
+  <div style="position:relative;margin-top:54px;flex:1;">
+    <div style="position:absolute;top:38px;left:6%;right:6%;height:3px;background:linear-gradient(90deg,#0A6E4E,#E9C77E);"></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative;">
+      <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#0A6E4E;border:5px solid #0B1F17;box-shadow:0 0 0 2px #0A6E4E;"></div><div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border-radius:18px;padding:30px;margin-top:26px;width:100%;"><div class="k" style="font-size:15px;color:#E9C77E;">Phase 1 · Now</div><div class="h" style="font-size:26px;margin-top:12px;color:#fff;">Foundation</div><p style="font-size:19px;color:#CFE0D6;line-height:1.4;margin:12px 0 0;">Voluntary scores via TrustCircle &amp; willing partners.</p></div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#13b07e;border:5px solid #0B1F17;box-shadow:0 0 0 2px #13b07e;"></div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:30px;margin-top:26px;width:100%;"><div class="k" style="font-size:15px;color:#7FE0A8;">Phase 2</div><div class="h" style="font-size:26px;margin-top:12px;color:#fff;">Commerce</div><p style="font-size:19px;color:#9DBDAC;line-height:1.4;margin:12px 0 0;">Rental, employment &amp; SME verification.</p></div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#caa24a;border:5px solid #0B1F17;box-shadow:0 0 0 2px #caa24a;"></div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:30px;margin-top:26px;width:100%;"><div class="k" style="font-size:15px;color:#E9C77E;">Phase 3</div><div class="h" style="font-size:26px;margin-top:12px;color:#fff;">Integration</div><p style="font-size:19px;color:#9DBDAC;line-height:1.4;margin:12px 0 0;">Utilities &amp; civic sources, with consent.</p></div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#E9C77E;border:5px solid #0B1F17;box-shadow:0 0 0 2px #E9C77E;"></div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(233,199,126,.35);border-radius:18px;padding:30px;margin-top:26px;width:100%;"><div class="k" style="font-size:15px;color:#E9C77E;">Phase 4</div><div class="h" style="font-size:26px;margin-top:12px;color:#fff;">National standard</div><p style="font-size:19px;color:#9DBDAC;line-height:1.4;margin:12px 0 0;">A recognised mark residents proudly maintain.</p></div></div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 15 · PRINCIPLES CHARTER -->
+<section data-label="Charter" data-speaker-notes="Summarise the framework as a short charter — the enduring principles by which the UAE Trust Score is governed. This is the page that would headline the official standard." style="width:1920px;height:1080px;background:#F5F7F4;color:#0B1F17;padding:78px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">The charter</div><div class="k" style="color:#B7C2BB;">15 / 16</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.04;margin:16px 0 0;">Five principles of the UAE Trust Score.</h2>
+  <div style="display:flex;flex-direction:column;gap:14px;margin-top:40px;flex:1;justify-content:center;">
+    <div style="display:flex;gap:26px;align-items:center;background:#fff;border:1px solid #E0E7E2;border-radius:16px;padding:26px 34px;"><div class="num" style="font-size:38px;color:#E9C77E;min-width:58px;">I</div><div style="font-size:26px;color:#1F2D27;"><span style="font-weight:700;font-family:'Sora';">Trust is earned</span> — through consistent, honoured commitments, never bought.</div></div>
+    <div style="display:flex;gap:26px;align-items:center;background:#fff;border:1px solid #E0E7E2;border-radius:16px;padding:26px 34px;"><div class="num" style="font-size:38px;color:#E9C77E;min-width:58px;">II</div><div style="font-size:26px;color:#1F2D27;"><span style="font-weight:700;font-family:'Sora';">Trust is for everyone</span> — every resident and business earns the same standard.</div></div>
+    <div style="display:flex;gap:26px;align-items:center;background:#fff;border:1px solid #E0E7E2;border-radius:16px;padding:26px 34px;"><div class="num" style="font-size:38px;color:#E9C77E;min-width:58px;">III</div><div style="font-size:26px;color:#1F2D27;"><span style="font-weight:700;font-family:'Sora';">Trust is consented</span> — shared by its holder, never taken or surveilled.</div></div>
+    <div style="display:flex;gap:26px;align-items:center;background:#fff;border:1px solid #E0E7E2;border-radius:16px;padding:26px 34px;"><div class="num" style="font-size:38px;color:#E9C77E;min-width:58px;">IV</div><div style="font-size:26px;color:#1F2D27;"><span style="font-weight:700;font-family:'Sora';">Trust is portable</span> — one standard, recognised across society and borders.</div></div>
+    <div style="display:flex;gap:26px;align-items:center;background:linear-gradient(120deg,#0F1A15,#13241D);border-radius:16px;padding:26px 34px;color:#EAF1ED;"><div class="num" style="font-size:38px;color:#E9C77E;min-width:58px;">V</div><div style="font-size:26px;color:#EAF1ED;"><span style="font-weight:700;font-family:'Sora';color:#fff;">Trust is precious</span> — the asset a resident would least want to damage.</div></div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E0E7E2;color:#9AA69F;"><span>UAE TRUST SCORE · A National Trust Framework</span><span>Government of Dubai Standard</span></div>
+</section>
+
+<!-- 16 · CLOSE -->
+<section data-label="Close" data-speaker-notes="Close on the national ambition: Dubai already means trust to the world. The UAE Trust Score makes that trust visible, measurable, and portable for every resident and business — so the world can do business with the UAE with total confidence. End on the line: trust, made national." style="width:1920px;height:1080px;background:radial-gradient(125% 110% at 22% -12%,#127150,#08271c);color:#EAF1ED;padding:96px 120px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div style="display:flex;align-items:center;gap:15px;">
+    <svg width="42" height="42" viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="none" stroke="#E9C77E" stroke-width="2"/><circle cx="30" cy="30" r="16" fill="none" stroke="#EAF1ED" stroke-width="2"/><circle cx="30" cy="30" r="5" fill="#E9C77E"/></svg>
+    <div class="h" style="font-size:20px;letter-spacing:.06em;">UAE TRUST SCORE</div>
+  </div>
+  <div>
+    <div class="k" style="color:#E9C77E;">Dubai · The Capital of Trust</div>
+    <h2 class="h" style="font-size:84px;line-height:1.02;margin:24px 0 0;max-width:1550px;color:#FBFAF5;">The world already trusts Dubai. Now that trust can travel — with every one of us.</h2>
+    <p style="font-size:29px;color:#A7C6B5;margin:30px 0 0;max-width:1200px;">A single national standard of reliability, earned by every resident and business, recognised across society and around the world.</p>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.13);padding-top:26px;display:flex;justify-content:space-between;align-items:center;">
+    <div style="font-size:30px;color:#E9C77E;font-family:'Sora';font-weight:600;">Trust, made national.</div>
+    <div style="font-size:18px;color:#7E9C8C;font-family:'Sora';letter-spacing:.1em;">GOVERNMENT OF DUBAI STANDARD · 2026</div>
+  </div>
+</section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#0F1A15;}
+  section[data-label]{font-family:'Manrope',sans-serif;overflow:hidden;position:relative;}
+  .k{font-family:'Sora',sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:18px;}
+  .h{font-family:'Sora',sans-serif;font-weight:700;letter-spacing:-0.02em;}
+  .num{font-family:'Sora',sans-serif;font-weight:800;letter-spacing:-0.02em;}
+  .ft{position:absolute;left:120px;right:120px;bottom:46px;display:flex;justify-content:space-between;align-items:center;padding-top:18px;font-family:'Sora',sans-serif;font-size:17px;letter-spacing:.05em;}
+  *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  @media print{
+    *,*::before,*::after{
+      animation-delay:-99s !important; animation-duration:.001s !important;
+      animation-iteration-count:1 !important; animation-fill-mode:both !important;
+      animation-play-state:running !important; transition-duration:0s !important;
+    }
+  }
+</style>
+<script>
+addEventListener('load', () => {
+  (async () => {
+    try { await document.fonts.ready; } catch (e) {}
+    const deck = document.querySelector('deck-stage');
+    // wait for slides to mount
+    for (let i = 0; i < 40; i++) {
+      if (deck && deck.querySelectorAll('section[data-label]').length > 1) break;
+      await new Promise((r) => setTimeout(r, 150));
+    }
+    const imgs = Array.from(document.images).filter((i) => !i.complete);
+    await Promise.race([
+      Promise.allSettled(imgs.map((i) => i.decode())),
+      new Promise((r) => setTimeout(r, 8000)),
+    ]);
+    setTimeout(() => window.print(), 800);
+  })();
+});
+</script>
+</helmet>
+
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<!-- 1 · COVER -->
+<section data-label="Cover" data-speaker-notes="TrustCircle is the trust infrastructure layer for community capital. We digitize the world's oldest financial behavior — savings circles — into a regulated, insured, employer-backed network. Today: the model, the proof (Hakbah, Saudi Arabia), why the UAE, how we engineer safety, the business, and the ask." style="width:1920px;height:1080px;background:radial-gradient(120% 100% at 82% -10%,#11593f 0%,#0c3f2c 45%,#08271c 100%);color:#EAF1ED;padding:104px 120px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div style="display:flex;align-items:center;gap:15px;">
+    <svg width="40" height="40" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="none" stroke="#E9C77E" stroke-width="2"/><circle cx="15" cy="15" r="7" fill="none" stroke="#EAF1ED" stroke-width="2"/><circle cx="15" cy="15" r="2.4" fill="#E9C77E"/></svg>
+    <div class="h" style="font-size:23px;letter-spacing:.05em;">TRUSTCIRCLE<span style="font-size:13px;vertical-align:super;color:#E9C77E;">™</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.35fr .65fr;gap:60px;align-items:center;">
+    <div>
+      <div class="k" style="color:#E9C77E;">The Ethical Capital Network</div>
+      <h1 class="h" style="font-size:86px;line-height:1.02;margin:28px 0 0;color:#FBFAF5;">Transforming the world's oldest financial system into digital trust infrastructure.</h1>
+      <p style="font-size:32px;color:#9DBDAC;margin:32px 0 0;font-weight:500;">Capital, Powered by Community.</p>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <svg width="320" height="320" viewBox="0 0 600 600">
+        <circle cx="300" cy="300" r="250" fill="none" stroke="rgba(233,199,126,.22)" stroke-width="1.5"/>
+        <circle cx="300" cy="300" r="180" fill="none" stroke="rgba(233,199,126,.3)" stroke-width="1.5"/>
+        <g stroke="rgba(233,199,126,.18)" stroke-width="1.2">
+          <line x1="300" y1="300" x2="300" y2="50"/><line x1="300" y1="300" x2="512" y2="178"/><line x1="300" y1="300" x2="512" y2="422"/><line x1="300" y1="300" x2="300" y2="550"/><line x1="300" y1="300" x2="88" y2="422"/><line x1="300" y1="300" x2="88" y2="178"/>
+        </g>
+        <circle cx="300" cy="300" r="92" fill="#0A6E4E" stroke="#E9C77E" stroke-width="2"/>
+        <text x="300" y="285" text-anchor="middle" fill="#Bfe0cf" font-family="Sora" font-size="20" letter-spacing="2">POOL</text>
+        <text x="300" y="328" text-anchor="middle" fill="#fff" font-family="Sora" font-weight="800" font-size="34">AED</text>
+        <g font-family="Sora" font-weight="700" font-size="22">
+          <circle cx="300" cy="50" r="26" fill="#E9C77E"/><text x="300" y="58" text-anchor="middle" fill="#231A06">A</text>
+          <circle cx="512" cy="178" r="26" fill="#15604a"/><text x="512" y="186" text-anchor="middle" fill="#EAF1ED">F</text>
+          <circle cx="512" cy="422" r="26" fill="#15604a"/><text x="512" y="430" text-anchor="middle" fill="#EAF1ED">O</text>
+          <circle cx="300" cy="550" r="26" fill="#15604a"/><text x="300" y="558" text-anchor="middle" fill="#EAF1ED">L</text>
+          <circle cx="88" cy="422" r="26" fill="#15604a"/><text x="88" y="430" text-anchor="middle" fill="#EAF1ED">S</text>
+          <circle cx="88" cy="178" r="26" fill="#15604a"/><text x="88" y="186" text-anchor="middle" fill="#EAF1ED">N</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.12);padding-top:24px;">
+    <div style="font-size:21px;color:#7E9C8C;">Partner, Board &amp; Investor Briefing · 2026</div>
+    <div style="font-size:21px;color:#7E9C8C;">Confidential</div>
+  </div>
+</section>
+
+<!-- 2 · AGENDA -->
+<section data-label="Agenda" data-speaker-notes="Quick roadmap of the conversation so everyone knows where we're going." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Agenda</div><div class="k" style="color:#B9C2BC;">02 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;">What we'll cover</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px;flex:1;">
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:6px;"><div class="num" style="font-size:30px;color:#E9C77E;">01</div><div class="h" style="font-size:28px;margin-top:8px;">The opportunity</div><p style="font-size:21px;color:#6B7A72;line-height:1.45;margin:6px 0 0;">An ancient behavior, an unbuilt category, and the trust insight.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:6px;"><div class="num" style="font-size:30px;color:#E9C77E;">02</div><div class="h" style="font-size:28px;margin-top:8px;">The proof</div><p style="font-size:21px;color:#6B7A72;line-height:1.45;margin:6px 0 0;">Hakbah in Saudi Arabia — and why the UAE is next.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:6px;"><div class="num" style="font-size:30px;color:#E9C77E;">03</div><div class="h" style="font-size:28px;margin-top:8px;">The product</div><p style="font-size:21px;color:#6B7A72;line-height:1.45;margin:6px 0 0;">Administered circles, Trust Score™, and the payout-bid market.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:6px;"><div class="num" style="font-size:30px;color:#E9C77E;">04</div><div class="h" style="font-size:28px;margin-top:8px;">The safety engine</div><p style="font-size:21px;color:#6B7A72;line-height:1.45;margin:6px 0 0;">Seven layers of capital protection, phased to scale.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:6px;"><div class="num" style="font-size:30px;color:#E9C77E;">05</div><div class="h" style="font-size:28px;margin-top:8px;">The business</div><p style="font-size:21px;color:#6B7A72;line-height:1.45;margin:6px 0 0;">Revenue model and GCC expansion roadmap.</p></div>
+    <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border-radius:20px;padding:36px;color:#EAF1ED;display:flex;flex-direction:column;gap:6px;"><div class="num" style="font-size:30px;color:#E9C77E;">06</div><div class="h" style="font-size:28px;margin-top:8px;color:#fff;">The ask</div><p style="font-size:21px;color:#CFE0D6;line-height:1.45;margin:6px 0 0;">The pilot, and how to build it with us.</p></div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 3 · THE BEHAVIOR + DIAGRAM -->
+<section data-label="The Behavior" data-speaker-notes="Before banks, communities pooled money through trust: everyone contributes, one person receives the pool each cycle, until all have. This still moves ~$500B globally — but it's offline, manual and risky. That gap is the opening." style="width:1920px;height:1080px;background:#0F1A15;color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">The behavior · older than banking</div><div class="k" style="color:#37463F;">03 / 22</div></div>
+  <h2 class="h" style="font-size:60px;line-height:1.05;margin:18px 0 0;max-width:1200px;color:#FBFAF5;">Communities have financed life through trust — not debt — for millennia.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:36px;flex:1;align-items:center;">
+    <div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="font-family:'Sora';font-weight:600;font-size:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:13px 24px;">Jam'iya</div>
+        <div style="font-family:'Sora';font-weight:600;font-size:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:13px 24px;">ROSCA</div>
+        <div style="font-family:'Sora';font-weight:600;font-size:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:13px 24px;">Committee</div>
+        <div style="font-family:'Sora';font-weight:600;font-size:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:13px 24px;">Hui</div>
+        <div style="font-family:'Sora';font-weight:600;font-size:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:13px 24px;">Tanda</div>
+        <div style="font-family:'Sora';font-weight:600;font-size:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:13px 24px;">Susu</div>
+      </div>
+      <p style="font-size:27px;line-height:1.5;color:#CFE0D6;margin:32px 0 0;max-width:680px;">Every member contributes a fixed amount each month. One member receives the entire pool. It repeats until everyone has — no interest, no lender, just trust.</p>
+      <div style="display:flex;gap:46px;margin-top:38px;">
+        <div><div class="num" style="font-size:60px;color:#E9C77E;">$500B</div><div style="font-size:20px;color:#9DBDAC;">global ROSCA market<sup>1</sup></div></div>
+        <div style="border-left:1px solid rgba(255,255,255,.14);padding-left:46px;"><div class="num" style="font-size:60px;color:#E9C77E;">~2%</div><div style="font-size:20px;color:#9DBDAC;">avg regional savings rate</div></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <svg width="500" height="500" viewBox="0 0 600 600">
+        <g stroke="rgba(255,255,255,.12)" stroke-width="1.5">
+          <line x1="300" y1="300" x2="300" y2="80"/><line x1="300" y1="300" x2="429" y2="122"/><line x1="300" y1="300" x2="509" y2="232"/><line x1="300" y1="300" x2="509" y2="368"/><line x1="300" y1="300" x2="429" y2="478"/><line x1="300" y1="300" x2="300" y2="520"/><line x1="300" y1="300" x2="171" y2="478"/><line x1="300" y1="300" x2="91" y2="368"/><line x1="300" y1="300" x2="91" y2="232"/><line x1="300" y1="300" x2="171" y2="122"/>
+        </g>
+        <path d="M300 190 A110 110 0 0 1 410 300" fill="none" stroke="#E9C77E" stroke-width="3" stroke-dasharray="6 9" marker-end="url(#ar)"/>
+        <defs><marker id="ar" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#E9C77E"/></marker></defs>
+        <circle cx="300" cy="300" r="86" fill="#0A6E4E" stroke="#E9C77E" stroke-width="2.5"/>
+        <text x="300" y="290" text-anchor="middle" fill="#Bfe0cf" font-family="Sora" font-size="18" letter-spacing="2">MONTHLY</text>
+        <text x="300" y="320" text-anchor="middle" fill="#fff" font-family="Sora" font-weight="800" font-size="26">POOL</text>
+        <g font-family="Sora" font-weight="700" font-size="20">
+          <circle cx="300" cy="80" r="28" fill="#E9C77E"/><text x="300" y="88" text-anchor="middle" fill="#231A06">★</text>
+          <circle cx="429" cy="122" r="26" fill="#1a3b30"/><text x="429" y="130" text-anchor="middle" fill="#9DBDAC">2</text>
+          <circle cx="509" cy="232" r="26" fill="#1a3b30"/><text x="509" y="240" text-anchor="middle" fill="#9DBDAC">3</text>
+          <circle cx="509" cy="368" r="26" fill="#1a3b30"/><text x="509" y="376" text-anchor="middle" fill="#9DBDAC">4</text>
+          <circle cx="429" cy="478" r="26" fill="#1a3b30"/><text x="429" y="486" text-anchor="middle" fill="#9DBDAC">5</text>
+          <circle cx="300" cy="520" r="26" fill="#1a3b30"/><text x="300" y="528" text-anchor="middle" fill="#9DBDAC">6</text>
+          <circle cx="171" cy="478" r="26" fill="#1a3b30"/><text x="171" y="486" text-anchor="middle" fill="#9DBDAC">7</text>
+          <circle cx="91" cy="368" r="26" fill="#1a3b30"/><text x="91" y="376" text-anchor="middle" fill="#9DBDAC">8</text>
+          <circle cx="91" cy="232" r="26" fill="#1a3b30"/><text x="91" y="240" text-anchor="middle" fill="#9DBDAC">9</text>
+          <circle cx="171" cy="122" r="26" fill="#1a3b30"/><text x="171" y="130" text-anchor="middle" fill="#9DBDAC">10</text>
+        </g>
+        <text x="300" y="582" text-anchor="middle" fill="#7E9C8C" font-family="Sora" font-size="19">★ this cycle's recipient</text>
+      </svg>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 4 · THE INSIGHT -->
+<section data-label="The Insight" data-speaker-notes="The category insight: banks monetize debt, fintechs monetize transactions. We monetize trust itself — the original financial infrastructure. Different business, different alignment, defensible." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">The insight</div><div class="k" style="color:#B9C2BC;">04 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;">Three ways to build a financial company.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:48px;flex:1;align-items:stretch;">
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:24px;padding:46px;display:flex;flex-direction:column;"><div style="font-size:46px;">🏦</div><div style="font-size:23px;color:#6B7A72;margin-top:24px;">Banks monetize</div><div class="h" style="font-size:52px;margin-top:8px;">Debt</div><p style="font-size:22px;color:#6B7A72;line-height:1.5;margin:auto 0 0;">You against the customer. Profit grows when they owe more.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:24px;padding:46px;display:flex;flex-direction:column;"><div style="font-size:46px;">💳</div><div style="font-size:23px;color:#6B7A72;margin-top:24px;">Fintechs monetize</div><div class="h" style="font-size:52px;margin-top:8px;">Transactions</div><p style="font-size:22px;color:#6B7A72;line-height:1.5;margin:auto 0 0;">A race to the lowest fee on every swipe and transfer.</p></div>
+    <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border-radius:24px;padding:46px;color:#EAF1ED;display:flex;flex-direction:column;border:1px solid rgba(233,199,126,.35);"><div style="font-size:46px;">🤝</div><div style="font-size:23px;color:#Bfe0cf;margin-top:24px;">TrustCircle monetizes</div><div class="h" style="font-size:52px;margin-top:8px;color:#E9C77E;">Trust</div><p style="font-size:22px;color:#CFE0D6;line-height:1.5;margin:auto 0 0;">Aligned with the member. Worth more the more they participate.</p></div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 5 · THE CATEGORY -->
+<section data-label="The Category" data-speaker-notes="We are deliberately not a bank, lender, wallet or committee app. We are the network layer — the Visa/Stripe of community capital — so partners and regulators file us correctly." style="width:1920px;height:1080px;background:#0F1A15;color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">The category</div><div class="k" style="color:#37463F;">05 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;max-width:1300px;color:#FBFAF5;">Not another app. The network beneath them.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:34px;margin-top:44px;flex:1;">
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:44px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:22px;color:#E0907F;font-weight:600;font-family:'Sora';letter-spacing:.04em;">TRUSTCIRCLE IS NOT</div>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;font-size:27px;color:#9DBDAC;">
+        <div style="display:flex;gap:14px;align-items:center;"><span style="color:#E0907F;">✕</span> A bank or lending platform</div>
+        <div style="display:flex;gap:14px;align-items:center;"><span style="color:#E0907F;">✕</span> A savings app or fintech wallet</div>
+        <div style="display:flex;gap:14px;align-items:center;"><span style="color:#E0907F;">✕</span> A crowdfunding platform</div>
+        <div style="display:flex;gap:14px;align-items:center;"><span style="color:#E0907F;">✕</span> A committee or chit app</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border-radius:24px;padding:44px;border:1px solid rgba(233,199,126,.35);display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:22px;color:#E9C77E;font-weight:600;font-family:'Sora';letter-spacing:.04em;">TRUSTCIRCLE IS</div>
+      <div class="h" style="font-size:46px;margin-top:18px;line-height:1.1;color:#fff;">The Ethical Capital Network</div>
+      <div style="display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px;">
+        <div style="background:rgba(0,0,0,.18);border-radius:14px;padding:20px 26px;font-size:26px;color:#EAF1ED;"><span style="color:#E9C77E;font-weight:700;font-family:'Sora';">Visa</span> &nbsp;for community capital</div>
+        <div style="background:rgba(0,0,0,.18);border-radius:14px;padding:20px 26px;font-size:26px;color:#EAF1ED;"><span style="color:#E9C77E;font-weight:700;font-family:'Sora';">LinkedIn</span> &nbsp;for financial trust</div>
+        <div style="background:rgba(0,0,0,.18);border-radius:14px;padding:20px 26px;font-size:26px;color:#EAF1ED;"><span style="color:#E9C77E;font-weight:700;font-family:'Sora';">Stripe</span> &nbsp;for ethical capital</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 6 · MARKET FUNNEL -->
+<section data-label="Market" data-speaker-notes="Size the opportunity as a funnel. A ~$500B global behavior; a $20.5B proven adjacent market in Saudi where Hakbah validated digitization; and our beachhead — UAE employer-backed circles — which we expand across the GCC. We're not inventing demand; we're formalizing an existing, massive flow." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Market opportunity</div><div class="k" style="color:#B9C2BC;">06 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;">A massive existing flow — waiting to be formalized.</h2>
+  <div style="display:grid;grid-template-columns:1.25fr .75fr;gap:60px;margin-top:40px;flex:1;align-items:center;">
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:center;">
+      <div style="width:100%;height:118px;background:linear-gradient(180deg,#0F1A15,#13241D);border-radius:16px;display:flex;align-items:center;justify-content:space-between;padding:0 44px;color:#EAF1ED;"><div><div style="font-size:22px;color:#9DBDAC;">Global ROSCA / social-savings behavior</div><div style="font-size:19px;color:#7E9C8C;">TAM · the worldwide habit</div></div><div class="num" style="font-size:52px;color:#E9C77E;">$500B</div></div>
+      <div style="width:74%;height:112px;background:linear-gradient(180deg,#0c7d58,#0A6E4E);border-radius:16px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;color:#fff;"><div><div style="font-size:22px;color:#Cfeadd;">Saudi group-savings market (proven by Hakbah)</div><div style="font-size:19px;color:#9fd2bd;">Reference · regulated digitization works</div></div><div class="num" style="font-size:48px;color:#E9C77E;">$20.5B<sup style="font-size:20px;">3</sup></div></div>
+      <div style="width:50%;height:108px;background:linear-gradient(180deg,#13b07e,#0fa071);border-radius:16px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;color:#06281d;"><div><div style="font-size:22px;font-weight:600;">UAE employer-backed circles</div><div style="font-size:19px;color:#0c3f2c;">Beachhead · our entry wedge</div></div><div class="h" style="font-size:34px;">Phase 1</div></div>
+      <div style="width:34%;height:96px;background:linear-gradient(180deg,#E9C77E,#C9A24B);border-radius:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#231A06;"><div class="h" style="font-size:30px;">GCC + MENA</div><div style="font-size:19px;">scale-out</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div style="background:#fff;border:1px solid #E2E8E4;border-radius:18px;padding:30px;"><div class="num" style="font-size:46px;color:#0A6E4E;">~88%</div><div style="font-size:22px;color:#46554E;line-height:1.4;margin-top:6px;">of the UAE is expatriate — limited access to community credit.</div></div>
+      <div style="background:#fff;border:1px solid #E2E8E4;border-radius:18px;padding:30px;"><div class="num" style="font-size:46px;color:#0A6E4E;">1 tap</div><div style="font-size:22px;color:#46554E;line-height:1.4;margin-top:6px;">KYC via UAE PASS — instant, verified onboarding.</div></div>
+      <div style="background:#fff;border:1px solid #E2E8E4;border-radius:18px;padding:30px;"><div class="num" style="font-size:46px;color:#0A6E4E;">0%</div><div style="font-size:22px;color:#46554E;line-height:1.4;margin-top:6px;">interest — riba-free, aligned with the regulator's agenda.</div></div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 7 · HAKBAH PROOF + GROWTH CHART -->
+<section data-label="Proof · Hakbah" data-speaker-notes="The model is already proven at national scale next door. Hakbah digitized the same jam'iya behavior under SAMA's sandbox: from a few thousand users in 2020 to 2M+ today, ~70% youth, CNBC World's Top Fintech 2025. Crucially their risk stack mirrors ours — insurance (Tawuniya), bank partners, and a credit-bureau integration. A regulator-backed, insured, bank-partnered circle network works." style="width:1920px;height:1080px;background:radial-gradient(110% 100% at 88% -10%,#11593f,#08271c);color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">Proof of model · Saudi Arabia</div><div class="k" style="color:#37463F;">07 / 22</div></div>
+  <h2 class="h" style="font-size:60px;margin:18px 0 0;max-width:1150px;color:#FBFAF5;">It already works at national scale — next door.</h2>
+  <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:54px;margin-top:34px;flex:1;align-items:center;">
+    <div>
+      <div style="display:flex;align-items:flex-end;gap:26px;height:300px;border-bottom:2px solid rgba(255,255,255,.16);padding:0 10px;">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;"><div style="font-size:20px;color:#9DBDAC;margin-bottom:8px;">~5K</div><div style="width:100%;height:8px;background:#2c5446;border-radius:6px 6px 0 0;"></div><div style="font-size:20px;color:#7E9C8C;margin-top:12px;font-family:'Sora';">2020</div></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;"><div style="font-size:20px;color:#9DBDAC;margin-bottom:8px;">~0.3M</div><div style="width:100%;height:48px;background:#3a7a63;border-radius:6px 6px 0 0;"></div><div style="font-size:20px;color:#7E9C8C;margin-top:12px;font-family:'Sora';">2023</div></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;"><div style="font-size:22px;color:#Cfeadd;margin-bottom:8px;font-weight:600;">1.3M</div><div style="width:100%;height:182px;background:#1ea97a;border-radius:6px 6px 0 0;"></div><div style="font-size:20px;color:#7E9C8C;margin-top:12px;font-family:'Sora';">2025</div></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;"><div class="h" style="font-size:28px;color:#E9C77E;margin-bottom:8px;">2M+</div><div style="width:100%;height:262px;background:linear-gradient(180deg,#E9C77E,#C9A24B);border-radius:6px 6px 0 0;"></div><div style="font-size:20px;color:#E9C77E;margin-top:12px;font-family:'Sora';font-weight:600;">2026</div></div>
+      </div>
+      <div style="font-size:20px;color:#7E9C8C;margin-top:16px;">Registered users<sup>2</sup> · SAMA Regulatory Sandbox since 2020 · ~70% aged 18–37</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;gap:14px;">
+        <div style="flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:26px;"><div class="num" style="font-size:44px;color:#E9C77E;">$20.5B</div><div style="font-size:19px;color:#9DBDAC;margin-top:4px;">market addressed<sup>3</sup></div></div>
+        <div style="flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:26px;"><div class="num" style="font-size:44px;color:#E9C77E;">CNBC</div><div style="font-size:19px;color:#9DBDAC;margin-top:4px;">Top Fintech 2025</div></div>
+      </div>
+      <div style="background:rgba(233,199,126,.1);border:1px solid rgba(233,199,126,.3);border-radius:18px;padding:28px;">
+        <div style="font-size:21px;color:#E9C77E;font-weight:600;font-family:'Sora';">Their risk stack mirrors — and validates — ours</div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;font-size:22px;color:#CFE0D6;">
+          <div>🛡 &nbsp;Insurance — <span style="color:#fff;">Tawuniya</span> life cover during terms</div>
+          <div>🏦 &nbsp;Banks — <span style="color:#fff;">Riyad · Al Rajhi · Fransi</span></div>
+          <div>📊 &nbsp;Credit bureau — <span style="color:#fff;">Simah</span> integration</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 8 · WHY UAE -->
+<section data-label="Why UAE" data-speaker-notes="The UAE is the ideal launch market: UAE PASS digital identity, Islamic-finance leadership, strong regulation, a majority-expat base that makes verified enforceable circles both needed and possible, and a gateway to the GCC." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Why the UAE · why now</div><div class="k" style="color:#B9C2BC;">08 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;max-width:1300px;">The best place on earth to launch a regulated trust network.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;flex:1;">
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;"><div style="font-size:40px;">🆔</div><div class="h" style="font-size:27px;color:#0A6E4E;margin-top:16px;">UAE PASS</div><p style="font-size:21px;color:#46554E;line-height:1.45;margin:10px 0 0;">National digital identity verifies every member instantly — KYC becomes a tap.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;"><div style="font-size:40px;">☪️</div><div class="h" style="font-size:27px;color:#0A6E4E;margin-top:16px;">Islamic finance</div><p style="font-size:21px;color:#46554E;line-height:1.45;margin:10px 0 0;">Riba-free cooperative capital is native to the market and the regulator's agenda.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;"><div style="font-size:40px;">🏛️</div><div class="h" style="font-size:27px;color:#0A6E4E;margin-top:16px;">Strong regulation</div><p style="font-size:21px;color:#46554E;line-height:1.45;margin:10px 0 0;">A sandbox-friendly regulator and world-class financial governance.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;"><div style="font-size:40px;">🌍</div><div class="h" style="font-size:27px;color:#0A6E4E;margin-top:16px;">Expat-majority</div><p style="font-size:21px;color:#46554E;line-height:1.45;margin:10px 0 0;">~88% expatriate population with limited access to community credit — our core user.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:36px;"><div style="font-size:40px;">⚖️</div><div class="h" style="font-size:27px;color:#0A6E4E;margin-top:16px;">Enforceability</div><p style="font-size:21px;color:#46554E;line-height:1.45;margin:10px 0 0;">Identity-linked promissory notes are immediately enforceable in-jurisdiction.</p></div>
+    <div style="background:linear-gradient(150deg,#0F1A15,#13241D);border-radius:20px;padding:36px;color:#EAF1ED;"><div style="font-size:40px;">🚀</div><div class="h" style="font-size:27px;color:#E9C77E;margin-top:16px;">GCC gateway</div><p style="font-size:21px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Win the UAE, then template into KSA, Qatar, Kuwait, Bahrain, Oman.</p></div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 9 · HOW IT WORKS — LIFECYCLE -->
+<section data-label="How It Works" data-speaker-notes="Unlike peer apps, users do NOT create circles — TrustCircle creates, verifies, governs and administers every one, for institutional consistency. Members equal months. Walk the lifecycle: we form it, every seat is verified and filled, it activates, members contribute monthly, the pool is allocated by bid, and the circle completes when everyone has received once." style="width:1920px;height:1080px;background:#0F1A15;color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">How TrustCircle works</div><div class="k" style="color:#37463F;">09 / 22</div></div>
+  <h2 class="h" style="font-size:60px;margin:18px 0 0;max-width:1200px;color:#FBFAF5;">Professionally administered circles. Members = Months.</h2>
+  <div style="display:flex;align-items:stretch;gap:14px;margin-top:48px;">
+    <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:28px;position:relative;"><div class="num" style="font-size:26px;color:#E9C77E;">01</div><div class="h" style="font-size:23px;margin-top:10px;color:#fff;">Form</div><p style="font-size:19px;color:#9DBDAC;line-height:1.4;margin:8px 0 0;">TrustCircle sets size, contribution &amp; rules.</p></div>
+    <div style="display:flex;align-items:center;color:#37463F;font-size:30px;">→</div>
+    <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:28px;"><div class="num" style="font-size:26px;color:#E9C77E;">02</div><div class="h" style="font-size:23px;margin-top:10px;color:#fff;">Verify &amp; fill</div><p style="font-size:19px;color:#9DBDAC;line-height:1.4;margin:8px 0 0;">Every seat verified before activation.</p></div>
+    <div style="display:flex;align-items:center;color:#37463F;font-size:30px;">→</div>
+    <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:28px;"><div class="num" style="font-size:26px;color:#E9C77E;">03</div><div class="h" style="font-size:23px;margin-top:10px;color:#fff;">Contribute</div><p style="font-size:19px;color:#9DBDAC;line-height:1.4;margin:8px 0 0;">All members pay monthly — auto-deducted.</p></div>
+    <div style="display:flex;align-items:center;color:#37463F;font-size:30px;">→</div>
+    <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:28px;"><div class="num" style="font-size:26px;color:#E9C77E;">04</div><div class="h" style="font-size:23px;margin-top:10px;color:#fff;">Allocate</div><p style="font-size:19px;color:#9DBDAC;line-height:1.4;margin:8px 0 0;">Full pool to one member, by transparent bid.</p></div>
+    <div style="display:flex;align-items:center;color:#37463F;font-size:30px;">→</div>
+    <div style="flex:1;background:linear-gradient(150deg,#0A6E4E,#08533B);border:1px solid rgba(233,199,126,.3);border-radius:18px;padding:28px;"><div class="num" style="font-size:26px;color:#E9C77E;">05</div><div class="h" style="font-size:23px;margin-top:10px;color:#fff;">Complete</div><p style="font-size:19px;color:#CFE0D6;line-height:1.4;margin:8px 0 0;">Everyone receives once. Trust Score rises.</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:auto;">
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:26px;text-align:center;"><div style="font-size:19px;color:#9DBDAC;">Members = Months</div><div class="num" style="font-size:40px;color:#fff;margin-top:6px;">10</div></div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:26px;text-align:center;"><div style="font-size:19px;color:#9DBDAC;">Monthly contribution</div><div class="num" style="font-size:40px;color:#fff;margin-top:6px;">AED 2,000</div></div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:26px;text-align:center;"><div style="font-size:19px;color:#9DBDAC;">Monthly pool</div><div class="num" style="font-size:40px;color:#E9C77E;margin-top:6px;">AED 20,000</div></div>
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:26px;text-align:center;"><div style="font-size:19px;color:#9DBDAC;">Total circle value</div><div class="num" style="font-size:40px;color:#E9C77E;margin-top:6px;">AED 200,000</div></div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 10 · TRUST SCORE GAUGE -->
+<section data-label="Trust Score™" data-speaker-notes="Trust Score is the moat. Credit scores measure debt; Trust Score measures trust — six signals that compound with every circle. It's portable and aspirational, and it's the proprietary dataset competitors can't replicate. Over time it becomes a portable financial identity we can license." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">The moat</div><div class="k" style="color:#B9C2BC;">10 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;max-width:1200px;">Trust is the most valuable asset in the network.</h2>
+  <div style="display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;margin-top:36px;flex:1;align-items:center;">
+    <div style="display:flex;justify-content:center;">
+      <div style="position:relative;width:340px;height:340px;">
+        <svg width="340" height="340" viewBox="0 0 340 340" style="transform:rotate(-90deg);">
+          <circle cx="170" cy="170" r="150" fill="none" stroke="#E6ECE8" stroke-width="26"/>
+          <circle cx="170" cy="170" r="150" fill="none" stroke="url(#g1)" stroke-width="26" stroke-linecap="round" stroke-dasharray="942" stroke-dashoffset="141"/>
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6E4E"/><stop offset="1" stop-color="#E9C77E"/></linearGradient></defs>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <div class="k" style="font-size:15px;color:#0A6E4E;">Trust Score™</div>
+          <div class="num" style="font-size:96px;color:#0F1A15;line-height:1;margin-top:6px;">850</div>
+          <div style="font-size:22px;color:#6B7A72;">/ 1000</div>
+          <div style="display:inline-flex;align-items:center;gap:7px;background:#EAF3EE;color:#0A6E4E;padding:7px 14px;border-radius:999px;font-size:17px;margin-top:14px;">✓ UAE PASS verified</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:27px;line-height:1.5;color:#46554E;margin:0 0 26px;max-width:780px;">Not a credit score — a living measure of identity, participation, reliability, governance and community trust. Each signal compounds with every circle completed.</p>
+      <div style="display:flex;flex-direction:column;gap:13px;">
+        <div style="display:flex;align-items:center;gap:18px;"><div style="width:240px;font-size:22px;color:#0F1A15;font-weight:600;">Identity verification</div><div style="flex:1;height:14px;background:#E6ECE8;border-radius:8px;overflow:hidden;"><div style="width:100%;height:100%;background:linear-gradient(90deg,#0A6E4E,#13b07e);border-radius:8px;"></div></div></div>
+        <div style="display:flex;align-items:center;gap:18px;"><div style="width:240px;font-size:22px;color:#0F1A15;font-weight:600;">Contribution consistency</div><div style="flex:1;height:14px;background:#E6ECE8;border-radius:8px;overflow:hidden;"><div style="width:92%;height:100%;background:linear-gradient(90deg,#0A6E4E,#13b07e);border-radius:8px;"></div></div></div>
+        <div style="display:flex;align-items:center;gap:18px;"><div style="width:240px;font-size:22px;color:#0F1A15;font-weight:600;">Circle completion</div><div style="flex:1;height:14px;background:#E6ECE8;border-radius:8px;overflow:hidden;"><div style="width:84%;height:100%;background:linear-gradient(90deg,#0A6E4E,#13b07e);border-radius:8px;"></div></div></div>
+        <div style="display:flex;align-items:center;gap:18px;"><div style="width:240px;font-size:22px;color:#0F1A15;font-weight:600;">Governance participation</div><div style="flex:1;height:14px;background:#E6ECE8;border-radius:8px;overflow:hidden;"><div style="width:78%;height:100%;background:linear-gradient(90deg,#0A6E4E,#13b07e);border-radius:8px;"></div></div></div>
+        <div style="display:flex;align-items:center;gap:18px;"><div style="width:240px;font-size:22px;color:#0F1A15;font-weight:600;">Community endorsements</div><div style="flex:1;height:14px;background:#E6ECE8;border-radius:8px;overflow:hidden;"><div style="width:73%;height:100%;background:linear-gradient(90deg,#0A6E4E,#13b07e);border-radius:8px;"></div></div></div>
+        <div style="display:flex;align-items:center;gap:18px;"><div style="width:240px;font-size:22px;color:#0F1A15;font-weight:600;">Network quality</div><div style="flex:1;height:14px;background:#E6ECE8;border-radius:8px;overflow:hidden;"><div style="width:88%;height:100%;background:linear-gradient(90deg,#0A6E4E,#13b07e);border-radius:8px;"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 10B · TRUST SCORE — THE PLATFORM -->
+<section data-label="Trust Score · Platform" data-speaker-notes="Reframe: Trust Score is not a feature inside TrustCircle — it is the platform. TrustCircle is simply the first application that generates trusted behavioural data. Governments issue identity; banks issue credit scores; but no one has built a universal layer that measures how trustworthy a person is in everyday life. That's the opening." style="width:1920px;height:1080px;background:#0F1A15;color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">The bigger idea</div><div class="k" style="color:#37463F;">11 / 22</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.05;margin:16px 0 0;max-width:1250px;color:#FBFAF5;">TrustCircle is the first application. Trust Score is the platform.</h2>
+  <div style="display:grid;grid-template-columns:1.02fr .98fr;gap:54px;margin-top:34px;flex:1;align-items:center;">
+    <div>
+      <p style="font-size:26px;line-height:1.55;color:#CFE0D6;margin:0;max-width:660px;">Governments issue identity. Banks issue credit scores. But no country has built a universal digital layer that measures how trustworthy a person is in everyday life.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:30px;">
+        <div style="display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:20px 24px;"><span style="font-size:30px;">🪪</span><div style="font-size:23px;color:#9DBDAC;"><span style="color:#fff;font-weight:600;font-family:'Sora';">Governments</span> issue identity — who you are.</div></div>
+        <div style="display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:20px 24px;"><span style="font-size:30px;">🏦</span><div style="font-size:23px;color:#9DBDAC;"><span style="color:#fff;font-weight:600;font-family:'Sora';">Banks</span> issue credit scores — what you owe.</div></div>
+        <div style="display:flex;gap:16px;align-items:center;background:linear-gradient(150deg,#0A6E4E,#08533B);border:1px solid rgba(233,199,126,.35);border-radius:14px;padding:20px 24px;"><span style="font-size:30px;">🤝</span><div style="font-size:23px;color:#EAF1ED;"><span style="color:#E9C77E;font-weight:600;font-family:'Sora';">TrustCircle</span> issues a Trust Score — how reliably you honour commitments.</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+      <div style="width:62%;background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.18);border-radius:16px 16px 0 0;padding:22px;text-align:center;color:#7E9C8C;"><div style="font-size:20px;font-family:'Sora';">Future applications</div><div style="font-size:16px;margin-top:4px;">rentals · lending · hiring · marketplaces</div></div>
+      <div style="width:80%;background:#16352a;border:1px solid rgba(255,255,255,.14);border-bottom:none;padding:26px;text-align:center;"><div class="h" style="font-size:26px;color:#fff;">TrustCircle</div><div style="font-size:19px;color:#9DBDAC;margin-top:4px;">community capital · the first application</div></div>
+      <div style="width:100%;background:linear-gradient(180deg,#E9C77E,#C9A24B);border-radius:0 0 18px 18px;padding:34px;text-align:center;color:#231A06;"><div class="h" style="font-size:30px;">Trust Score™</div><div style="font-size:20px;margin-top:4px;font-weight:600;">the trust infrastructure layer</div></div>
+      <div style="font-size:19px;color:#7E9C8C;margin-top:18px;font-family:'Sora';letter-spacing:.06em;">ONE PLATFORM · MANY APPLICATIONS</div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 10C · THE UAE TRUST SCORE — INPUTS -->
+<section data-label="UAE Trust Score" data-speaker-notes="The long-term vision: Trust Score evolves into a national social trust layer — a UAE Trust Score. It is not a financial credit score; it measures consistency and responsibility, not wealth. From the day someone becomes a resident, every honoured commitment builds their reputation. TrustCircle's community behaviour is just the first input. Over time the score integrates real-world signals — rent, salary stability, utilities, school fees, insurance, government obligations, traffic fines. Earned over time, not bought." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">From product to public infrastructure</div><div class="k" style="color:#B9C2BC;">12 / 22</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.04;margin:16px 0 0;max-width:1300px;">The UAE Trust Score — earned over time, not bought.</h2>
+  <div style="display:grid;grid-template-columns:.82fr 1.18fr;gap:46px;margin-top:30px;flex:1;align-items:center;">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+      <div style="position:relative;width:280px;height:280px;display:flex;align-items:center;justify-content:center;">
+        <div style="position:absolute;inset:0;border-radius:50%;border:2px dashed #C9D6CF;"></div>
+        <div style="position:absolute;inset:42px;border-radius:50%;border:2px solid #BfD8CC;"></div>
+        <div style="position:absolute;inset:84px;border-radius:50%;background:linear-gradient(150deg,#0A6E4E,#08533B);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 24px 50px -24px rgba(10,110,78,.6);">
+          <div class="k" style="font-size:13px;color:#E9C77E;">UAE</div>
+          <div class="h" style="font-size:26px;color:#fff;line-height:1.05;margin-top:2px;">Trust<br/>Score™</div>
+        </div>
+        <div style="position:absolute;top:6px;left:50%;transform:translateX(-50%);background:#0A6E4E;color:#fff;font-size:15px;font-family:'Sora';font-weight:600;padding:5px 12px;border-radius:999px;">Identity</div>
+        <div style="position:absolute;bottom:30px;left:-6px;background:#fff;border:1px solid #D7E0DB;color:#0A6E4E;font-size:15px;font-family:'Sora';font-weight:600;padding:5px 12px;border-radius:999px;">Reliability</div>
+        <div style="position:absolute;bottom:30px;right:-6px;background:#fff;border:1px solid #D7E0DB;color:#0A6E4E;font-size:15px;font-family:'Sora';font-weight:600;padding:5px 12px;border-radius:999px;">Consistency</div>
+      </div>
+      <div style="font-size:23px;color:#0F1A15;font-weight:700;font-family:'Sora';margin-top:26px;">Measures responsibility — not wealth.</div>
+      <p style="font-size:20px;color:#6B7A72;line-height:1.45;margin:10px 0 0;max-width:340px;">From the first day of residency, every honoured commitment builds reputation.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="background:#fff;border:1px solid #0A6E4E;border-radius:18px;padding:24px 28px;">
+        <div style="display:flex;align-items:center;gap:10px;"><span style="width:11px;height:11px;border-radius:50%;background:#0A6E4E;"></span><div class="h" style="font-size:22px;color:#0A6E4E;">Live today · via TrustCircle</div></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+          <span style="font-family:'Sora';font-weight:600;font-size:18px;background:#EAF3EE;color:#0A6E4E;border-radius:999px;padding:9px 18px;">Pool contributions</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:18px;background:#EAF3EE;color:#0A6E4E;border-radius:999px;padding:9px 18px;">Honoured commitments</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:18px;background:#EAF3EE;color:#0A6E4E;border-radius:999px;padding:9px 18px;">Timely repayments</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:18px;background:#EAF3EE;color:#0A6E4E;border-radius:999px;padding:9px 18px;">Circle reliability</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:18px;background:#EAF3EE;color:#0A6E4E;border-radius:999px;padding:9px 18px;">Verified identity</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:18px;background:#EAF3EE;color:#0A6E4E;border-radius:999px;padding:9px 18px;">Community reputation</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;color:#9AA69F;font-size:19px;font-family:'Sora';"><div style="flex:1;height:1px;background:#D7E0DB;"></div>EXPANDS OVER TIME ↓<div style="flex:1;height:1px;background:#D7E0DB;"></div></div>
+      <div style="background:linear-gradient(150deg,#0F1A15,#13241D);border-radius:18px;padding:24px 28px;color:#EAF1ED;">
+        <div style="display:flex;align-items:center;gap:10px;"><span style="width:11px;height:11px;border-radius:50%;background:#E9C77E;"></span><div class="h" style="font-size:22px;color:#E9C77E;">The vision · real-world commitments</div></div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:16px;">
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">Rent payments</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">Salary &amp; employment stability</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">DEWA &amp; utilities</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">Telecom &amp; internet</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">School fees</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">Insurance</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">Property obligations</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">Government services</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">Municipality payments</span>
+          <span style="font-size:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#CFE0D6;border-radius:999px;padding:8px 15px;">Traffic fine settlement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 10D · TRUST BECOMES CAPITAL -->
+<section data-label="Trust = Capital" data-speaker-notes="Why it matters. Every day people ask: can I trust this tenant, employer, supplier, partner, customer? Today there's no universal answer — the UAE Trust Score could become it, not by judging people but by measuring how consistently they honour real-world commitments. Money creates wealth; trust creates opportunity. The ambition isn't the world's largest savings platform — it's the world's most trusted digital reputation infrastructure: trust that is portable, measurable, and becomes both social and economic capital, eventually a foundational layer across citizens, residents, businesses and government." style="width:1920px;height:1080px;background:radial-gradient(115% 100% at 18% -12%,#11593f,#08271c);color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">The long-term vision</div><div class="k" style="color:#37463F;">13 / 22</div></div>
+  <h2 class="h" style="font-size:58px;line-height:1.04;margin:16px 0 0;max-width:1300px;color:#FBFAF5;">Trust becomes social capital — then economic capital.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:46px;margin-top:32px;flex:1;align-items:center;">
+    <div>
+      <p style="font-size:26px;line-height:1.55;color:#CFE0D6;margin:0;max-width:660px;">Every day, people ask the same question — and have no universal answer.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;max-width:680px;">
+        <span style="font-family:'Sora';font-size:21px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:11px 20px;color:#EAF1ED;">Can I trust this tenant?</span>
+        <span style="font-family:'Sora';font-size:21px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:11px 20px;color:#EAF1ED;">…this employer?</span>
+        <span style="font-family:'Sora';font-size:21px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:11px 20px;color:#EAF1ED;">…this supplier?</span>
+        <span style="font-family:'Sora';font-size:21px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:11px 20px;color:#EAF1ED;">…this partner?</span>
+        <span style="font-family:'Sora';font-size:21px;background:rgba(233,199,126,.16);border:1px solid rgba(233,199,126,.4);border-radius:999px;padding:11px 20px;color:#E9C77E;">The Trust Score is the answer.</span>
+      </div>
+      <p style="font-size:24px;line-height:1.5;color:#9DBDAC;margin:30px 0 0;max-width:660px;">Not by judging people — by measuring how consistently they honour their real-world commitments.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div style="display:flex;gap:16px;">
+        <div style="flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:26px;"><div style="font-size:21px;color:#9DBDAC;">Money creates</div><div class="h" style="font-size:34px;color:#fff;margin-top:4px;">Wealth</div></div>
+        <div style="flex:1;background:linear-gradient(150deg,#0A6E4E,#08533B);border:1px solid rgba(233,199,126,.35);border-radius:18px;padding:26px;"><div style="font-size:21px;color:#Bfe0cf;">Trust creates</div><div class="h" style="font-size:34px;color:#E9C77E;margin-top:4px;">Opportunity</div></div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:28px;">
+        <div class="h" style="font-size:22px;color:#E9C77E;">A foundational digital layer</div>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-top:16px;font-size:22px;color:#CFE0D6;">
+          <div style="display:flex;gap:12px;"><span style="color:#7FE0A8;">→</span>Portable, measurable, visible trust</div>
+          <div style="display:flex;gap:12px;"><span style="color:#7FE0A8;">→</span>Powering citizens, residents &amp; businesses</div>
+          <div style="display:flex;gap:12px;"><span style="color:#7FE0A8;">→</span>Connecting communities &amp; government services</div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(120deg,#E9C77E,#C9A24B);border-radius:18px;padding:26px 30px;color:#231A06;">
+        <div class="h" style="font-size:23px;">The ambition isn't the largest savings platform.</div>
+        <div style="font-size:21px;margin-top:6px;font-weight:600;">It's the world's most trusted digital reputation infrastructure.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 11 · BID MARKET CHART -->
+<section data-label="Payout Bid" data-speaker-notes="Allocation is a transparent monthly market, not fixed rotation. Members who need capital sooner offer a voluntary discount; the highest discount leads and receives the pool, and the surplus stays in the circle benefiting everyone. Automatic, transparent, community-governed." style="width:1920px;height:1080px;background:#0F1A15;color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">Community governance · Monthly Payout Bid</div><div class="k" style="color:#37463F;">14 / 22</div></div>
+  <h2 class="h" style="font-size:60px;margin:18px 0 0;max-width:1250px;color:#FBFAF5;">Whoever needs capital most signals it — transparently.</h2>
+  <div style="display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;margin-top:38px;flex:1;align-items:center;">
+    <div style="display:flex;flex-direction:column;gap:18px;">
+      <div style="display:flex;gap:16px;align-items:flex-start;"><span style="width:40px;height:40px;border-radius:50%;background:#0A6E4E;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:19px;flex-shrink:0;">1</span><div style="font-size:24px;color:#CFE0D6;line-height:1.4;">Members who need the pool place a <span style="color:#E9C77E;">discount bid</span>.</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><span style="width:40px;height:40px;border-radius:50%;background:#0A6E4E;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:19px;flex-shrink:0;">2</span><div style="font-size:24px;color:#CFE0D6;line-height:1.4;">The <span style="color:#fff;">highest discount leads</span> automatically.</div></div>
+      <div style="display:flex;gap:16px;align-items:flex-start;"><span style="width:40px;height:40px;border-radius:50%;background:#0A6E4E;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:19px;flex-shrink:0;">3</span><div style="font-size:24px;color:#CFE0D6;line-height:1.4;">Leader receives the pool; <span style="color:#fff;">surplus stays in the circle</span>.</div></div>
+    </div>
+    <div style="background:linear-gradient(150deg,#0d3d2d,#0a2c20);border-radius:24px;padding:40px;border:1px solid rgba(255,255,255,.1);">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;"><div style="font-size:22px;color:#9DBDAC;font-family:'Sora';">This month's pool</div><div class="num" style="font-size:34px;color:#fff;">AED 144,000</div></div>
+      <div style="display:flex;flex-direction:column;gap:18px;margin-top:28px;">
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:22px;color:#fff;font-weight:600;font-family:'Sora';">Omar S. · Business</span><span style="font-size:20px;color:#E9C77E;">−18,000 · leads</span></div><div style="height:30px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="width:100%;height:100%;background:linear-gradient(90deg,#0A6E4E,#E9C77E);border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:14px;font-size:16px;color:#231A06;font-weight:700;font-family:'Sora';">net 126,000</div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:22px;color:#fff;font-weight:600;font-family:'Sora';">Layla H. · Education</span><span style="font-size:20px;color:#9DBDAC;">−12,000</span></div><div style="height:30px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="width:67%;height:100%;background:#2c6e57;border-radius:8px;"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:22px;color:#fff;font-weight:600;font-family:'Sora';">Sara N. · Medical</span><span style="font-size:20px;color:#9DBDAC;">−6,000</span></div><div style="height:30px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;"><div style="width:33%;height:100%;background:#2c6e57;border-radius:8px;"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 12 · EMPLOYER WEDGE -->
+<section data-label="Go-to-Market" data-speaker-notes="Our wedge is employer-backed circles. We launch inside 2-3 large employers. The employer is an implicit guarantor; payroll deduction removes the #1 failure mode; and colleague accountability is real, self-policing pressure. A contained, underwritable pilot we can stand up in 6-9 months." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Go-to-market · the wedge</div><div class="k" style="color:#B9C2BC;">15 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;max-width:1300px;">Launch inside employers. De-risk from day one.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;">
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:38px;"><div style="font-size:44px;">🏢</div><div class="h" style="font-size:28px;margin-top:16px;color:#0F1A15;">Employer as guarantor</div><p style="font-size:21px;color:#46554E;line-height:1.45;margin:10px 0 0;">One HR relationship to underwrite — not hundreds of strangers.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:38px;"><div style="font-size:44px;">💸</div><div class="h" style="font-size:28px;margin-top:16px;color:#0F1A15;">Payroll deduction</div><p style="font-size:21px;color:#46554E;line-height:1.45;margin:10px 0 0;">Contributions move before salary lands — the #1 failure mode, gone.</p></div>
+    <div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:38px;"><div style="font-size:44px;">🤝</div><div class="h" style="font-size:28px;margin-top:16px;color:#0F1A15;">Colleague accountability</div><p style="font-size:21px;color:#46554E;line-height:1.45;margin:10px 0 0;">Real, self-policing social pressure inside one verified workplace.</p></div>
+  </div>
+  <div style="background:linear-gradient(120deg,#0F1A15,#13241D);border-radius:22px;padding:40px 48px;margin-top:auto;color:#EAF1ED;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;">
+    <div style="font-size:28px;line-height:1.4;max-width:1100px;">Each circle belongs to <span style="color:#E9C77E;font-weight:600;">one employer</span> — every member is a verified colleague, payroll-protected against default.</div>
+    <div style="text-align:right;"><div class="num" style="font-size:52px;color:#E9C77E;">2–3</div><div style="font-size:20px;color:#9DBDAC;">pilot employers</div></div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 13 · RISK — PHASED TIMELINE -->
+<section data-label="Risk Framework" data-speaker-notes="The heart of the institutional story. We don't rely on goodwill — we engineer safety in seven layers, switched on in sequence as we scale. Short term: small circles, employer backing, promissory-note enforceability. Mid term: insurance and bank liquidity. Long term: a private-capital credit line. The emergency reserve runs continuously. Walk left to right." style="width:1920px;height:1080px;background:#0F1A15;color:#EAF1ED;padding:80px 120px 104px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">Capital protection · phased to scale</div><div class="k" style="color:#37463F;">16 / 22</div></div>
+  <h2 class="h" style="font-size:56px;margin:16px 0 0;max-width:1300px;color:#FBFAF5;">Seven layers, switched on as we grow.</h2>
+  <div style="display:grid;grid-template-columns:200px 1fr;gap:20px;margin-top:34px;flex:1;">
+    <div></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:10px;">
+      <div style="text-align:center;font-family:'Sora';font-weight:600;letter-spacing:.1em;font-size:18px;color:#13b07e;">SHORT TERM · 0–3 MO</div>
+      <div style="text-align:center;font-family:'Sora';font-weight:600;letter-spacing:.1em;font-size:18px;color:#E9C77E;">MID TERM · 3–6 MO</div>
+      <div style="text-align:center;font-family:'Sora';font-weight:600;letter-spacing:.1em;font-size:18px;color:#9DBDAC;">LONG TERM · 6–9 MO+</div>
+    </div>
+    <!-- rows -->
+    <div style="grid-column:1 / -1;display:grid;grid-template-columns:200px 1fr;gap:20px;row-gap:11px;margin-top:14px;">
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:19px;color:#CFE0D6;text-align:right;">① Small &amp; short circles</div>
+      <div style="position:relative;height:42px;background:rgba(255,255,255,.04);border-radius:8px;"><div style="position:absolute;left:0;width:100%;top:0;bottom:0;background:linear-gradient(90deg,#0A6E4E,#13b07e);border-radius:8px;display:flex;align-items:center;padding-left:18px;font-size:17px;color:#fff;font-weight:600;">AED 500–2,000 · 6-month circles</div></div>
+
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:19px;color:#CFE0D6;text-align:right;">② Employer-backed payroll</div>
+      <div style="position:relative;height:42px;background:rgba(255,255,255,.04);border-radius:8px;"><div style="position:absolute;left:0;width:100%;top:0;bottom:0;background:linear-gradient(90deg,#0A6E4E,#13b07e);border-radius:8px;display:flex;align-items:center;padding-left:18px;font-size:17px;color:#fff;font-weight:600;">Guarantee + deduction</div></div>
+
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:19px;color:#CFE0D6;text-align:right;">③ Legal enforceability</div>
+      <div style="position:relative;height:42px;background:rgba(255,255,255,.04);border-radius:8px;"><div style="position:absolute;left:0;width:100%;top:0;bottom:0;background:linear-gradient(90deg,#0A6E4E,#0fa071);border-radius:8px;display:flex;align-items:center;padding-left:18px;font-size:17px;color:#fff;font-weight:600;">Promissory note · travel ban &amp; asset freeze</div></div>
+
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:19px;color:#CFE0D6;text-align:right;">④ Insurance cover</div>
+      <div style="position:relative;height:42px;background:rgba(255,255,255,.04);border-radius:8px;"><div style="position:absolute;left:33.3%;right:0;top:0;bottom:0;background:linear-gradient(90deg,#caa24a,#E9C77E);border-radius:8px;display:flex;align-items:center;padding-left:18px;font-size:17px;color:#231A06;font-weight:600;">Default &amp; life cover per member</div></div>
+
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:19px;color:#CFE0D6;text-align:right;">⑤ Bank liquidity backstop</div>
+      <div style="position:relative;height:42px;background:rgba(255,255,255,.04);border-radius:8px;"><div style="position:absolute;left:33.3%;right:0;top:0;bottom:0;background:linear-gradient(90deg,#caa24a,#E9C77E);border-radius:8px;display:flex;align-items:center;padding-left:18px;font-size:17px;color:#231A06;font-weight:600;">Covers a missed month — payouts never delay</div></div>
+
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:19px;color:#CFE0D6;text-align:right;">⑥ Private-capital credit line</div>
+      <div style="position:relative;height:42px;background:rgba(255,255,255,.04);border-radius:8px;"><div style="position:absolute;left:66.6%;right:0;top:0;bottom:0;background:linear-gradient(90deg,#7e8c86,#b9c2bc);border-radius:8px;display:flex;align-items:center;padding-left:18px;font-size:17px;color:#1a2420;font-weight:600;">Drawn only as needed</div></div>
+
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;font-size:19px;color:#E9C77E;text-align:right;font-weight:600;">⑦ Emergency reserve</div>
+      <div style="position:relative;height:42px;background:rgba(233,199,126,.12);border:1px dashed rgba(233,199,126,.5);border-radius:8px;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:17px;color:#E9C77E;font-weight:600;">CONTINUOUS · a % of pool earnings retained as a self-funded buffer</div></div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 14 · DEFENSE IN DEPTH WATERFALL -->
+<section data-label="Defense in Depth" data-speaker-notes="The same seven layers as a waterfall: a missed contribution is caught first by payroll, then employer guarantee, then insurance, then bank liquidity, the reserve, and the credit line — with legal enforceability across all of it. By the time any loss could reach a member it has passed through six buffers. That's the institutional-grade promise." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Defense in depth</div><div class="k" style="color:#B9C2BC;">17 / 22</div></div>
+  <h2 class="h" style="font-size:56px;margin:16px 0 0;max-width:1300px;">A loss must break six buffers before it reaches a member.</h2>
+  <div style="display:flex;flex-direction:column;gap:13px;margin-top:36px;flex:1;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:22px;"><div style="width:250px;font-size:22px;color:#6B7A72;text-align:right;font-family:'Sora';">A member can't pay</div><div style="flex:1;height:58px;background:#fff;border:1px solid #E2E8E4;border-left:6px solid #C9402F;border-radius:12px;display:flex;align-items:center;padding:0 26px;font-size:23px;font-weight:600;">Trigger event</div></div>
+    <div style="display:flex;align-items:center;gap:22px;"><div style="width:250px;font-size:20px;color:#0A6E4E;text-align:right;font-family:'Sora';letter-spacing:.06em;">CAUGHT BY ↓</div><div style="flex:1;display:flex;gap:11px;">
+      <div style="flex:1;height:58px;background:#0A6E4E;color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:600;">Payroll deduction</div>
+      <div style="flex:1;height:58px;background:#0c7d58;color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:600;">Employer guarantee</div>
+      <div style="flex:1;height:58px;background:#0e8c63;color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:600;">Insurance</div>
+    </div></div>
+    <div style="display:flex;align-items:center;gap:22px;"><div style="width:250px;"></div><div style="flex:1;display:flex;gap:11px;">
+      <div style="flex:1;height:58px;background:#0fa071;color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:600;">Bank liquidity</div>
+      <div style="flex:1;height:58px;background:#13b07e;color:#06281d;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:600;">Emergency reserve</div>
+      <div style="flex:1;height:58px;background:#3ec79b;color:#06281d;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:600;">Private credit line</div>
+    </div></div>
+    <div style="display:flex;align-items:center;gap:22px;margin-top:6px;"><div style="width:250px;font-size:20px;color:#9A742C;text-align:right;font-family:'Sora';letter-spacing:.06em;">ACROSS ALL ↓</div><div style="flex:1;height:58px;background:linear-gradient(90deg,#0F1A15,#13241D);border:1px solid #E9C77E;color:#E9C77E;border-radius:12px;display:flex;align-items:center;padding:0 26px;font-size:21px;font-weight:600;">⚖ Legal enforceability — promissory note, travel ban &amp; asset freeze</div></div>
+    <div style="display:flex;align-items:center;gap:22px;"><div style="width:250px;font-size:22px;color:#0A6E4E;text-align:right;font-family:'Sora';font-weight:600;">Member outcome</div><div style="flex:1;height:58px;background:#EAF3EE;border:1px solid #0A6E4E;border-radius:12px;display:flex;align-items:center;padding:0 26px;font-size:23px;font-weight:700;color:#0A6E4E;">✓ Payout protected — the circle continues</div></div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 15 · BUSINESS MODEL -->
+<section data-label="Business Model" data-speaker-notes="We never earn from interest and we don't lend. We monetize the trust infrastructure: administration and processing fees, premium Trust Score services, enterprise/employer programs, and white-label licensing. Recurring, asset-light, aligned with members." style="width:1920px;height:1080px;background:#0F1A15;color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">Business model</div><div class="k" style="color:#37463F;">18 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;max-width:1250px;color:#FBFAF5;">We monetize trust — never interest, never debt.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;flex:1;">
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:34px;"><div style="font-size:36px;">🔁</div><div class="h" style="font-size:26px;color:#E9C77E;margin-top:14px;">Circle fees</div><p style="font-size:21px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Creation, administration, processing, distribution &amp; completion.</p></div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:34px;"><div style="font-size:36px;">⭐</div><div class="h" style="font-size:26px;color:#E9C77E;margin-top:14px;">Trust Score™ services</div><p style="font-size:21px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">TrustCircle Plus &amp; premium Trust Score products.</p></div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:34px;"><div style="font-size:36px;">🪪</div><div class="h" style="font-size:26px;color:#E9C77E;margin-top:14px;">KYC / AML</div><p style="font-size:21px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Verification fees, streamlined via UAE PASS.</p></div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:34px;"><div style="font-size:36px;">🏢</div><div class="h" style="font-size:26px;color:#E9C77E;margin-top:14px;">Enterprise programs</div><p style="font-size:21px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Employer-sponsored circles as a wellness benefit.</p></div>
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:34px;"><div style="font-size:36px;">🧩</div><div class="h" style="font-size:26px;color:#E9C77E;margin-top:14px;">White-label licensing</div><p style="font-size:21px;color:#9DBDAC;line-height:1.45;margin:10px 0 0;">Banks &amp; institutions run circles on our rails.</p></div>
+    <div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border:1px solid rgba(233,199,126,.3);border-radius:18px;padding:34px;"><div style="font-size:36px;">🛰️</div><div class="h" style="font-size:26px;color:#E9C77E;margin-top:14px;">Trust infrastructure</div><p style="font-size:21px;color:#CFE0D6;line-height:1.45;margin:10px 0 0;">Trust Score as portable financial identity — via API.</p></div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 16 · GCC ROADMAP -->
+<section data-label="GCC Roadmap" data-speaker-notes="Phased expansion: prove the UAE, template into the GCC where the same jam'iya behavior and digital-ID rails exist, then MENA, then a global ethical-capital network. Each phase reuses the same regulated playbook." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Expansion</div><div class="k" style="color:#B9C2BC;">19 / 22</div></div>
+  <h2 class="h" style="font-size:62px;margin:18px 0 0;">One playbook, four phases.</h2>
+  <div style="position:relative;margin-top:56px;flex:1;">
+    <div style="position:absolute;top:38px;left:6%;right:6%;height:3px;background:linear-gradient(90deg,#0A6E4E,#E9C77E);"></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;position:relative;">
+      <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#0A6E4E;border:5px solid #F6F8F7;box-shadow:0 0 0 2px #0A6E4E;"></div><div style="background:linear-gradient(150deg,#0A6E4E,#08533B);border-radius:20px;padding:34px;color:#EAF1ED;margin-top:26px;width:100%;"><div class="k" style="font-size:16px;color:#E9C77E;">Phase 1 · Now</div><div class="h" style="font-size:38px;margin-top:14px;color:#fff;">UAE</div><p style="font-size:21px;color:#CFE0D6;line-height:1.45;margin:14px 0 0;">Employer-backed pilots. Prove the regulated model end-to-end.</p></div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#13b07e;border:5px solid #F6F8F7;box-shadow:0 0 0 2px #13b07e;"></div><div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:34px;margin-top:26px;width:100%;"><div class="k" style="font-size:16px;color:#0A6E4E;">Phase 2</div><div class="h" style="font-size:34px;margin-top:14px;">GCC</div><p style="font-size:20px;color:#46554E;line-height:1.45;margin:14px 0 0;">KSA, Qatar, Kuwait, Bahrain, Oman — same behavior, same rails.</p></div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#caa24a;border:5px solid #F6F8F7;box-shadow:0 0 0 2px #caa24a;"></div><div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:34px;margin-top:26px;width:100%;"><div class="k" style="font-size:16px;color:#0A6E4E;">Phase 3</div><div class="h" style="font-size:34px;margin-top:14px;">MENA</div><p style="font-size:20px;color:#46554E;line-height:1.45;margin:14px 0 0;">Broaden across the region's large under-banked base.</p></div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;"><div style="width:30px;height:30px;border-radius:50%;background:#E9C77E;border:5px solid #F6F8F7;box-shadow:0 0 0 2px #E9C77E;"></div><div style="background:#fff;border:1px solid #E2E8E4;border-radius:20px;padding:34px;margin-top:26px;width:100%;"><div class="k" style="font-size:16px;color:#0A6E4E;">Phase 4</div><div class="h" style="font-size:34px;margin-top:14px;">Global</div><p style="font-size:20px;color:#46554E;line-height:1.45;margin:14px 0 0;">The global ethical-capital network for community finance.</p></div></div>
+    </div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 17 · PILOT PLAN -->
+<section data-label="The Pilot" data-speaker-notes="Concretely, the next 6-9 months: 2-3 employers, small short circles, the first safety layers live, a regulatory sandbox engagement. Success = high completion, near-zero defaults, and a Trust Score dataset we can underwrite scale against. Then we grow circle size and add the deeper capital layers." style="width:1920px;height:1080px;background:radial-gradient(110% 100% at 82% -10%,#11593f,#08271c);color:#EAF1ED;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#E9C77E;">The next 6–9 months</div><div class="k" style="color:#37463F;">20 / 22</div></div>
+  <h2 class="h" style="font-size:60px;margin:18px 0 0;max-width:1150px;color:#FBFAF5;">A contained pilot, designed to be underwritten.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px;flex:1;">
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:42px;"><div class="h" style="font-size:30px;color:#E9C77E;">Scope</div><div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;font-size:24px;color:#CFE0D6;"><div style="display:flex;gap:14px;"><span style="color:#E9C77E;">▸</span>2–3 anchor employers</div><div style="display:flex;gap:14px;"><span style="color:#E9C77E;">▸</span>AED 500–2,000 / month · 6-month circles</div><div style="display:flex;gap:14px;"><span style="color:#E9C77E;">▸</span>Safety layers 1–4 live from day one</div><div style="display:flex;gap:14px;"><span style="color:#E9C77E;">▸</span>Regulatory sandbox engagement</div></div></div>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:42px;"><div class="h" style="font-size:30px;color:#E9C77E;">Success looks like</div><div style="display:flex;flex-direction:column;gap:16px;margin-top:24px;font-size:24px;color:#CFE0D6;"><div style="display:flex;gap:14px;"><span style="color:#7FE0A8;">✓</span>High circle-completion rate</div><div style="display:flex;gap:14px;"><span style="color:#7FE0A8;">✓</span>Near-zero realized defaults</div><div style="display:flex;gap:14px;"><span style="color:#7FE0A8;">✓</span>Trust Score dataset to underwrite scale</div><div style="display:flex;gap:14px;"><span style="color:#7FE0A8;">✓</span>A repeatable, regulated playbook</div></div></div>
+  </div>
+  <div class="ft" style="border-top:1px solid rgba(255,255,255,.1);color:#7E9C8C;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+<!-- 18 · THE ASK -->
+<section data-label="The Ask" data-speaker-notes="Close on partnership. We're assembling the founding network: anchor employers, a bank liquidity partner, an insurance partner, and pilot capital. Join us in building the trust infrastructure layer for community capital. End line: when communities coordinate capital, this is where they'll do it." style="width:1920px;height:1080px;background:#0F1A15;color:#EAF1ED;padding:104px 120px;display:flex;flex-direction:column;justify-content:space-between;">
+  <div style="display:flex;align-items:center;gap:15px;">
+    <svg width="36" height="36" viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" fill="none" stroke="#E9C77E" stroke-width="2"/><circle cx="15" cy="15" r="7" fill="none" stroke="#EAF1ED" stroke-width="2"/><circle cx="15" cy="15" r="2.4" fill="#E9C77E"/></svg>
+    <div class="h" style="font-size:21px;letter-spacing:.05em;">TRUSTCIRCLE<span style="font-size:12px;vertical-align:super;color:#E9C77E;">™</span></div>
+  </div>
+  <div>
+    <div class="k" style="color:#E9C77E;">The ask</div>
+    <h2 class="h" style="font-size:74px;line-height:1.04;margin:24px 0 0;max-width:1500px;color:#FBFAF5;">Help us build the trust infrastructure layer for community capital.</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px;max-width:1300px;">
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px;text-align:center;"><div style="font-size:34px;">🏢</div><div style="font-size:22px;margin-top:12px;color:#EAF1ED;">Anchor employers</div></div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px;text-align:center;"><div style="font-size:34px;">🏦</div><div style="font-size:22px;margin-top:12px;color:#EAF1ED;">Bank liquidity partner</div></div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px;text-align:center;"><div style="font-size:34px;">🛡️</div><div style="font-size:22px;margin-top:12px;color:#EAF1ED;">Insurance partner</div></div>
+      <div style="background:linear-gradient(180deg,#E9C77E,#C9A24B);border-radius:16px;padding:26px;text-align:center;color:#231A06;"><div style="font-size:34px;">💎</div><div style="font-size:22px;margin-top:12px;font-weight:700;font-family:'Sora';">Pilot capital</div></div>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.12);padding-top:26px;font-size:27px;color:#9DBDAC;">When communities coordinate capital — <span style="color:#E9C77E;">this is where they'll do it.</span></div>
+</section>
+
+<!-- 19 · SOURCES -->
+<section data-label="Sources" data-speaker-notes="Sources for the figures cited, for diligence." style="width:1920px;height:1080px;background:#F6F8F7;color:#0F1A15;padding:80px 120px 110px;display:flex;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;align-items:center;"><div class="k" style="color:#0A6E4E;">Notes &amp; sources</div><div class="k" style="color:#B9C2BC;">22 / 22</div></div>
+  <h2 class="h" style="font-size:54px;margin:18px 0 0;">References</h2>
+  <div style="display:flex;flex-direction:column;gap:20px;margin-top:42px;font-size:24px;color:#46554E;line-height:1.5;max-width:1500px;">
+    <div><span style="color:#0A6E4E;font-weight:700;font-family:'Sora';">1.</span> Global ROSCA / social-savings behavior est. ~$500B (Hakbah founder interview, IBS Intelligence, 2024).</div>
+    <div><span style="color:#0A6E4E;font-weight:700;font-family:'Sora';">2.</span> Hakbah registered users: 2M+ (Semafor, Feb 2026); ~1.3M (CNBC / Zawya, 2025). Earlier datapoints (~5K in 2020) per MENAbytes; intermediate years are indicative of the growth trajectory.</div>
+    <div><span style="color:#0A6E4E;font-weight:700;font-family:'Sora';">3.</span> Saudi traditional group-savings market ~$20.5B; average household savings rate 1.6%, ~70% lack emergency savings (Zawya / CNBC, 2025). This is the market Hakbah addresses, not its own throughput.</div>
+    <div style="font-size:21px;color:#6B7A72;margin-top:8px;">Hakbah is referenced as an independent, comparable success case operating under SAMA's regulatory sandbox. TrustCircle is not affiliated with Hakbah. Illustrative circle figures are for explanation only and are not projections.</div>
+  </div>
+  <div class="ft" style="border-top:1px solid #E2E8E4;color:#9AA69F;"><span>TRUSTCIRCLE™ · The Ethical Capital Network</span><span></span></div>
+</section>
+
+</x-import>
+</x-dc>
+</body>
+</html>
